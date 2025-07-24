@@ -1,5 +1,9 @@
-import { Calendar, BookOpen, MessageCircle, User } from "lucide-react";
+import { Calendar, BookOpen, MessageCircle, User, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
+import LanguageSelector from "./LanguageSelector";
 
 const Header = () => {
   return (

@@ -1,0 +1,286 @@
+export const translations = {
+  pt: {
+    // Header
+    login: "Entrar",
+    register: "Cadastrar",
+    agenda: "Agenda",
+    myLessons: "Minhas Aulas",
+    packages: "Pacotes",
+    contact: "Contato",
+    logout: "Sair",
+    
+    // Hero
+    scheduleOnlineLessons: "Agende suas aulas online facilmente",
+    heroDescription: "Plataforma completa para agendamento de aulas particulares. Gerencie horários, receba pagamentos e conduza aulas via Google Meet.",
+    scheduleTrialLesson: "Agendar Aula Experimental",
+    viewAvailableHours: "Ver Horários Disponíveis",
+    flexibleHours: "Horários flexíveis",
+    freeCancellation: "Cancelamento grátis",
+    qualifiedTeachers: "Professores qualificados",
+    
+    // Calendar
+    scheduleCalendar: "Agenda de Horários",
+    chooseTime: "Escolha o melhor horário para sua aula",
+    available: "Disponível",
+    experimental: "Aula Experimental",
+    occupied: "Ocupado",
+    unavailable: "Indisponível",
+    timezone: "Fuso horário: Brasília (GMT-3)",
+    previousDay: "← Dia Anterior",
+    nextDay: "Próximo Dia →",
+    
+    // Packages
+    packagesPlans: "Pacotes e Planos",
+    choosePlan: "Escolha o plano ideal para seu aprendizado",
+    mostPopular: "Mais Popular",
+    trialLesson: "Aula Experimental",
+    package4: "Pacote 4 Aulas",
+    package8: "Pacote 8 Aulas",
+    monthlyPlan: "Plano Mensal",
+    scheduleExperimental: "Agendar Experimental",
+    buyPackage: "Comprar Pacote",
+    subscribePlan: "Assinar Plano",
+    
+    // My Lessons
+    manageSchedule: "Gerencie seus agendamentos e acompanhe seu progresso",
+    lessonsBalance: "Saldo de Aulas",
+    remainingLessons: "Você ainda possui",
+    lessonsToSchedule: "aulas para agendar",
+    buyMoreLessons: "Comprar Mais Aulas",
+    upcomingLessons: "Próximas Aulas",
+    pastLessons: "Aulas Anteriores",
+    enterLesson: "Entrar na Aula",
+    reschedule: "Reagendar",
+    cancel: "Cancelar",
+    confirmed: "Confirmada",
+    completed: "Concluída",
+    leaveFeedback: "Deixar Feedback",
+    cancellationPolicy: "Política de Cancelamento",
+    cancellationText: "Cancelamentos com menos de 12 horas de antecedência não poderão ser reembolsados. Para cancelamentos com mais de 12 horas, você pode reagendar gratuitamente.",
+    
+    // Dashboard
+    welcome: "Bem-vindo",
+    studentDashboard: "Dashboard do Aluno",
+    adminDashboard: "Dashboard do Administrador",
+    totalLessons: "Total de Aulas",
+    lessonsThisMonth: "Aulas este Mês",
+    nextLesson: "Próxima Aula",
+    completedLessons: "Aulas Concluídas",
+    totalStudents: "Total de Alunos",
+    monthlyRevenue: "Receita Mensal",
+    todayLessons: "Aulas Hoje",
+    recentActivity: "Atividade Recente",
+    
+    // Auth
+    welcomeBack: "Bem-vindo de volta",
+    loginToAccount: "Faça login na sua conta para continuar",
+    email: "Email",
+    password: "Senha",
+    forgotPassword: "Esqueceu sua senha?",
+    dontHaveAccount: "Não tem uma conta?",
+    createAccount: "Criar conta",
+    fullName: "Nome completo",
+    confirmPassword: "Confirmar senha",
+    alreadyHaveAccount: "Já tem uma conta?",
+    
+    // Footer
+    services: "Serviços",
+    privateLessons: "Aulas Particulares",
+    support: "Suporte",
+    helpCenter: "Central de Ajuda",
+    termsOfUse: "Termos de Uso",
+    privacy: "Privacidade",
+    rightsReserved: "Todos os direitos reservados.",
+  },
+  
+  en: {
+    // Header
+    login: "Login",
+    register: "Sign Up",
+    agenda: "Schedule",
+    myLessons: "My Lessons",
+    packages: "Packages",
+    contact: "Contact",
+    logout: "Logout",
+    
+    // Hero
+    scheduleOnlineLessons: "Schedule your online lessons easily",
+    heroDescription: "Complete platform for private lesson scheduling. Manage schedules, receive payments and conduct lessons via Google Meet.",
+    scheduleTrialLesson: "Schedule Trial Lesson",
+    viewAvailableHours: "View Available Hours",
+    flexibleHours: "Flexible hours",
+    freeCancellation: "Free cancellation",
+    qualifiedTeachers: "Qualified teachers",
+    
+    // Calendar
+    scheduleCalendar: "Schedule Calendar",
+    chooseTime: "Choose the best time for your lesson",
+    available: "Available",
+    experimental: "Trial Lesson",
+    occupied: "Occupied",
+    unavailable: "Unavailable",
+    timezone: "Timezone: Brasília (GMT-3)",
+    previousDay: "← Previous Day",
+    nextDay: "Next Day →",
+    
+    // Packages
+    packagesPlans: "Packages & Plans",
+    choosePlan: "Choose the ideal plan for your learning",
+    mostPopular: "Most Popular",
+    trialLesson: "Trial Lesson",
+    package4: "4 Lessons Package",
+    package8: "8 Lessons Package",
+    monthlyPlan: "Monthly Plan",
+    scheduleExperimental: "Schedule Trial",
+    buyPackage: "Buy Package",
+    subscribePlan: "Subscribe Plan",
+    
+    // My Lessons
+    manageSchedule: "Manage your bookings and track your progress",
+    lessonsBalance: "Lessons Balance",
+    remainingLessons: "You still have",
+    lessonsToSchedule: "lessons to schedule",
+    buyMoreLessons: "Buy More Lessons",
+    upcomingLessons: "Upcoming Lessons",
+    pastLessons: "Past Lessons",
+    enterLesson: "Enter Lesson",
+    reschedule: "Reschedule",
+    cancel: "Cancel",
+    confirmed: "Confirmed",
+    completed: "Completed",
+    leaveFeedback: "Leave Feedback",
+    cancellationPolicy: "Cancellation Policy",
+    cancellationText: "Cancellations less than 12 hours in advance cannot be refunded. For cancellations more than 12 hours, you can reschedule for free.",
+    
+    // Dashboard
+    welcome: "Welcome",
+    studentDashboard: "Student Dashboard",
+    adminDashboard: "Administrator Dashboard",
+    totalLessons: "Total Lessons",
+    lessonsThisMonth: "Lessons This Month",
+    nextLesson: "Next Lesson",
+    completedLessons: "Completed Lessons",
+    totalStudents: "Total Students",
+    monthlyRevenue: "Monthly Revenue",
+    todayLessons: "Today's Lessons",
+    recentActivity: "Recent Activity",
+    
+    // Auth
+    welcomeBack: "Welcome back",
+    loginToAccount: "Sign in to your account to continue",
+    email: "Email",
+    password: "Password",
+    forgotPassword: "Forgot your password?",
+    dontHaveAccount: "Don't have an account?",
+    createAccount: "Create account",
+    fullName: "Full name",
+    confirmPassword: "Confirm password",
+    alreadyHaveAccount: "Already have an account?",
+    
+    // Footer
+    services: "Services",
+    privateLessons: "Private Lessons",
+    support: "Support",
+    helpCenter: "Help Center",
+    termsOfUse: "Terms of Use",
+    privacy: "Privacy",
+    rightsReserved: "All rights reserved.",
+  },
+  
+  es: {
+    // Header
+    login: "Iniciar Sesión",
+    register: "Registrarse",
+    agenda: "Agenda",
+    myLessons: "Mis Clases",
+    packages: "Paquetes",
+    contact: "Contacto",
+    logout: "Cerrar Sesión",
+    
+    // Hero
+    scheduleOnlineLessons: "Programa tus clases online fácilmente",
+    heroDescription: "Plataforma completa para programación de clases particulares. Gestiona horarios, recibe pagos y conduce clases vía Google Meet.",
+    scheduleTrialLesson: "Programar Clase de Prueba",
+    viewAvailableHours: "Ver Horarios Disponibles",
+    flexibleHours: "Horarios flexibles",
+    freeCancellation: "Cancelación gratuita",
+    qualifiedTeachers: "Profesores calificados",
+    
+    // Calendar
+    scheduleCalendar: "Calendario de Horarios",
+    chooseTime: "Elige el mejor horario para tu clase",
+    available: "Disponible",
+    experimental: "Clase de Prueba",
+    occupied: "Ocupado",
+    unavailable: "No disponible",
+    timezone: "Zona horaria: Brasília (GMT-3)",
+    previousDay: "← Día Anterior",
+    nextDay: "Día Siguiente →",
+    
+    // Packages
+    packagesPlans: "Paquetes y Planes",
+    choosePlan: "Elige el plan ideal para tu aprendizaje",
+    mostPopular: "Más Popular",
+    trialLesson: "Clase de Prueba",
+    package4: "Paquete 4 Clases",
+    package8: "Paquete 8 Clases",
+    monthlyPlan: "Plan Mensual",
+    scheduleExperimental: "Programar Prueba",
+    buyPackage: "Comprar Paquete",
+    subscribePlan: "Suscribir Plan",
+    
+    // My Lessons
+    manageSchedule: "Gestiona tus reservas y sigue tu progreso",
+    lessonsBalance: "Saldo de Clases",
+    remainingLessons: "Aún tienes",
+    lessonsToSchedule: "clases para programar",
+    buyMoreLessons: "Comprar Más Clases",
+    upcomingLessons: "Próximas Clases",
+    pastLessons: "Clases Anteriores",
+    enterLesson: "Entrar a la Clase",
+    reschedule: "Reprogramar",
+    cancel: "Cancelar",
+    confirmed: "Confirmada",
+    completed: "Completada",
+    leaveFeedback: "Dejar Comentario",
+    cancellationPolicy: "Política de Cancelación",
+    cancellationText: "Las cancelaciones con menos de 12 horas de anticipación no pueden ser reembolsadas. Para cancelaciones con más de 12 horas, puedes reprogramar gratis.",
+    
+    // Dashboard
+    welcome: "Bienvenido",
+    studentDashboard: "Panel del Estudiante",
+    adminDashboard: "Panel del Administrador",
+    totalLessons: "Total de Clases",
+    lessonsThisMonth: "Clases este Mes",
+    nextLesson: "Próxima Clase",
+    completedLessons: "Clases Completadas",
+    totalStudents: "Total de Estudiantes",
+    monthlyRevenue: "Ingresos Mensuales",
+    todayLessons: "Clases de Hoy",
+    recentActivity: "Actividad Reciente",
+    
+    // Auth
+    welcomeBack: "Bienvenido de vuelta",
+    loginToAccount: "Inicia sesión en tu cuenta para continuar",
+    email: "Email",
+    password: "Contraseña",
+    forgotPassword: "¿Olvidaste tu contraseña?",
+    dontHaveAccount: "¿No tienes una cuenta?",
+    createAccount: "Crear cuenta",
+    fullName: "Nombre completo",
+    confirmPassword: "Confirmar contraseña",
+    alreadyHaveAccount: "¿Ya tienes una cuenta?",
+    
+    // Footer
+    services: "Servicios",
+    privateLessons: "Clases Particulares",
+    support: "Soporte",
+    helpCenter: "Centro de Ayuda",
+    termsOfUse: "Términos de Uso",
+    privacy: "Privacidad",
+    rightsReserved: "Todos los derechos reservados.",
+  }
+};
+
+export type Language = keyof typeof translations;
+export type TranslationKey = keyof typeof translations.pt;
