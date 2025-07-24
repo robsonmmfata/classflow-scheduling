@@ -1,0 +1,70 @@
+import { Calendar, Clock, CheckCircle, Star } from "lucide-react";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
+import heroImage from "@/assets/hero-image.jpg";
+
+const Hero = () => {
+  return (
+    <section className="relative py-20 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-hero opacity-5"></div>
+      
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+                Agende suas{" "}
+                <span className="bg-gradient-primary bg-clip-text text-transparent">
+                  aulas online
+                </span>{" "}
+                facilmente
+              </h1>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Plataforma completa para agendamento de aulas particulares. 
+                Gerencie horários, receba pagamentos e conduza aulas via Google Meet.
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap gap-4">
+              <Button variant="gradient" size="lg">
+                <Calendar className="h-5 w-5" />
+                Agendar Aula Experimental
+              </Button>
+              <Button variant="outline" size="lg">
+                Ver Horários Disponíveis
+              </Button>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-accent" />
+                <span className="text-sm text-muted-foreground">Horários flexíveis</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-5 w-5 text-accent" />
+                <span className="text-sm text-muted-foreground">Cancelamento grátis</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Star className="h-5 w-5 text-accent" />
+                <span className="text-sm text-muted-foreground">Professores qualificados</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-primary opacity-10 rounded-2xl blur-3xl"></div>
+            <Card className="relative overflow-hidden border-0 shadow-lg">
+              <img 
+                src={heroImage} 
+                alt="Professor e aluno em aula online" 
+                className="w-full h-auto object-cover"
+              />
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
