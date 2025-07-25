@@ -53,13 +53,13 @@ const StudentDashboard = () => {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline">
+              <Button variant="outline" onClick={() => alert('Configurações em desenvolvimento')}>
                 <Settings className="h-4 w-4 mr-2" />
-                Configurações
+                {t('settings')}
               </Button>
-              <Button variant="gradient">
+              <Button variant="gradient" onClick={() => document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' })}>
                 <Calendar className="h-4 w-4 mr-2" />
-                Agendar Aula
+                {t('scheduleLesson')}
               </Button>
             </div>
           </div>
@@ -83,7 +83,7 @@ const StudentDashboard = () => {
                         {t('remainingLessons')} <span className="font-bold text-accent">{user?.remainingLessons || 0} {t('lessonsToSchedule')}</span>
                       </p>
                     </div>
-                    <Button variant="gradient">
+                    <Button variant="gradient" onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}>
                       {t('buyMoreLessons')}
                     </Button>
                   </div>
@@ -195,8 +195,8 @@ const StudentDashboard = () => {
                     </div>
                   </div>
                   
-                  <Button variant="outline" className="w-full">
-                    Ver Relatório Completo
+                  <Button variant="outline" className="w-full" onClick={() => alert('Relatório completo em desenvolvimento')}>
+                    {t('viewFullReport')}
                   </Button>
                 </CardContent>
               </Card>

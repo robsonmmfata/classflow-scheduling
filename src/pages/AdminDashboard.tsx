@@ -68,13 +68,13 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline">
+              <Button variant="outline" onClick={() => alert('Configurações em desenvolvimento')}>
                 <Settings className="h-4 w-4 mr-2" />
-                Configurações
+                {t('settings')}
               </Button>
-              <Button variant="gradient">
+              <Button variant="gradient" onClick={() => alert('Novo horário em desenvolvimento')}>
                 <Plus className="h-4 w-4 mr-2" />
-                Novo Horário
+                {t('newSchedule')}
               </Button>
             </div>
           </div>
@@ -181,35 +181,35 @@ const AdminDashboard = () => {
 
           {/* Bottom Section - Quick Actions */}
           <div className="grid md:grid-cols-4 gap-4">
-            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => alert('Definir preços em desenvolvimento')}>
               <CardContent className="p-6 text-center">
                 <DollarSign className="h-8 w-8 text-accent mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Definir Preços</h3>
-                <p className="text-sm text-muted-foreground">Ajustar valores das aulas</p>
+                <h3 className="font-semibold mb-1">{t('setPrices')}</h3>
+                <p className="text-sm text-muted-foreground">{t('adjustLessonValues')}</p>
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => alert('Horários fixos em desenvolvimento')}>
               <CardContent className="p-6 text-center">
                 <Calendar className="h-8 w-8 text-primary mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Horários Fixos</h3>
-                <p className="text-sm text-muted-foreground">Configurar disponibilidade</p>
+                <h3 className="font-semibold mb-1">{t('fixedSchedules')}</h3>
+                <p className="text-sm text-muted-foreground">{t('configureAvailability')}</p>
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => alert('Gerenciar alunos em desenvolvimento')}>
               <CardContent className="p-6 text-center">
                 <Users className="h-8 w-8 text-lesson-trial mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Gerenciar Alunos</h3>
-                <p className="text-sm text-muted-foreground">Ver perfis e histórico</p>
+                <h3 className="font-semibold mb-1">{t('manageStudents')}</h3>
+                <p className="text-sm text-muted-foreground">{t('viewProfilesHistory')}</p>
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => alert('Relatórios em desenvolvimento')}>
               <CardContent className="p-6 text-center">
                 <TrendingUp className="h-8 w-8 text-blue-500 mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Relatórios</h3>
-                <p className="text-sm text-muted-foreground">Análise e estatísticas</p>
+                <h3 className="font-semibold mb-1">{t('reports')}</h3>
+                <p className="text-sm text-muted-foreground">{t('analysisStatistics')}</p>
               </CardContent>
             </Card>
           </div>
