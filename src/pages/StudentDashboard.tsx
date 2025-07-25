@@ -6,10 +6,16 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import StudentStats from '@/components/student/StudentStats';
 import Header from '@/components/Header';
+import ProfileCompletion from '@/components/ProfileCompletion';
+import FeedbackSystem from '@/components/FeedbackSystem';
+import MyLessons from '@/components/MyLessons';
+import Chat from '@/components/Chat';
+import { useGeolocation } from '@/hooks/useGeolocation';
 
 const StudentDashboard = () => {
   const { user } = useAuth();
   const { t } = useLanguage();
+  const { locationData } = useGeolocation();
 
   const upcomingLessons = [
     {
@@ -67,9 +73,12 @@ const StudentDashboard = () => {
           {/* Stats Cards */}
           <StudentStats />
 
+          {/* Profile Completion */}
+          <ProfileCompletion />
+
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Left Column - Próximas Aulas */}
+            {/* Left Column - Minhas Aulas */}
             <div className="lg:col-span-2 space-y-6">
               {/* Saldo de Aulas */}
               <Card className="border-l-4 border-l-accent shadow-sm">
@@ -90,51 +99,11 @@ const StudentDashboard = () => {
                 </CardContent>
               </Card>
 
-              {/* Próximas Aulas */}
-              <Card className="shadow-lg border-0">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Calendar className="h-5 w-5 text-primary" />
-                    {t('upcomingLessons')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {upcomingLessons.map((lesson) => (
-                    <div key={lesson.id} className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-accent-soft transition-colors">
-                      <div className="flex items-center gap-4">
-                        <div className="text-center">
-                          <div className="text-sm font-medium text-foreground">{lesson.date}</div>
-                          <div className="flex items-center gap-1 text-muted-foreground">
-                            <Clock className="h-4 w-4" />
-                            {lesson.time}
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            <span className="font-medium">{lesson.teacher}</span>
-                            <Badge className={lesson.type === "trial" ? "bg-lesson-trial text-white" : "bg-lesson-available text-white"}>
-                              {lesson.type === "trial" ? "Experimental" : "Regular"}
-                            </Badge>
-                          </div>
-                          <Badge variant="outline" className="text-accent border-accent">
-                            {t('confirmed')}
-                          </Badge>
-                        </div>
-                      </div>
-                      
-                      <Button 
-                        variant="gradient" 
-                        size="sm"
-                        onClick={() => window.open(lesson.meetLink, '_blank')}
-                      >
-                        <Video className="h-4 w-4 mr-2" />
-                        {t('enterLesson')}
-                      </Button>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
+              {/* Minhas Aulas Component */}
+              <MyLessons />
+
+              {/* Feedback System */}
+              <FeedbackSystem />
             </div>
 
             {/* Right Column - Atividade Recente */}
@@ -204,6 +173,9 @@ const StudentDashboard = () => {
           </div>
         </div>
       </div>
+      
+      {/* Chat Component */}
+      <Chat />
     </div>
   );
 };

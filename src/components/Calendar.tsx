@@ -9,14 +9,15 @@ const Calendar = () => {
   
   // Mock data for demonstration
   const timeSlots = [
-    { time: "09:00", available: true, type: "regular" },
-    { time: "10:00", available: false, type: "booked", student: "Maria Silva" },
-    { time: "11:00", available: true, type: "trial" },
-    { time: "14:00", available: true, type: "regular" },
-    { time: "15:00", available: true, type: "regular" },
-    { time: "16:00", available: false, type: "unavailable" },
-    { time: "17:00", available: true, type: "regular" },
-    { time: "18:00", available: false, type: "booked", student: "João Santos" },
+    { time: "08:00 - 08:50", available: true, type: "regular" },
+    { time: "09:00 - 09:50", available: false, type: "booked", student: "Maria Silva" },
+    { time: "10:00 - 10:50", available: true, type: "trial" },
+    { time: "11:00 - 11:50", available: true, type: "regular" },
+    { time: "14:00 - 14:50", available: true, type: "regular" },
+    { time: "15:00 - 15:50", available: true, type: "regular" },
+    { time: "16:00 - 16:50", available: false, type: "unavailable" },
+    { time: "17:00 - 17:50", available: true, type: "regular" },
+    { time: "18:00 - 18:50", available: false, type: "booked", student: "João Santos" },
   ];
   
   const getSlotStyle = (slot: any) => {
