@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Calendar from "@/components/Calendar";
 import PricingPackages from "@/components/PricingPackages";
-import MyLessons from "@/components/MyLessons";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -12,7 +11,6 @@ const Index = () => {
       <Hero />
       <Calendar />
       <PricingPackages />
-      <MyLessons />
       <Footer />
     </div>
   );
