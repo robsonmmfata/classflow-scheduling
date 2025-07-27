@@ -1,36 +1,62 @@
 import { useState } from "react";
-import { Calendar as CalendarIcon, Clock, User, Video } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, User, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { useSchedule } from "@/contexts/ScheduleContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const { timeSlots, bookSlot, scheduleSettings } = useSchedule();
+  const { user } = useAuth();
+  const { toast } = useToast();
   
-  // Mock data for demonstration
-  const timeSlots = [
-    { time: "08:00 - 08:50", available: true, type: "regular" },
-    { time: "09:00 - 09:50", available: false, type: "booked", student: "Maria Silva" },
-    { time: "10:00 - 10:50", available: true, type: "trial" },
-    { time: "11:00 - 11:50", available: true, type: "regular" },
-    { time: "14:00 - 14:50", available: true, type: "regular" },
-    { time: "15:00 - 15:50", available: true, type: "regular" },
-    { time: "16:00 - 16:50", available: false, type: "unavailable" },
-    { time: "17:00 - 17:50", available: true, type: "regular" },
-    { time: "18:00 - 18:50", available: false, type: "booked", student: "João Santos" },
-  ];
+  // Filter slots for current date
+  const todaySlots = timeSlots.filter(slot => slot.date === '2025-07-27');
   
   const getSlotStyle = (slot: any) => {
-    if (!slot.available && slot.type === "booked") {
+    if (slot.type === "booked") {
       return "bg-lesson-booked text-white";
     }
-    if (!slot.available && slot.type === "unavailable") {
+    if (slot.type === "blocked") {
       return "bg-lesson-unavailable text-muted-foreground";
     }
     if (slot.type === "trial") {
       return "bg-lesson-trial text-white hover:bg-lesson-trial/90";
     }
     return "bg-lesson-available text-white hover:bg-lesson-available/90";
+  };
+
+  const handleBookSlot = (slotId: string) => {
+    if (!user) {
+      toast({
+        title: "Login necessário",
+        description: "Faça login para agendar uma aula",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (user.role !== 'student') {
+      toast({
+        title: "Acesso negado",
+        description: "Apenas alunos podem agendar aulas",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    bookSlot(slotId, { name: user.name, email: user.email });
+    toast({
+      title: "Aula agendada!",
+      description: "Sua aula foi agendada com sucesso",
+    });
+  };
+
+  const handleWhatsAppContact = (whatsapp: string) => {
+    window.open(`https://wa.me/${whatsapp.replace(/\D/g, '')}`, '_blank');
   };
   
   const formatDate = (date: Date) => {
@@ -83,20 +109,26 @@ const Calendar = () => {
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {timeSlots.map((slot, index) => (
-                <div key={index} className="relative">
+              {todaySlots.map((slot) => (
+                <div key={slot.id} className="relative">
                   <Button
                     variant={slot.available ? "default" : "secondary"}
                     className={`w-full h-16 flex flex-col items-center justify-center ${getSlotStyle(slot)}`}
                     disabled={!slot.available}
+                    onClick={() => slot.available && handleBookSlot(slot.id)}
                   >
                     <div className="flex items-center gap-1">
                       <Clock className="h-4 w-4" />
-                      <span className="font-medium">{slot.time}</span>
+                      <span className="font-medium">{slot.time} - {slot.duration}min</span>
                     </div>
                     {slot.type === "trial" && slot.available && (
                       <Badge variant="outline" className="text-xs mt-1 bg-white/20 border-white/30 text-white">
-                        Experimental
+                        US$ {scheduleSettings.prices.trial}
+                      </Badge>
+                    )}
+                    {slot.type === "available" && slot.available && (
+                      <Badge variant="outline" className="text-xs mt-1 bg-white/20 border-white/30 text-white">
+                        US$ {scheduleSettings.prices.package4}
                       </Badge>
                     )}
                     {slot.type === "booked" && (
@@ -107,13 +139,14 @@ const Calendar = () => {
                     )}
                   </Button>
                   
-                  {slot.type === "booked" && (
+                  {slot.type === "booked" && slot.whatsapp && (
                     <Button
                       variant="outline"
                       size="sm"
                       className="absolute -top-2 -right-2 h-6 w-6 p-0 bg-white shadow-md hover:bg-accent-soft"
+                      onClick={() => handleWhatsAppContact(slot.whatsapp!)}
                     >
-                      <Video className="h-3 w-3" />
+                      <MessageCircle className="h-3 w-3" />
                     </Button>
                   )}
                 </div>

@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Calendar from "@/components/Calendar";
 import PricingPackages from "@/components/PricingPackages";
 import Footer from "@/components/Footer";
+import LocationLanguageModal from "@/components/LocationLanguageModal";
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
       <Calendar />
       <PricingPackages />
       <Footer />
+      <LocationLanguageModal />
     </div>
   );
 };

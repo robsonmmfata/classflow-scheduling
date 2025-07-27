@@ -1,167 +1,157 @@
-import { MessageCircle, Send, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { MessageCircle, Send, X, User } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
-import { ScrollArea } from "./ui/scroll-area";
 import { Badge } from "./ui/badge";
-import { useState, useRef, useEffect } from "react";
+import { ScrollArea } from "./ui/scroll-area";
 import { useAuth } from "@/contexts/AuthContext";
-
-interface Message {
-  id: string;
-  sender: "student" | "teacher";
-  text: string;
-  timestamp: Date;
-}
+import { useChat } from "@/contexts/ChatContext";
 
 const Chat = () => {
-  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      sender: "teacher",
-      text: "Olá! Como posso ajudá-lo hoje?",
-      timestamp: new Date()
-    }
-  ]);
+  const { user } = useAuth();
+  const { messages, unreadCount, sendMessage, markAllAsRead, getMessagesForUser } = useChat();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  const userMessages = user ? getMessagesForUser(user.id) : [];
 
   const scrollToBottom = () => {
     if (scrollAreaRef.current) {
-      const scrollElement = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
-      if (scrollElement) {
-        scrollElement.scrollTop = scrollElement.scrollHeight;
+      const scrollContainer = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      if (scrollContainer) {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
       }
     }
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [userMessages]);
 
-  const sendMessage = () => {
-    if (message.trim() === "") return;
+  useEffect(() => {
+    if (isOpen) {
+      markAllAsRead();
+    }
+  }, [isOpen, markAllAsRead]);
 
-    const newMessage: Message = {
-      id: Date.now().toString(),
-      sender: "student",
-      text: message,
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, newMessage]);
+  const handleSendMessage = () => {
+    if (!message.trim() || !user) return;
+    
+    sendMessage(message, user.id, user.name, user.role);
     setMessage("");
-
-    // Simular resposta automática da professora
-    setTimeout(() => {
-      const teacherResponse: Message = {
-        id: (Date.now() + 1).toString(),
-        sender: "teacher",
-        text: "Obrigada pela sua mensagem! Vou responder em breve.",
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, teacherResponse]);
-    }, 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      sendMessage();
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
     }
   };
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-4 right-4 z-50">
         <Button
           onClick={() => setIsOpen(true)}
-          variant="gradient"
-          size="lg"
-          className="rounded-full shadow-lg hover:shadow-xl transition-shadow"
+          className="relative rounded-full w-16 h-16 bg-gradient-primary shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
         >
-          <MessageCircle className="h-6 w-6 mr-2" />
-          Chat com a Professora
-          <Badge className="ml-2 bg-red-500 text-white">1</Badge>
+          <MessageCircle className="h-6 w-6 text-white" />
+          {unreadCount > 0 && (
+            <Badge className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-destructive text-white text-xs flex items-center justify-center p-0">
+              {unreadCount > 9 ? '9+' : unreadCount}
+            </Badge>
+          )}
         </Button>
       </div>
     );
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      <Card className="w-80 h-96 shadow-xl border-2 border-primary/20">
-        <CardHeader className="pb-3 bg-gradient-primary text-white rounded-t-lg">
-          <div className="flex items-center justify-between">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <MessageCircle className="h-5 w-5" />
-              Prof. Maria
-            </CardTitle>
-            <Button 
-              variant="ghost" 
-              size="sm"
+    <div className="fixed bottom-4 right-4 z-50">
+      <Card className="w-80 h-96 shadow-xl border-0 flex flex-col">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <User className="h-4 w-4 text-primary" />
+              <span className="text-sm">Chat com a Professora</span>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6"
               onClick={() => setIsOpen(false)}
-              className="text-white hover:bg-white/20"
             >
               <X className="h-4 w-4" />
             </Button>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span className="text-sm opacity-90">Online</span>
-          </div>
+          </CardTitle>
         </CardHeader>
-
-        <CardContent className="p-0 flex flex-col h-full">
-          <ScrollArea ref={scrollAreaRef} className="flex-1 p-4">
-            <div className="space-y-3">
-              {messages.map((msg) => (
+        
+        <CardContent className="flex-1 flex flex-col p-3 gap-3">
+          <ScrollArea className="flex-1" ref={scrollAreaRef}>
+            <div className="space-y-3 pr-3">
+              {userMessages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex ${msg.sender === "student" ? "justify-end" : "justify-start"}`}
+                  className={`flex ${msg.senderRole === user?.role ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] p-3 rounded-lg text-sm ${
-                      msg.sender === "student"
-                        ? "bg-primary text-white ml-4"
-                        : "bg-accent-soft text-foreground mr-4"
+                    className={`max-w-[85%] p-2 rounded-lg text-sm ${
+                      msg.senderRole === user?.role
+                        ? 'bg-primary text-primary-foreground ml-auto'
+                        : 'bg-muted text-foreground'
                     }`}
                   >
-                    <p>{msg.text}</p>
-                    <p className={`text-xs mt-1 ${
-                      msg.sender === "student" ? "text-white/70" : "text-muted-foreground"
-                    }`}>
-                      {msg.timestamp.toLocaleTimeString('pt-BR', { 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
-                      })}
-                    </p>
+                    <div className="flex items-center gap-1 mb-1">
+                      <span className="font-medium text-xs">
+                        {msg.senderName}
+                      </span>
+                      <span className="text-xs opacity-70">
+                        {msg.timestamp.toLocaleTimeString([], { 
+                          hour: '2-digit', 
+                          minute: '2-digit' 
+                        })}
+                      </span>
+                    </div>
+                    <p className="break-words">{msg.message}</p>
                   </div>
                 </div>
               ))}
+              
+              {userMessages.length === 0 && (
+                <div className="text-center text-muted-foreground text-sm py-8">
+                  <MessageCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                  <p>Inicie uma conversa com a professora!</p>
+                </div>
+              )}
             </div>
           </ScrollArea>
-
-          <div className="p-4 border-t border-border">
-            <div className="flex gap-2">
-              <Input
-                placeholder="Digite sua mensagem..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyPress={handleKeyPress}
-                className="flex-1"
-              />
-              <Button 
-                onClick={sendMessage}
-                variant="gradient"
-                size="sm"
-                disabled={message.trim() === ""}
-              >
-                <Send className="h-4 w-4" />
-              </Button>
-            </div>
+          
+          <div className="flex gap-2">
+            <Input
+              placeholder="Digite sua mensagem..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              onKeyPress={handleKeyPress}
+              className="flex-1 text-sm"
+              disabled={!user}
+            />
+            <Button
+              size="icon"
+              onClick={handleSendMessage}
+              disabled={!message.trim() || !user}
+              className="bg-primary hover:bg-primary/90"
+            >
+              <Send className="h-4 w-4" />
+            </Button>
           </div>
+          
+          {!user && (
+            <p className="text-xs text-muted-foreground text-center">
+              Faça login para enviar mensagens
+            </p>
+          )}
         </CardContent>
       </Card>
     </div>

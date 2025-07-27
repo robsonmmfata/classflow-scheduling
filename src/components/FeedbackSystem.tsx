@@ -6,38 +6,76 @@ import { Badge } from "./ui/badge";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
+import { useFeedback } from "@/contexts/FeedbackContext";
+import { useToast } from "@/hooks/use-toast";
 
 const FeedbackSystem = () => {
   const { t } = useLanguage();
   const { user } = useAuth();
+  const { hasFeedback, submitFeedback, getFeedbackByStudent } = useFeedback();
+  const { toast } = useToast();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-  const [hasFeedback, setHasFeedback] = useState(false);
+
+  const userHasFeedback = user ? hasFeedback(user.id) : false;
+  const existingFeedback = user ? getFeedbackByStudent(user.id) : undefined;
 
   const handleSubmitFeedback = () => {
-    if (rating === 0 || comment.trim() === "") {
-      alert("Por favor, selecione uma avaliação e escreva um comentário.");
+    if (!user) {
+      toast({
+        title: "Login necessário",
+        description: "Faça login para deixar feedback",
+        variant: "destructive"
+      });
       return;
     }
-    
-    // Simular envio do feedback
-    setHasFeedback(true);
-    alert("Feedback enviado com sucesso! Obrigado pela sua avaliação.");
+
+    if (rating === 0 || comment.trim().length < 20) {
+      toast({
+        title: "Feedback incompleto",
+        description: "Por favor, selecione uma avaliação e escreva um comentário com pelo menos 20 caracteres.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    submitFeedback(user.id, user.name, rating, comment);
+    toast({
+      title: "Feedback enviado!",
+      description: "Obrigado por avaliar nossas aulas. Seu feedback é muito importante!",
+    });
+    setRating(0);
+    setComment("");
   };
 
-  if (hasFeedback) {
+  if (userHasFeedback && existingFeedback) {
     return (
-      <Card className="bg-gradient-card border-accent shadow-sm">
-        <CardContent className="p-6 text-center">
-          <div className="flex justify-center mb-4">
-            <Badge variant="outline" className="text-accent border-accent px-4 py-2">
-              <MessageSquare className="h-4 w-4 mr-2" />
-              Feedback Enviado
+      <Card className="shadow-lg border-0">
+        <CardContent className="p-6">
+          <div className="text-center mb-4">
+            <Badge variant="outline" className="bg-accent-soft text-accent border-accent">
+              ✓ Feedback Enviado
             </Badge>
           </div>
-          <p className="text-muted-foreground">
-            Obrigado por compartilhar sua experiência! Seu feedback é muito importante para nós.
-          </p>
+          <h3 className="text-lg font-semibold text-foreground mb-2 text-center">
+            Obrigado pelo seu feedback!
+          </h3>
+          <div className="bg-muted/30 p-4 rounded-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm font-medium">Sua avaliação:</span>
+              <div className="flex text-yellow-500">
+                {[...Array(existingFeedback.rating)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-current" />
+                ))}
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground italic">
+              "{existingFeedback.comment}"
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              Enviado em {existingFeedback.timestamp.toLocaleDateString()}
+            </p>
+          </div>
         </CardContent>
       </Card>
     );
@@ -97,7 +135,7 @@ const FeedbackSystem = () => {
             required
           />
           <p className="text-xs text-muted-foreground">
-            Campo obrigatório - Mínimo 20 caracteres
+            Campo obrigatório - Mínimo 20 caracteres ({comment.length}/20)
           </p>
         </div>
 
