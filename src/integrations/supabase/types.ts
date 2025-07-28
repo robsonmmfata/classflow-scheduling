@@ -14,7 +14,214 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      chat_messages: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean | null
+          message: string
+          recipient_id: string
+          sender_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean | null
+          message: string
+          recipient_id: string
+          sender_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean | null
+          message?: string
+          recipient_id?: string
+          sender_id?: string
+        }
+        Relationships: []
+      }
+      lesson_packages: {
+        Row: {
+          created_at: string
+          expiry_date: string | null
+          id: string
+          lessons_included: number
+          package_name: string
+          purchase_date: string | null
+          status: string | null
+          student_id: string
+          total_price: number
+        }
+        Insert: {
+          created_at?: string
+          expiry_date?: string | null
+          id?: string
+          lessons_included: number
+          package_name: string
+          purchase_date?: string | null
+          status?: string | null
+          student_id: string
+          total_price: number
+        }
+        Update: {
+          created_at?: string
+          expiry_date?: string | null
+          id?: string
+          lessons_included?: number
+          package_name?: string
+          purchase_date?: string | null
+          status?: string | null
+          student_id?: string
+          total_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_packages_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lessons: {
+        Row: {
+          created_at: string
+          duration_minutes: number | null
+          id: string
+          meeting_link: string | null
+          notes: string | null
+          price_paid: number | null
+          scheduled_date: string
+          scheduled_time: string
+          status: string | null
+          student_id: string
+          teacher_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          duration_minutes?: number | null
+          id?: string
+          meeting_link?: string | null
+          notes?: string | null
+          price_paid?: number | null
+          scheduled_date: string
+          scheduled_time: string
+          status?: string | null
+          student_id: string
+          teacher_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          duration_minutes?: number | null
+          id?: string
+          meeting_link?: string | null
+          notes?: string | null
+          price_paid?: number | null
+          scheduled_date?: string
+          scheduled_time?: string
+          status?: string | null
+          student_id?: string
+          teacher_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          phone: string | null
+          role: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          phone?: string | null
+          role?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          phone?: string | null
+          role?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      students: {
+        Row: {
+          created_at: string
+          custom_price_per_lesson: number | null
+          email: string
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          registration_date: string | null
+          remaining_lessons: number | null
+          status: string | null
+          total_lessons_purchased: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          custom_price_per_lesson?: number | null
+          email: string
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          registration_date?: string | null
+          remaining_lessons?: number | null
+          status?: string | null
+          total_lessons_purchased?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          custom_price_per_lesson?: number | null
+          email?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          registration_date?: string | null
+          remaining_lessons?: number | null
+          status?: string | null
+          total_lessons_purchased?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
