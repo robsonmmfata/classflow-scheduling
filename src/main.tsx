@@ -7,6 +7,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ScheduleProvider } from "./contexts/ScheduleContext";
 import { ChatProvider } from "./contexts/ChatContext";
+import { ChatProvider as RealChatProvider } from "./contexts/RealChatContext";
+import { StudentsProvider } from "./contexts/StudentsContext";
 import { FeedbackProvider } from "./contexts/FeedbackContext";
 
 createRoot(document.getElementById("root")!).render(
@@ -16,9 +18,13 @@ createRoot(document.getElementById("root")!).render(
         <AuthProvider>
           <ScheduleProvider>
             <ChatProvider>
-              <FeedbackProvider>
-                <App />
-              </FeedbackProvider>
+              <RealChatProvider>
+                <StudentsProvider>
+                  <FeedbackProvider>
+                    <App />
+                  </FeedbackProvider>
+                </StudentsProvider>
+              </RealChatProvider>
             </ChatProvider>
           </ScheduleProvider>
         </AuthProvider>

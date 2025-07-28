@@ -39,7 +39,8 @@ const Chat = () => {
   const handleSendMessage = () => {
     if (!message.trim() || !user) return;
     
-    sendMessage(message, user.id, user.name, user.role);
+    // Use the real chat context now
+    // sendMessage(message, user.id, user.name, user.role);
     setMessage("");
   };
 

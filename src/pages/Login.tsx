@@ -14,11 +14,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const { login, isLoading, user } = useAuth();
+  const { login, isLoading, user, profile } = useAuth();
   const { t } = useLanguage();
 
   if (user) {
-    return <Navigate to={user.role === 'admin' ? '/admin' : '/dashboard'} replace />;
+    return <Navigate to={profile?.role === 'admin' ? '/admin' : '/dashboard'} replace />;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -68,7 +68,7 @@ const Header = () => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="flex items-center gap-2">
                     <User className="h-4 w-4" />
-                    {user.name}
+                    {user.email}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">

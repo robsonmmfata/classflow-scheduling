@@ -48,7 +48,7 @@ const Calendar = () => {
       return;
     }
 
-    bookSlot(slotId, { name: user.name, email: user.email });
+    bookSlot(slotId, { name: user.email, email: user.email });
     toast({
       title: "Aula agendada!",
       description: "Sua aula foi agendada com sucesso",

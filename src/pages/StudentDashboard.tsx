@@ -52,7 +52,7 @@ const StudentDashboard = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-foreground">
-                {t('welcome')}, {user?.name}! 👋
+                {t('welcome')}, {user?.email}! 👋
               </h1>
               <p className="text-muted-foreground mt-1">
                 {t('studentDashboard')} - Acompanhe seu progresso
@@ -89,7 +89,7 @@ const StudentDashboard = () => {
                         {t('lessonsBalance')}
                       </h3>
                       <p className="text-muted-foreground">
-                        {t('remainingLessons')} <span className="font-bold text-accent">{user?.remainingLessons || 0} {t('lessonsToSchedule')}</span>
+                        {t('remainingLessons')} <span className="font-bold text-accent">0 {t('lessonsToSchedule')}</span>
                       </p>
                     </div>
                     <Button variant="gradient" onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}>

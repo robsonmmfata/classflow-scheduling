@@ -39,7 +39,7 @@ const FeedbackSystem = () => {
       return;
     }
 
-    submitFeedback(user.id, user.name, rating, comment);
+    submitFeedback(user.id, user.email, rating, comment);
     toast({
       title: "Feedback enviado!",
       description: "Obrigado por avaliar nossas aulas. Seu feedback é muito importante!",
