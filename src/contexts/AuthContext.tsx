@@ -10,7 +10,7 @@ export interface UserProfile {
   phone: string | null;
   avatar_url: string | null;
   bio: string | null;
-  role: 'student' | 'admin';
+  role: 'student' | 'admin' | 'teacher';
 }
 
 interface AuthContextType {

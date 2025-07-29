@@ -18,7 +18,11 @@ const Login = () => {
   const { t } = useLanguage();
 
   if (user) {
-    return <Navigate to={profile?.role === 'admin' ? '/admin' : '/dashboard'} replace />;
+    const redirectPath = 
+      profile?.role === 'admin' ? '/admin' : 
+      profile?.role === 'teacher' ? '/teacher' : 
+      '/dashboard';
+    return <Navigate to={redirectPath} replace />;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
