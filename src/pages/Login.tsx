@@ -132,6 +132,7 @@ const Login = () => {
             <h3 className="font-semibold text-sm mb-2">Usuários de Teste:</h3>
             <div className="space-y-1 text-sm text-muted-foreground">
               <p><strong>Aluno:</strong> aluno@teste.com / 123456</p>
+              <p><strong>Professor:</strong> professor@teste.com / 123456</p>
               <p><strong>Admin:</strong> admin@teste.com / 123456</p>
             </div>
           </div>
