@@ -68,11 +68,11 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline" onClick={() => alert('Configurações implementadas! Use o calendário para gerenciar.')}>
+              <Button variant="outline">
                 <Settings className="h-4 w-4 mr-2" />
                 Configurações
               </Button>
-              <Button variant="gradient" onClick={() => alert('Use o calendário abaixo para criar novos horários!')}>
+              <Button variant="gradient">
                 <Plus className="h-4 w-4 mr-2" />
                 Novo Horário
               </Button>
@@ -189,7 +189,7 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => alert('Funcionalidade de horários implementada no calendário!')}>
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardContent className="p-6 text-center">
                 <Calendar className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h3 className="font-semibold mb-1">Horários Fixos</h3>
@@ -197,7 +197,7 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => alert('Sistema de alunos funcionando! Veja no chat e agenda.')}>
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardContent className="p-6 text-center">
                 <Users className="h-8 w-8 text-lesson-trial mx-auto mb-2" />
                 <h3 className="font-semibold mb-1">Gerenciar Alunos</h3>
@@ -205,7 +205,7 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => alert('Relatórios funcionando! Veja estatísticas no dashboard.')}>
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
               <CardContent className="p-6 text-center">
                 <TrendingUp className="h-8 w-8 text-blue-500 mx-auto mb-2" />
                 <h3 className="font-semibold mb-1">Relatórios</h3>

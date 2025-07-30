@@ -59,7 +59,7 @@ const StudentDashboard = () => {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline" onClick={() => alert('Configurações em desenvolvimento')}>
+              <Button variant="outline">
                 <Settings className="h-4 w-4 mr-2" />
                 {t('settings')}
               </Button>
@@ -164,7 +164,7 @@ const StudentDashboard = () => {
                     </div>
                   </div>
                   
-                  <Button variant="outline" className="w-full" onClick={() => alert('Relatório completo em desenvolvimento')}>
+                  <Button variant="outline" className="w-full">
                     {t('viewFullReport')}
                   </Button>
                 </CardContent>
