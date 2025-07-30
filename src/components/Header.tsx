@@ -13,7 +13,7 @@ import {
 } from "./ui/dropdown-menu";
 
 const Header = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, profile } = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
 
@@ -72,7 +72,11 @@ const Header = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => navigate(user.role === 'admin' ? '/admin' : '/dashboard')}>
+                  <DropdownMenuItem onClick={() => navigate(
+                    profile?.role === 'admin' ? '/admin' : 
+                    profile?.role === 'teacher' ? '/teacher' : 
+                    '/dashboard'
+                  )}>
                     <Calendar className="h-4 w-4 mr-2" />
                     Dashboard
                   </DropdownMenuItem>
