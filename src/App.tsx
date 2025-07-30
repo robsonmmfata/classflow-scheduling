@@ -10,6 +10,11 @@ import Register from "./pages/Register";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import TeacherDashboard from "./pages/TeacherDashboard";
+import Pricing from "./pages/Pricing";
+import Schedule from "./pages/Schedule";
+import Students from "./pages/Students";
+import Reports from "./pages/Reports";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +52,11 @@ const App = () => (
             </ProtectedRoute>
           } 
         />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/students" element={<Students />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>

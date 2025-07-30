@@ -4,10 +4,14 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const AdminCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const { t } = useLanguage();
+  const navigate = useNavigate();
+  const { toast } = useToast();
   
   // Mock data for demonstration - admin view
   const timeSlots = [
@@ -49,11 +53,14 @@ const AdminCalendar = () => {
             Gerenciar Agenda - {formatDate(selectedDate)}
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={() => navigate('/schedule')}>
               <Settings className="h-4 w-4 mr-2" />
               Configurar Horários
             </Button>
-            <Button variant="gradient" size="sm">
+            <Button variant="gradient" size="sm" onClick={() => toast({
+              title: "Bloquear Horário",
+              description: "Funcionalidade disponível em breve!",
+            })}>
               <Plus className="h-4 w-4 mr-2" />
               Bloquear Horário
             </Button>

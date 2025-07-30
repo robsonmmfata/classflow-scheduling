@@ -4,12 +4,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Chat from '@/components/Chat';
 
 const TeacherDashboard = () => {
   const { user } = useAuth();
   const { t } = useLanguage();
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const todayLessons = [
     {
@@ -81,11 +85,11 @@ const TeacherDashboard = () => {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline">
+              <Button variant="outline" onClick={() => navigate('/settings')}>
                 <Settings className="h-4 w-4 mr-2" />
                 Configurações
               </Button>
-              <Button variant="gradient">
+              <Button variant="gradient" onClick={() => navigate('/schedule')}>
                 <Plus className="h-4 w-4 mr-2" />
                 Nova Disponibilidade
               </Button>
@@ -145,11 +149,23 @@ const TeacherDashboard = () => {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="default" className="flex-1">
+                        <Button 
+                          size="sm" 
+                          variant="default" 
+                          className="flex-1"
+                          onClick={() => window.open(lesson.meetLink, '_blank')}
+                        >
                           <Video className="h-4 w-4 mr-2" />
                           Entrar na Aula
                         </Button>
-                        <Button size="sm" variant="outline">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => toast({
+                            title: "Detalhes da Aula",
+                            description: `Aula com ${lesson.student} às ${lesson.time}`,
+                          })}
+                        >
                           Detalhes
                         </Button>
                       </div>
@@ -220,19 +236,22 @@ const TeacherDashboard = () => {
                   <CardTitle>Ações Rápidas</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/schedule')}>
                     <Calendar className="h-4 w-4 mr-2" />
                     Definir Disponibilidade
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/students')}>
                     <Users className="h-4 w-4 mr-2" />
                     Gerenciar Alunos
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button variant="outline" className="w-full justify-start" onClick={() => toast({
+                    title: "Material de Ensino",
+                    description: "Funcionalidade em desenvolvimento",
+                  })}>
                     <BookOpen className="h-4 w-4 mr-2" />
                     Material de Ensino
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/reports')}>
                     <Star className="h-4 w-4 mr-2" />
                     Ver Avaliações
                   </Button>

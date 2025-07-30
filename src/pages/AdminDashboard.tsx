@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 import AdminStats from '@/components/admin/AdminStats';
 import AdminCalendar from '@/components/admin/AdminCalendar';
 import Header from '@/components/Header';
@@ -11,6 +12,7 @@ import Header from '@/components/Header';
 const AdminDashboard = () => {
   const { user } = useAuth();
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const todayLessons = [
     {
@@ -68,11 +70,11 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline">
+              <Button variant="outline" onClick={() => navigate('/settings')}>
                 <Settings className="h-4 w-4 mr-2" />
                 Configurações
               </Button>
-              <Button variant="gradient">
+              <Button variant="gradient" onClick={() => navigate('/schedule')}>
                 <Plus className="h-4 w-4 mr-2" />
                 Novo Horário
               </Button>
@@ -181,7 +183,7 @@ const AdminDashboard = () => {
 
           {/* Bottom Section - Quick Actions */}
           <div className="grid md:grid-cols-4 gap-4">
-            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => window.location.href = '/pricing'}>
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate('/pricing')}>
               <CardContent className="p-6 text-center">
                 <DollarSign className="h-8 w-8 text-accent mx-auto mb-2" />
                 <h3 className="font-semibold mb-1">Definir Preços</h3>
@@ -189,7 +191,7 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate('/schedule')}>
               <CardContent className="p-6 text-center">
                 <Calendar className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h3 className="font-semibold mb-1">Horários Fixos</h3>
@@ -197,7 +199,7 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate('/students')}>
               <CardContent className="p-6 text-center">
                 <Users className="h-8 w-8 text-lesson-trial mx-auto mb-2" />
                 <h3 className="font-semibold mb-1">Gerenciar Alunos</h3>
@@ -205,7 +207,7 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate('/reports')}>
               <CardContent className="p-6 text-center">
                 <TrendingUp className="h-8 w-8 text-blue-500 mx-auto mb-2" />
                 <h3 className="font-semibold mb-1">Relatórios</h3>
