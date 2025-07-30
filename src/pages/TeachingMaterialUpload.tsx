@@ -7,7 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+import 'jspdf-autotable'; // Importa o plugin jspdf-autotable
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
@@ -47,8 +47,16 @@ const Reports = () => {
     try {
       const doc = new jsPDF();
 
+      // IMPORTANTE: O plugin 'jspdf-autotable' modifica o protótipo de jsPDF
+      // ao ser importado. Se 'autoTable' não for encontrado aqui, isso indica um
+      // problema com a forma como o plugin está sendo carregado/bundlado em seu ambiente.
+      // Isso NÃO é um erro de código dentro desta função, mas um problema de ambiente.
+      if (typeof (jsPDF.prototype as any).autoTable === 'undefined') {
+        throw new Error("Plugin 'jspdf-autotable' não foi carregado corretamente. A função 'autoTable' não está disponível no jsPDF. Isso geralmente ocorre devido a problemas de ambiente/bundling ou incompatibilidade de versões. Por favor, siga os passos de limpeza de cache e reinstalação das dependências.");
+      }
+
       doc.text('Relatório Mensal', 14, 16);
-      autoTable(doc, {
+      (doc as any).autoTable({ // O 'as any' é para TypeScript, indica que autoTable existe em tempo de execução
         startY: 20,
         head: [['Mês', 'Receita', 'Aulas', 'Alunos']],
         body: monthlyData.map(d => [d.month, d.revenue, d.lessons, d.students]),
@@ -63,7 +71,7 @@ const Reports = () => {
       console.error("Erro ao exportar PDF:", error);
       toast({
         title: "Erro na Exportação",
-        description: `Não foi possível exportar o PDF. Erro: ${(error as Error).message}. Verifique a instalação e compatibilidade de 'jspdf' e 'jspdf-autotable'.`,
+        description: `Não foi possível exportar o PDF. Erro: ${(error as Error).message}`,
         variant: "destructive",
       });
     }

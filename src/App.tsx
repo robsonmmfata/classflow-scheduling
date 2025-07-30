@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +17,11 @@ import Students from "./pages/Students";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import Avaliacoes from "./pages/Avaliacoes";
+
+const TeachingMaterialUpload = lazy(() => import('./pages/TeachingMaterialUpload'));
+const MateriaisDeEnsino = lazy(() => import('./pages/MateriaisDeEnsino'));
+const AvaliacoesLazy = lazy(() => import('./pages/Avaliacoes'));
 
 const queryClient = new QueryClient();
 
@@ -57,6 +63,27 @@ const App = () => (
         <Route path="/students" element={<Students />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/teaching-material-upload" element={
+          <ProtectedRoute requiredRole="teacher">
+            <Suspense fallback={<div>Loading...</div>}>
+              <TeachingMaterialUpload />
+            </Suspense>
+          </ProtectedRoute>
+        } />
+        <Route path="/materiais-de-ensino" element={
+          <ProtectedRoute requiredRole="teacher">
+            <Suspense fallback={<div>Loading...</div>}>
+              <MateriaisDeEnsino />
+            </Suspense>
+          </ProtectedRoute>
+        } />
+        <Route path="/avaliacoes" element={
+          <ProtectedRoute requiredRole="student">
+            <Suspense fallback={<div>Loading...</div>}>
+              <AvaliacoesLazy />
+            </Suspense>
+          </ProtectedRoute>
+        } />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>

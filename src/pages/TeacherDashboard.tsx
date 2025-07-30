@@ -244,10 +244,7 @@ const TeacherDashboard = () => {
                     <Users className="h-4 w-4 mr-2" />
                     Gerenciar Alunos
                   </Button>
-                  <Button variant="outline" className="w-full justify-start" onClick={() => toast({
-                    title: "Material de Ensino",
-                    description: "Funcionalidade em desenvolvimento",
-                  })}>
+                  <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/materiais-de-ensino')}>
                     <BookOpen className="h-4 w-4 mr-2" />
                     Material de Ensino
                   </Button>

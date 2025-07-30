@@ -9,12 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const AdminCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const { t } = useLanguage();
-  const navigate = useNavigate();
-  const { toast } = useToast();
-  
-  // Mock data for demonstration - admin view
-  const timeSlots = [
+  const [timeSlots, setTimeSlots] = useState([
     { time: "09:00", available: true, type: "available" },
     { time: "10:00", available: false, type: "booked", student: "Maria Silva", meetLink: "meet.google.com/abc-def" },
     { time: "11:00", available: true, type: "blocked" },
@@ -23,7 +18,10 @@ const AdminCalendar = () => {
     { time: "16:00", available: false, type: "blocked" },
     { time: "17:00", available: true, type: "available" },
     { time: "18:00", available: true, type: "available" },
-  ];
+  ]);
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+  const { toast } = useToast();
   
   const getSlotStyle = (slot: any) => {
     if (slot.type === "booked") {
@@ -41,6 +39,45 @@ const AdminCalendar = () => {
       year: 'numeric', 
       month: 'long', 
       day: 'numeric' 
+    });
+  };
+
+  const toggleBlockSlot = (time: string) => {
+    setTimeSlots((prevSlots) =>
+      prevSlots.map((slot) => {
+        if (slot.time === time) {
+          if (slot.type === "blocked") {
+            return { ...slot, type: "available", available: true };
+          } else if (slot.type === "available") {
+            return { ...slot, type: "blocked", available: false };
+          }
+        }
+        return slot;
+      })
+    );
+    toast({
+      title: "Alteração de Horário",
+      description: "O status do horário foi atualizado.",
+    });
+  };
+
+  const goToPreviousDay = () => {
+    setSelectedDate((prevDate) => {
+      const newDate = new Date(prevDate);
+      newDate.setDate(prevDate.getDate() - 1);
+      return newDate;
+    });
+  };
+
+  const goToToday = () => {
+    setSelectedDate(new Date());
+  };
+
+  const goToNextDay = () => {
+    setSelectedDate((prevDate) => {
+      const newDate = new Date(prevDate);
+      newDate.setDate(prevDate.getDate() + 1);
+      return newDate;
     });
   };
 
@@ -99,6 +136,7 @@ const AdminCalendar = () => {
                       variant="ghost" 
                       size="sm" 
                       className="h-6 w-6 p-0 text-white hover:bg-white/20"
+                      onClick={() => toggleBlockSlot(slot.time)}
                     >
                       <X className="h-3 w-3" />
                     </Button>
@@ -109,6 +147,7 @@ const AdminCalendar = () => {
                       variant="ghost" 
                       size="sm" 
                       className="h-6 w-6 p-0 text-muted-foreground hover:bg-black/10"
+                      onClick={() => toggleBlockSlot(slot.time)}
                     >
                       <X className="h-3 w-3" />
                     </Button>
@@ -140,7 +179,7 @@ const AdminCalendar = () => {
                 )}
               </div>
               
-              {/* Admin controls on hover */}
+              {/* Admin controls on hover */} 
               {slot.type === "booked" && (
                 <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="flex gap-1">
@@ -166,13 +205,13 @@ const AdminCalendar = () => {
         </div>
         
         <div className="flex justify-center gap-3">
-          <Button variant="outline">
+          <Button variant="outline" onClick={goToPreviousDay}>
             ← Dia Anterior
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" onClick={goToToday}>
             Hoje
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" onClick={goToNextDay}>
             Próximo Dia →
           </Button>
         </div>

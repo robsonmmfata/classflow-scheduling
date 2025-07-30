@@ -31,10 +31,16 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <BookOpen className="h-5 w-5 text-white" />
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+              <img
+                src="/Fundotrasparentepequeno.png"
+                alt="Logo EduScheduler"
+                width={82}
+                height={82}
+                className="object-contain"
+              />
             </div>
-            <h1 className="text-xl font-bold text-foreground">EduScheduler</h1>
+            <h1 className="text-xl font-bold text-foreground">Brazuca Portuguese School</h1>
           </Link>
           
           <nav className="hidden md:flex items-center gap-6">
