@@ -1,9 +1,12 @@
 import { Calendar, Clock, CheckCircle, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="relative py-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-hero opacity-5"></div>
@@ -13,40 +16,35 @@ const Hero = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-                Agende suas{" "}
-                <span className="bg-gradient-primary bg-clip-text text-transparent">
-                  aulas online
-                </span>{" "}
-                facilmente
+                {t('scheduleOnlineLessons')}
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Plataforma completa para agendamento de aulas particulares. 
-                Gerencie horários, receba pagamentos e conduza aulas via Google Meet.
+                {t('heroDescription')}
               </p>
             </div>
             
             <div className="flex flex-wrap gap-4">
               <Button variant="gradient" size="lg">
                 <Calendar className="h-5 w-5" />
-                Agendar Aula Experimental
+                {t('scheduleTrialLesson')}
               </Button>
               <Button variant="outline" size="lg">
-                Ver Horários Disponíveis
+                {t('viewAvailableHours')}
               </Button>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-accent" />
-                <span className="text-sm text-muted-foreground">Horários flexíveis</span>
+                <span className="text-sm text-muted-foreground">{t('flexibleHours')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-5 w-5 text-accent" />
-                <span className="text-sm text-muted-foreground">Cancelamento grátis</span>
+                <span className="text-sm text-muted-foreground">{t('freeCancellation')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Star className="h-5 w-5 text-accent" />
-                <span className="text-sm text-muted-foreground">Professores qualificados</span>
+                <span className="text-sm text-muted-foreground">{t('qualifiedTeachers')}</span>
               </div>
             </div>
           </div>

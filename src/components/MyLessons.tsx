@@ -4,9 +4,11 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MyLessons = () => {
   const [remainingLessons, setRemainingLessons] = useState(6);
+  const { t } = useLanguage();
   
   // Mock data for demonstration
   const upcomingLessons = [
@@ -84,10 +86,10 @@ const MyLessons = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              Minhas Aulas
+              {t('myLessons')}
             </h2>
             <p className="text-lg text-muted-foreground">
-              Gerencie seus agendamentos e acompanhe seu progresso
+              {t('manageSchedule')}
             </p>
           </div>
           
@@ -97,14 +99,14 @@ const MyLessons = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-semibold text-foreground">
-                    Saldo de Aulas
+                    {t('lessonsBalance')}
                   </h3>
                   <p className="text-muted-foreground">
-                    Você ainda possui <span className="font-bold text-accent">{remainingLessons} aulas</span> para agendar
+                    {t('remainingLessons')} <span className="font-bold text-accent">{remainingLessons} {t('lessonsToSchedule')}</span>
                   </p>
                 </div>
                 <Button variant="outline">
-                  Comprar Mais Aulas
+                  {t('buyMoreLessons')}
                 </Button>
               </div>
             </CardContent>
@@ -115,7 +117,7 @@ const MyLessons = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-primary" />
-                Próximas Aulas
+                {t('upcomingLessons')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -137,7 +139,7 @@ const MyLessons = () => {
                         {getLessonTypeLabel(lesson.type)}
                       </Badge>
                       <Badge variant="outline" className="text-accent border-accent">
-                        Confirmada
+                        {t('confirmed')}
                       </Badge>
                     </div>
                   </div>
@@ -146,10 +148,10 @@ const MyLessons = () => {
                     <Button 
                       variant="gradient" 
                       size="sm"
-                      onClick={() => window.open(lesson.meetLink, '_blank')}
+                      onClick={() => window.open('https://meet.google.com/pui-qzis-ehf', '_blank')}
                     >
                       <Video className="h-4 w-4" />
-                      Entrar na Aula
+                      {t('enterLesson')}
                     </Button>
                     
                     <DropdownMenu>
@@ -161,12 +163,12 @@ const MyLessons = () => {
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem>
                           <RefreshCw className="h-4 w-4 mr-2" />
-                          Reagendar
+                          {t('reschedule')}
                         </DropdownMenuItem>
                         {lesson.canCancel && (
                           <DropdownMenuItem className="text-destructive">
                             <X className="h-4 w-4 mr-2" />
-                            Cancelar
+                            {t('cancel')}
                           </DropdownMenuItem>
                         )}
                       </DropdownMenuContent>
@@ -182,7 +184,7 @@ const MyLessons = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="h-5 w-5 text-muted-foreground" />
-                Aulas Anteriores
+                {t('pastLessons')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -204,7 +206,7 @@ const MyLessons = () => {
                         {getLessonTypeLabel(lesson.type)}
                       </Badge>
                       <Badge variant="outline" className="text-muted-foreground border-muted-foreground">
-                        Concluída
+                        {t('completed')}
                       </Badge>
                     </div>
                   </div>
@@ -215,8 +217,8 @@ const MyLessons = () => {
                         <span key={i}>⭐</span>
                       ))}
                     </div>
-                    <Button variant="outline" size="sm">
-                      Deixar Feedback
+                    <Button variant="outline" size="sm" onClick={() => window.location.href = '/avaliacoes'}>
+                      {t('leaveFeedback')}
                     </Button>
                   </div>
                 </div>
@@ -228,11 +230,10 @@ const MyLessons = () => {
           <Card className="mt-8 bg-amber-50 border-amber-200">
             <CardContent className="p-6">
               <h3 className="font-semibold text-amber-800 mb-2">
-                Política de Cancelamento
+                {t('cancellationPolicy')}
               </h3>
               <p className="text-amber-700 text-sm">
-                Cancelamentos com menos de 12 horas de antecedência não poderão ser reembolsados. 
-                Para cancelamentos com mais de 12 horas, você pode reagendar gratuitamente.
+                {t('cancellationText')}
               </p>
             </CardContent>
           </Card>

@@ -81,17 +81,17 @@ const TeacherDashboard = () => {
                 {t('welcome')}, Professor! 👨‍🏫
               </h1>
               <p className="text-muted-foreground mt-1">
-                Dashboard do Professor - Gerencie suas aulas e alunos
+                Dashboard do Professor - {t('teacherDashboardSubtitle')}
               </p>
             </div>
             <div className="flex gap-3">
               <Button variant="outline" onClick={() => navigate('/settings')}>
                 <Settings className="h-4 w-4 mr-2" />
-                Configurações
+                {t('configurations')}
               </Button>
               <Button variant="gradient" onClick={() => navigate('/schedule')}>
                 <Plus className="h-4 w-4 mr-2" />
-                Nova Disponibilidade
+                {t('newAvailability')}
               </Button>
             </div>
           </div>
@@ -123,7 +123,7 @@ const TeacherDashboard = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-primary" />
-                    Aulas de Hoje
+                    {t('todaysLessons')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -156,17 +156,17 @@ const TeacherDashboard = () => {
                           onClick={() => window.open(lesson.meetLink, '_blank')}
                         >
                           <Video className="h-4 w-4 mr-2" />
-                          Entrar na Aula
+                          {t('enterClass')}
                         </Button>
                         <Button 
                           size="sm" 
                           variant="outline"
                           onClick={() => toast({
-                            title: "Detalhes da Aula",
-                            description: `Aula com ${lesson.student} às ${lesson.time}`,
+                            title: t('details'),
+                            description: `${t('lessonWith')} ${lesson.student} ${t('at')} ${lesson.time}`,
                           })}
                         >
-                          Detalhes
+                          {t('details')}
                         </Button>
                       </div>
                     </div>
@@ -179,7 +179,7 @@ const TeacherDashboard = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Clock className="h-5 w-5 text-primary" />
-                    Cronograma da Semana
+                    {t('weekSchedule')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -188,7 +188,7 @@ const TeacherDashboard = () => {
                       <div key={index} className="text-center p-3 border border-border rounded-lg hover:bg-accent-soft transition-colors">
                         <p className="text-sm font-medium text-foreground mb-2">{day.day}</p>
                         <p className="text-lg font-bold text-primary">{day.lessons}</p>
-                        <p className="text-xs text-muted-foreground">aulas</p>
+                        <p className="text-xs text-muted-foreground">{t('lessons')}</p>
                         <p className="text-xs text-accent mt-1">{day.earnings}</p>
                       </div>
                     ))}
@@ -204,7 +204,7 @@ const TeacherDashboard = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-primary" />
-                    Meus Alunos
+                    {t('myStudents')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -215,7 +215,7 @@ const TeacherDashboard = () => {
                       </div>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-foreground">{student.name}</p>
-                        <p className="text-xs text-muted-foreground">Última aula: {student.lastLesson}</p>
+                        <p className="text-xs text-muted-foreground">{t('lastLesson')}: {student.lastLesson}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-xs text-accent">{student.progress}</span>
                           <div className="flex">
@@ -233,24 +233,24 @@ const TeacherDashboard = () => {
               {/* Ações Rápidas */}
               <Card className="shadow-lg border-0">
                 <CardHeader>
-                  <CardTitle>Ações Rápidas</CardTitle>
+                  <CardTitle>{t('quickActions')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/schedule')}>
                     <Calendar className="h-4 w-4 mr-2" />
-                    Definir Disponibilidade
+                    {t('setAvailability')}
                   </Button>
                   <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/students')}>
                     <Users className="h-4 w-4 mr-2" />
-                    Gerenciar Alunos
+                    {t('manageStudents')}
                   </Button>
                   <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/materiais-de-ensino')}>
                     <BookOpen className="h-4 w-4 mr-2" />
-                    Material de Ensino
+                    {t('teachingMaterial')}
                   </Button>
                   <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/reports')}>
                     <Star className="h-4 w-4 mr-2" />
-                    Ver Avaliações
+                    {t('viewEvaluations')}
                   </Button>
                 </CardContent>
               </Card>

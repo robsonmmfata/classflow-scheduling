@@ -55,13 +55,13 @@ const StudentDashboard = () => {
                 {t('welcome')}, {user?.email}! 👋
               </h1>
               <p className="text-muted-foreground mt-1">
-                {t('studentDashboard')} - Acompanhe seu progresso
+                {t('studentDashboard')} - {t('dashboardSubtitle')}
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline">
+              <Button variant="outline" onClick={() => window.location.href = '/settings'}>
                 <Settings className="h-4 w-4 mr-2" />
-                {t('settings')}
+                {t('configurations')}
               </Button>
               <Button variant="gradient" onClick={() => document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' })}>
                 <Calendar className="h-4 w-4 mr-2" />
@@ -138,13 +138,13 @@ const StudentDashboard = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Star className="h-5 w-5 text-yellow-500" />
-                    Seu Progresso
+                    {t('yourProgress')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span>Aulas Concluídas</span>
+                      <span>{t('completedLessons')}</span>
                       <span>8/12</span>
                     </div>
                     <div className="w-full bg-secondary rounded-full h-2">
@@ -154,7 +154,7 @@ const StudentDashboard = () => {
                   
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span>Avaliação Média</span>
+                      <span>{t('averageRating')}</span>
                       <span>4.8/5.0</span>
                     </div>
                     <div className="flex gap-1">
@@ -164,7 +164,7 @@ const StudentDashboard = () => {
                     </div>
                   </div>
                   
-              <Button variant="outline" className="w-full" onClick={() => window.location.href = '/avaliacoes'}>
+              <Button variant="outline" className="w-full" onClick={() => window.location.href = '/reports'}>
                 {t('viewFullReport')}
               </Button>
                 </CardContent>

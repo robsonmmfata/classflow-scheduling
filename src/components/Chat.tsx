@@ -7,12 +7,14 @@ import { Badge } from "./ui/badge";
 import { ScrollArea } from "./ui/scroll-area";
 import { useAuth } from "@/contexts/AuthContext";
 import { useChat } from "@/contexts/ChatContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Chat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const { user } = useAuth();
   const { messages, unreadCount, sendMessage, markAllAsRead, getMessagesForUser } = useChat();
+  const { t } = useLanguage();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const userMessages = user ? getMessagesForUser(user.id) : [];
@@ -39,8 +41,8 @@ const Chat = () => {
   const handleSendMessage = () => {
     if (!message.trim() || !user) return;
     
-    // Use the real chat context now
-    // sendMessage(message, user.id, user.name, user.role);
+    const userRole = user.user_metadata?.role || 'student';
+    sendMessage(message, user.id, user.email || 'Usuário', userRole);
     setMessage("");
   };
 
@@ -76,7 +78,7 @@ const Chat = () => {
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <User className="h-4 w-4 text-primary" />
-              <span className="text-sm">Chat com a Professora</span>
+              <span className="text-sm">{t('chatWithTeacher')}</span>
             </div>
             <Button
               variant="ghost"
@@ -95,11 +97,11 @@ const Chat = () => {
               {userMessages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex ${msg.senderRole === user?.role ? 'justify-end' : 'justify-start'}`}
+                  className={`flex ${msg.senderRole === (user?.user_metadata?.role || 'student') ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
                     className={`max-w-[85%] p-2 rounded-lg text-sm ${
-                      msg.senderRole === user?.role
+                      msg.senderRole === (user?.user_metadata?.role || 'student')
                         ? 'bg-primary text-primary-foreground ml-auto'
                         : 'bg-muted text-foreground'
                     }`}
@@ -123,7 +125,7 @@ const Chat = () => {
               {userMessages.length === 0 && (
                 <div className="text-center text-muted-foreground text-sm py-8">
                   <MessageCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                  <p>Inicie uma conversa com a professora!</p>
+                  <p>{t('startConversation')}</p>
                 </div>
               )}
             </div>
@@ -131,7 +133,7 @@ const Chat = () => {
           
           <div className="flex gap-2">
             <Input
-              placeholder="Digite sua mensagem..."
+              placeholder={t('typeMessage')}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyPress={handleKeyPress}
@@ -150,7 +152,7 @@ const Chat = () => {
           
           {!user && (
             <p className="text-xs text-muted-foreground text-center">
-              Faça login para enviar mensagens
+              {t('loginToSendMessages')}
             </p>
           )}
         </CardContent>
