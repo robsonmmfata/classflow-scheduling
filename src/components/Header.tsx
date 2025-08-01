@@ -27,36 +27,34 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4 py-4">
+    <header className="sticky top-0 z-50 backdrop-blur-sm border-b border-border" style={{ backgroundColor: '#045230' }}>
+      <div className="container mx-auto px-2 py-2">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
-              <img
-                src="/Fundotrasparentepequeno.png"
-                alt="Logo EduScheduler"
-                width={82}
-                height={82}
-                className="object-contain"
-              />
-            </div>
-            <h1 className="text-xl font-bold text-foreground">Brazuca Portuguese School</h1>
+            <div className="w-[150px] h-[80px] rounded-lg flex items-center justify-center">
+                <img
+                  src="/Fundotrasparentepequeno.png"
+                  alt="Logo Brazuca Portuguese Language"
+                  className="object-contain w-[150px] h-[150px]"
+                />
+              </div>
+          
           </Link>
           
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/#agenda" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/#agenda" className="text-white hover:text-foreground transition-colors">
               {t('schedule')}
             </Link>
-            <Link to="/#minhas-aulas" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/#minhas-aulas" className="text-white hover:text-foreground transition-colors">
               {t('myLessons')}
             </Link>
-            <Link to="/#pacotes" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/#pacotes" className="text-white hover:text-foreground transition-colors">
               {t('packages')}
             </Link>
             <Button 
               variant="ghost" 
               onClick={handleWhatsApp}
-              className="text-muted-foreground hover:text-foreground"
+              className="text-white hover:text-foreground"
             >
               {t('contact')}
             </Button>

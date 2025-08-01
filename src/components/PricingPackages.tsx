@@ -15,10 +15,9 @@ const PricingPackages = () => {
       popular: false,
       features: [
         "1 aula de 25 minutos",
-        "Avaliação personalizada",
         "Material didático incluído",
-        "Gravação da aula",
-        "Feedback detalhado"
+        
+    
       ],
       buttonText: "Agendar Experimental",
       buttonVariant: "trial" as const
@@ -34,11 +33,9 @@ const PricingPackages = () => {
       features: [
         "4 aulas de 50 minutos",
         "US$ 15 por aula",
-        "Validade de 60 dias",
-        "Material didático incluído",
-        "Suporte via WhatsApp",
-        "Reagendamento gratuito",
-        "Gravação das aulas"
+        "Material didático incluído"
+    
+        
       ],
       buttonText: "Comprar Pacote",
       buttonVariant: "gradient" as const
@@ -54,11 +51,7 @@ const PricingPackages = () => {
       features: [
         "8 aulas de 50 minutos",
         "US$ 13 por aula",
-        "Validade de 90 dias",
         "Material didático incluído",
-        "Suporte prioritário",
-        "Reagendamento gratuito",
-        "Gravação das aulas",
         "2 aulas bônus"
       ],
       buttonText: "Comprar Pacote",
@@ -75,13 +68,8 @@ const PricingPackages = () => {
       features: [
         "12 aulas trimestrais",
         "US$ 12 por aula",
-        "Agendamento prioritário",
-        "Material didático premium",
-        "Suporte 24/7",
-        "Reagendamento gratuito",
-        "Gravação das aulas",
-        "Aulas de reforço",
-        "Relatórios de progresso"
+        "Material didático premium"
+  
       ],
       buttonText: "Assinar Plano",
       buttonVariant: "gradient" as const

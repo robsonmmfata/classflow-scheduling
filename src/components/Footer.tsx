@@ -8,10 +8,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <BookOpen className="h-5 w-5 text-white" />
+              <div className="w-[150px] h-[150px] rounded-lg flex items-center justify-center">
+                <img
+                  src="/Fundotrasparentepequeno.png"
+                  alt="Logo Brazuca Portuguese Language"
+                  className="object-contain w-[250px] h-[250px]"
+                />
               </div>
-              <h3 className="text-xl font-bold">EduScheduler</h3>
+              
             </div>
             <p className="text-muted-foreground">
               Plataforma completa para agendamento de aulas particulares online.
