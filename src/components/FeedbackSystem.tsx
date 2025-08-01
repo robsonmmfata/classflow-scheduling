@@ -86,7 +86,7 @@ const FeedbackSystem = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <MessageSquare className="h-5 w-5 text-primary" />
-          Deixe um feedback sobre as aulas com o seu professor
+          {t('leaveFeedbackAbout')}
         </CardTitle>
         <p className="text-sm text-muted-foreground">
           Compartilhe sua experiência geral com as aulas (feedback único)

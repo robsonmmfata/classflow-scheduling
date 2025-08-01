@@ -41,7 +41,8 @@ const Chat = () => {
   const handleSendMessage = () => {
     if (!message.trim() || !user) return;
     
-    sendMessage(message, user.id, user.email || 'Usuário', user.user_metadata?.role || 'user');
+    const userRole = user.user_metadata?.role || 'student';
+    sendMessage(message, user.id, user.email || 'Usuário', userRole);
     setMessage("");
   };
 
@@ -96,11 +97,11 @@ const Chat = () => {
               {userMessages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex ${msg.senderRole === user?.role ? 'justify-end' : 'justify-start'}`}
+                  className={`flex ${msg.senderRole === (user?.user_metadata?.role || 'student') ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
                     className={`max-w-[85%] p-2 rounded-lg text-sm ${
-                      msg.senderRole === user?.role
+                      msg.senderRole === (user?.user_metadata?.role || 'student')
                         ? 'bg-primary text-primary-foreground ml-auto'
                         : 'bg-muted text-foreground'
                     }`}

@@ -66,17 +66,17 @@ const AdminDashboard = () => {
                 {t('welcome')}, {user?.email}! 👨‍🏫
               </h1>
               <p className="text-muted-foreground mt-1">
-                {t('adminDashboard')} - Gerencie suas aulas e alunos
+                {t('adminDashboard')} - {t('adminDashboardSubtitle')}
               </p>
             </div>
             <div className="flex gap-3">
               <Button variant="outline" onClick={() => navigate('/settings')}>
                 <Settings className="h-4 w-4 mr-2" />
-                Configurações
+                {t('configurations')}
               </Button>
               <Button variant="gradient" onClick={() => navigate('/schedule')}>
                 <Plus className="h-4 w-4 mr-2" />
-                Novo Horário
+                {t('newSchedule')}
               </Button>
             </div>
           </div>
@@ -127,7 +127,7 @@ const AdminDashboard = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-primary" />
-                    Novos Alunos
+                    {t('newStudents')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -141,7 +141,7 @@ const AdminDashboard = () => {
                         <p className="text-xs text-muted-foreground">{student.joinDate}</p>
                       </div>
                       <Badge variant={student.status === "new" ? "default" : "outline"} className="text-xs">
-                        {student.status === "new" ? "Novo" : "Ativo"}
+                        {student.status === "new" ? t('new') : t('active')}
                       </Badge>
                     </div>
                   ))}
@@ -153,7 +153,7 @@ const AdminDashboard = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <TrendingUp className="h-5 w-5 text-primary" />
-                    Metas do Mês
+                    {t('monthlyGoals')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -186,32 +186,32 @@ const AdminDashboard = () => {
             <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate('/pricing')}>
               <CardContent className="p-6 text-center">
                 <DollarSign className="h-8 w-8 text-accent mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Definir Preços</h3>
-                <p className="text-sm text-muted-foreground">Ajustar valores das aulas</p>
+                <h3 className="font-semibold mb-1">{t('setPrices')}</h3>
+                <p className="text-sm text-muted-foreground">{t('adjustLessonValues')}</p>
               </CardContent>
             </Card>
             
             <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate('/schedule')}>
               <CardContent className="p-6 text-center">
                 <Calendar className="h-8 w-8 text-primary mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Horários Fixos</h3>
-                <p className="text-sm text-muted-foreground">Configurar disponibilidade</p>
+                <h3 className="font-semibold mb-1">{t('fixedSchedules')}</h3>
+                <p className="text-sm text-muted-foreground">{t('configureAvailability')}</p>
               </CardContent>
             </Card>
             
             <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate('/students')}>
               <CardContent className="p-6 text-center">
                 <Users className="h-8 w-8 text-lesson-trial mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Gerenciar Alunos</h3>
-                <p className="text-sm text-muted-foreground">Ver perfis e histórico</p>
+                <h3 className="font-semibold mb-1">{t('manageStudents')}</h3>
+                <p className="text-sm text-muted-foreground">{t('viewProfilesHistory')}</p>
               </CardContent>
             </Card>
             
             <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate('/reports')}>
               <CardContent className="p-6 text-center">
                 <TrendingUp className="h-8 w-8 text-blue-500 mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Relatórios</h3>
-                <p className="text-sm text-muted-foreground">Análises e estatísticas</p>
+                <h3 className="font-semibold mb-1">{t('reports')}</h3>
+                <p className="text-sm text-muted-foreground">{t('analysisStatistics')}</p>
               </CardContent>
             </Card>
           </div>

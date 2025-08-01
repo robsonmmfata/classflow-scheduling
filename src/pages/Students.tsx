@@ -178,6 +178,13 @@ const Students = () => {
                         )}
                       </div>
                       <div className="flex gap-2">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => window.open(`https://wa.me/${student.phone.replace(/\D/g, '')}`, '_blank')}
+                        >
+                          WhatsApp
+                        </Button>
                         <Button size="sm" variant="outline">
                           Ver Perfil
                         </Button>
