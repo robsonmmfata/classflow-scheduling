@@ -107,6 +107,26 @@ export const translations = {
     termsOfUse: "Termos de Uso",
     privacy: "Privacidade",
     rightsReserved: "Todos os direitos reservados.",
+    
+    // Materiais de Ensino
+    teachingMaterials: "Materiais de Ensino",
+    materialTitle: "Título do Material",
+    materialDescription: "Descrição do Material",
+    findWhatYouNeed: "Encontre o que precisa",
+    searchMaterials: "Pesquisar materiais...",
+    uploadNewMaterials: "Upload de Novos Materiais",
+    requiredFields: "Campos Obrigatórios",
+    fillTitleDescription: "Por favor, preencha o Título e a Descrição do material antes de enviar.",
+    featuredMaterials: "Materiais em Destaque",
+    allMaterials: "Todos os Materiais",
+    noMaterialsFound: "Nenhum material encontrado para sua pesquisa/filtro.",
+    googleClassroom: "Google Classroom",
+    
+    // Chat
+    chatWithTeacher: "Chat com a Professora",
+    startConversation: "Inicie uma conversa com a professora!",
+    typeMessage: "Digite sua mensagem...",
+    loginToSendMessages: "Faça login para enviar mensagens",
   },
   
   en: {
@@ -217,6 +237,26 @@ export const translations = {
     termsOfUse: "Terms of Use",
     privacy: "Privacy",
     rightsReserved: "All rights reserved.",
+    
+    // Materiais de Ensino
+    teachingMaterials: "Teaching Materials",
+    materialTitle: "Material Title",
+    materialDescription: "Material Description",
+    findWhatYouNeed: "Find What You Need",
+    searchMaterials: "Search materials...",
+    uploadNewMaterials: "Upload New Materials",
+    requiredFields: "Required Fields",
+    fillTitleDescription: "Please fill in the Title and Description of the material before sending.",
+    featuredMaterials: "Featured Materials",
+    allMaterials: "All Materials",
+    noMaterialsFound: "No materials found for your search/filter.",
+    googleClassroom: "Google Classroom",
+    
+    // Chat
+    chatWithTeacher: "Chat with Teacher",
+    startConversation: "Start a conversation with the teacher!",
+    typeMessage: "Type your message...",
+    loginToSendMessages: "Login to send messages",
   },
   
   es: {
@@ -327,6 +367,26 @@ export const translations = {
     termsOfUse: "Términos de Uso",
     privacy: "Privacidad",
     rightsReserved: "Todos los derechos reservados.",
+    
+    // Materiais de Ensino
+    teachingMaterials: "Materiales de Enseñanza",
+    materialTitle: "Título del Material",
+    materialDescription: "Descripción del Material",
+    findWhatYouNeed: "Encuentra lo que Necesitas",
+    searchMaterials: "Buscar materiales...",
+    uploadNewMaterials: "Subir Nuevos Materiales",
+    requiredFields: "Campos Obligatorios",
+    fillTitleDescription: "Por favor, complete el Título y la Descripción del material antes de enviar.",
+    featuredMaterials: "Materiales Destacados",
+    allMaterials: "Todos los Materiales",
+    noMaterialsFound: "No se encontraron materiales para tu búsqueda/filtro.",
+    googleClassroom: "Google Classroom",
+    
+    // Chat
+    chatWithTeacher: "Chat con el Profesor",
+    startConversation: "¡Inicia una conversación con el profesor!",
+    typeMessage: "Escribe tu mensaje...",
+    loginToSendMessages: "Inicia sesión para enviar mensajes",
   }
 };
 

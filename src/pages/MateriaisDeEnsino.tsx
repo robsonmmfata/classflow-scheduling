@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label'; // Importado Label para os campos de input
 import { useToast } from '@/hooks/use-toast'; // Importado useToast para feedback
+import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Search,
   FileText,       // Para documentos PDF/Texto
@@ -149,6 +150,7 @@ const MateriaisDeEnsino = () => {
   const [newMaterialTitle, setNewMaterialTitle] = useState('');
   const [newMaterialDescription, setNewMaterialDescription] = useState('');
   const { toast } = useToast(); // Hook para exibir notificações
+  const { t } = useLanguage();
 
   // Refs para os inputs de arquivo ocultos
   const fileInputPdfRef = useRef<HTMLInputElement>(null);
@@ -232,7 +234,6 @@ const MateriaisDeEnsino = () => {
         toast({
           title: `Upload de ${fileType} Concluído`,
           description: `"${file.name}" foi enviado com sucesso e está agora disponível!`,
-          variant: "success", // Assume que você tem uma variante 'success' no seu sistema de toast
         });
       }, 2000); // Simula 2 segundos de upload
     }
@@ -244,7 +245,7 @@ const MateriaisDeEnsino = () => {
       <main className="flex-grow container mx-auto px-4 py-8 mt-16"> {/* Adiciona margin-top para não sobrepor o header fixo */}
         <div className="text-center mb-12 space-y-4">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-            📚 Seus Materiais de Ensino de Idiomas
+            📚 {t('teachingMaterials')}
           </h1>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             Explore nossa vasta biblioteca de recursos para aprender Português e Espanhol de forma eficaz.
@@ -345,6 +346,14 @@ const MateriaisDeEnsino = () => {
                   accept=".doc,.docx"
                   className="hidden"
                 />
+              </Button>
+
+              {/* Botão para Google Classroom */}
+              <Button 
+                onClick={() => window.open('https://classroom.google.com', '_blank')} 
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                <Globe className="w-4 h-4 mr-2" /> Google Classroom
               </Button>
             </div>
           </CardContent>

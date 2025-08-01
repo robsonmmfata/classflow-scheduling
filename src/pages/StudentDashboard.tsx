@@ -164,7 +164,7 @@ const StudentDashboard = () => {
                     </div>
                   </div>
                   
-              <Button variant="outline" className="w-full" onClick={() => window.location.href = '/avaliacoes'}>
+              <Button variant="outline" className="w-full" onClick={() => window.location.href = '/reports'}>
                 {t('viewFullReport')}
               </Button>
                 </CardContent>
