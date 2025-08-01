@@ -2,8 +2,11 @@ import React from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Star } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Avaliacoes = () => {
+  const { t } = useLanguage();
+
   // Dados de exemplo para avaliações e notas
   const avaliacoes = [
     {
@@ -30,7 +33,7 @@ const Avaliacoes = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Avaliações das Aulas</h1>
+        <h1 className="text-3xl font-bold mb-6">{t('evaluationsTitle')}</h1>
         <div className="space-y-6">
           {avaliacoes.map((avaliacao) => (
             <Card key={avaliacao.id} className="shadow-lg">
@@ -42,7 +45,7 @@ const Avaliacoes = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <h3 className="font-semibold mb-2">Notas das Provas</h3>
+                <h3 className="font-semibold mb-2">{t('examGrades')}</h3>
                 <ul className="list-disc list-inside">
                   {avaliacao.provas.map((prova) => (
                     <li key={prova.id}>

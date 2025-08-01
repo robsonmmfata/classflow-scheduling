@@ -49,7 +49,7 @@ const Login = () => {
             </div>
           </div>
           <div>
-            <CardTitle className="text-2xl font-bold">EduScheduler</CardTitle>
+            <CardTitle className="text-2xl font-bold">Brazuca School Language</CardTitle>
             <h2 className="text-xl text-foreground mt-2">{t('welcomeBack')}</h2>
             <p className="text-muted-foreground">{t('loginToAccount')}</p>
           </div>

@@ -6,12 +6,14 @@ import { Badge } from "./ui/badge";
 import { useSchedule } from "@/contexts/ScheduleContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const { timeSlots, bookSlot, scheduleSettings } = useSchedule();
   const { user } = useAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
   
   // Filter slots for current date
   const todaySlots = timeSlots.filter(slot => slot.date === '2025-07-27');
@@ -32,8 +34,8 @@ const Calendar = () => {
   const handleBookSlot = (slotId: string) => {
     if (!user) {
       toast({
-        title: "Login necessário",
-        description: "Faça login para agendar uma aula",
+        title: t('loginRequired'),
+        description: t('loginToBookLesson'),
         variant: "destructive"
       });
       return;
@@ -41,8 +43,8 @@ const Calendar = () => {
 
     if (user.role !== 'student') {
       toast({
-        title: "Acesso negado",
-        description: "Apenas alunos podem agendar aulas",
+        title: t('accessDenied'),
+        description: t('onlyStudentsCanBook'),
         variant: "destructive"
       });
       return;
@@ -50,8 +52,8 @@ const Calendar = () => {
 
     bookSlot(slotId, { name: user.email, email: user.email });
     toast({
-      title: "Aula agendada!",
-      description: "Sua aula foi agendada com sucesso",
+      title: t('lessonBooked'),
+      description: t('lessonBookedSuccess'),
     });
   };
 
@@ -73,10 +75,10 @@ const Calendar = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Agenda de Horários
+            {t('scheduleCalendar')}
           </h2>
           <p className="text-lg text-muted-foreground">
-            Escolha o melhor horário para sua aula
+            {t('chooseTime')}
           </p>
         </div>
         
@@ -92,19 +94,19 @@ const Calendar = () => {
             <div className="flex items-center justify-center gap-4 text-sm">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-lesson-available rounded-full"></div>
-                <span>Disponível</span>
+                <span>{t('available')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-lesson-trial rounded-full"></div>
-                <span>Aula Experimental</span>
+                <span>{t('trialLesson')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-lesson-booked rounded-full"></div>
-                <span>Ocupado</span>
+                <span>{t('occupied')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-lesson-unavailable rounded-full"></div>
-                <span>Indisponível</span>
+                <span>{t('unavailable')}</span>
               </div>
             </div>
             
@@ -155,14 +157,14 @@ const Calendar = () => {
             
             <div className="text-center space-y-4">
               <p className="text-sm text-muted-foreground">
-                * Fuso horário: Brasília (GMT-3)
+                * {t('timezone')}
               </p>
               <div className="flex justify-center gap-3">
                 <Button variant="outline">
-                  ← Dia Anterior
+                  ← {t('previousDay')}
                 </Button>
                 <Button variant="outline">
-                  Próximo Dia →
+                  {t('nextDay')} →
                 </Button>
               </div>
             </div>

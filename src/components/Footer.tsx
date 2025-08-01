@@ -1,7 +1,10 @@
 import { MessageCircle, Mail, Instagram, BookOpen } from "lucide-react";
 import { Button } from "./ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-4">
@@ -15,35 +18,34 @@ const Footer = () => {
                   className="object-contain w-[250px] h-[250px]"
                 />
               </div>
-              
             </div>
             <p className="text-muted-foreground">
-              Plataforma completa para agendamento de aulas particulares online.
+              {t('footerDescription')}
             </p>
           </div>
-          
+
           <div className="space-y-4">
-            <h4 className="font-semibold">Serviços</h4>
+            <h4 className="font-semibold">{t('services')}</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Aulas Particulares</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Aula Experimental</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Pacotes de Aulas</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Planos Mensais</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t('privateLessons')}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t('trialLesson')}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t('packages')}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t('monthlyPlan')}</a></li>
             </ul>
           </div>
-          
+
           <div className="space-y-4">
-            <h4 className="font-semibold">Suporte</h4>
+            <h4 className="font-semibold">{t('support')}</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Central de Ajuda</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Política de Cancelamento</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Termos de Uso</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Privacidade</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t('helpCenter')}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t('cancellationPolicy')}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t('termsOfUse')}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t('privacy')}</a></li>
             </ul>
           </div>
-          
+
           <div className="space-y-4">
-            <h4 className="font-semibold">Contato</h4>
+            <h4 className="font-semibold">{t('contact')}</h4>
             <div className="space-y-3">
               <Button 
                 variant="outline" 
@@ -70,10 +72,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="border-t border-muted-foreground/20 mt-8 pt-8 text-center">
           <p className="text-muted-foreground">
-            © 2024 EduScheduler. Todos os direitos reservados.
+            © 2025 Brazuca Language Portuguese. {t('rightsReserved')}
           </p>
         </div>
       </div>
