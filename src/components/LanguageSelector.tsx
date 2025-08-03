@@ -18,9 +18,9 @@ const LanguageSelector = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
-          <Globe className="h-4 w-4" />
-          <span className="hidden sm:inline">{currentLanguage?.flag}</span>
+        <Button variant="ghost" size="sm" className="gap-2 text-white hover:text-white">
+          <Globe className="h-4 w-4 text-white" />
+          <span className="hidden sm:inline text-white">{currentLanguage?.flag}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

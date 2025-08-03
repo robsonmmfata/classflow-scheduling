@@ -62,7 +62,12 @@ const Calendar = () => {
   };
   
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('pt-BR', { 
+    const { language } = useLanguage();
+    let locale = 'pt-BR';
+    if (language === 'en') locale = 'en-US';
+    if (language === 'es') locale = 'es-ES';
+    
+    return date.toLocaleDateString(locale, { 
       weekday: 'long', 
       year: 'numeric', 
       month: 'long', 
