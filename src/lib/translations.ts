@@ -154,6 +154,22 @@ export const translations = {
     newAvailability: "Nova Disponibilidade",
     evaluationsTitle: "Avaliações das Aulas",
     examGrades: "Notas das Provas",
+    
+    // Package descriptions and features
+    trialDescription: "Experimente nossa metodologia",
+    package4Description: "Ideal para começar",
+    package8Description: "Melhor custo-benefício",
+    quarterlyDescription: "Máximo aproveitamento",
+    oneLesson25min: "1 aula de 25 minutos",
+    fourLessons50min: "4 aulas de 50 minutos",
+    eightLessons50min: "8 aulas de 50 minutos",
+    twelveLessonsQuarterly: "12 aulas trimestrais",
+    materialIncluded: "Material didático incluído",
+    premiumMaterial: "Material didático premium",
+    fifteenPerLesson: "US$ 15 por aula",
+    thirteenPerLesson: "US$ 13 por aula",
+    twelvePerLesson: "US$ 12 por aula",
+    quarterlyPlan: "Plano Trimestral",
   },
   
   en: {
@@ -310,6 +326,22 @@ export const translations = {
     newAvailability: "New Availability",
     evaluationsTitle: "Lesson Evaluations",
     examGrades: "Exam Grades",
+    
+    // Package descriptions and features
+    trialDescription: "Try our methodology",
+    package4Description: "Perfect to get started",
+    package8Description: "Best value for money",
+    quarterlyDescription: "Maximum learning",
+    oneLesson25min: "1 lesson of 25 minutes",
+    fourLessons50min: "4 lessons of 50 minutes",
+    eightLessons50min: "8 lessons of 50 minutes",
+    twelveLessonsQuarterly: "12 quarterly lessons",
+    materialIncluded: "Teaching material included",
+    premiumMaterial: "Premium teaching material",
+    fifteenPerLesson: "US$ 15 per lesson",
+    thirteenPerLesson: "US$ 13 per lesson",
+    twelvePerLesson: "US$ 12 per lesson",
+    quarterlyPlan: "Quarterly Plan",
   },
   
   es: {
@@ -466,6 +498,22 @@ export const translations = {
     newAvailability: "Nueva Disponibilidad",
     evaluationsTitle: "Evaluaciones de Clases",
     examGrades: "Notas de los Exámenes",
+    
+    // Package descriptions and features
+    trialDescription: "Prueba nuestra metodología",
+    package4Description: "Perfecto para empezar",
+    package8Description: "Mejor relación calidad-precio",
+    quarterlyDescription: "Máximo aprendizaje",
+    oneLesson25min: "1 clase de 25 minutos",
+    fourLessons50min: "4 clases de 50 minutos",
+    eightLessons50min: "8 clases de 50 minutos",
+    twelveLessonsQuarterly: "12 clases trimestrales",
+    materialIncluded: "Material didáctico incluido",
+    premiumMaterial: "Material didáctico premium",
+    fifteenPerLesson: "US$ 15 por clase",
+    thirteenPerLesson: "US$ 13 por clase",
+    twelvePerLesson: "US$ 12 por clase",
+    quarterlyPlan: "Plan Trimestral",
   }
 };
 
