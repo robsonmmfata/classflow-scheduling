@@ -101,10 +101,10 @@ const Reports = () => {
             <div>
               <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
                 <TrendingUp className="h-8 w-8 text-primary" />
-                Relatórios
+                {t("reports")}
               </h1>
               <p className="text-muted-foreground mt-2">
-                Análises e estatísticas detalhadas
+                {t("reportsDesc")}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
