@@ -41,12 +41,79 @@ export const translations = {
     buyPackage: "Comprar Pacote",
     subscribePlan: "Assinar Plano",
     
-    // My Lessons
-    manageSchedule: "Gerencie seus agendamentos e acompanhe seu progresso",
+    // Package descriptions and features
+    trialDescription: "Experimente nossa metodologia",
+    package4Description: "Ideal para começar",
+    package8Description: "Melhor custo-benefício",
+    quarterlyDescription: "Máximo aproveitamento",
+    oneLesson25min: "1 aula de 25 minutos",
+    fourLessons50min: "4 aulas de 50 minutos",
+    eightLessons50min: "8 aulas de 50 minutos",
+    twelveLessonsQuarterly: "12 aulas trimestrais",
+    materialIncluded: "Material didático incluído",
+    premiumMaterial: "Material didático premium",
+    fifteenPerLesson: "US$ 15 por aula",
+    thirteenPerLesson: "US$ 13 por aula",
+    twelvePerLesson: "US$ 12 por aula",
+    quarterlyPlan: "Plano Trimestral",
+    
+    // Profile completion
+    completeProfile: "Complete seu perfil",
+    profileCompletionDesc: "Para uma melhor experiência, complete suas informações pessoais",
+    name: "Nome",
+    surname: "Sobrenome",
+    email: "E-mail",
+    birthDate: "Data de Nascimento",
+    nationality: "Nacionalidade",
+    selectCountry: "Selecione seu país",
+    languagesSpoken: "Outros idiomas que fala",
+    languagePlaceholder: "Ex: Inglês (fluente), Espanhol (intermediário)",
+    saveProfile: "Salvar Perfil",
+    profileSaved: "Perfil salvo com sucesso!",
+    fillRequiredFields: "Por favor, preencha todos os campos obrigatórios.",
+    profileComplete: "Perfil Completo",
+    profileCompleteMessage: "Seu perfil está completo! Agora você pode agendar suas aulas.",
+    firstNamePlaceholder: "Seu primeiro nome",
+    lastNamePlaceholder: "Seu sobrenome", 
+    emailPlaceholder: "seu@email.com",
+    
+    // Feedback system
+    leaveFeedback: "Deixar Feedback",
+    feedbackDescription: "Compartilhe sua experiência geral com as aulas (feedback único)",
+    generalEvaluation: "Avaliação Geral",
+    lessonComment: "Comentário sobre as aulas",
+    
+    // Teacher dashboard stats
+    weekLessons: "Aulas desta semana",
+    activeStudents: "Alunos ativos", 
+    averageRating: "Avaliação média",
+    weeklyRevenue: "Receita semanal",
+    
+    // Fixed schedules
+    fixedSchedules: "Horários Fixos",
+    scheduleAvailability: "Configure sua disponibilidade semanal",
+    
+    // Manage students
+    manageStudents: "Gerenciar Alunos",
+    manageStudentsDesc: "Visualize e gerencie todos os seus alunos",
+    
+    // Teaching materials
+    teachingMaterials: "📚 Teaching Materials",
+    teachingMaterialsDesc: "Explore nossa vasta biblioteca de recursos para aprender Português e Espanhol de forma eficaz",
+    
+    // Reports
+    reports: "Relatórios",
+    reportsDesc: "Análises e estatísticas detalhadas",
+    
+    // Lessons balance
     lessonsBalance: "Saldo de Aulas",
-    remainingLessons: "Você ainda possui",
     lessonsToSchedule: "aulas para agendar",
     buyMoreLessons: "Comprar Mais Aulas",
+    youStillHave: "Você ainda possui",
+    
+    // My Lessons
+    manageSchedule: "Gerencie seus agendamentos e acompanhe seu progresso",
+    remainingLessons: "Você ainda possui",
     upcomingLessons: "Próximas Aulas",
     pastLessons: "Aulas Anteriores",
     enterLesson: "Entrar na Aula",
@@ -54,7 +121,6 @@ export const translations = {
     cancel: "Cancelar",
     confirmed: "Confirmada",
     completed: "Concluída",
-    leaveFeedback: "Deixar Feedback",
     cancellationPolicy: "Política de Cancelamento",
     cancellationText: "Cancelamentos com menos de 12 horas de antecedência não poderão ser reembolsados. Para cancelamentos com mais de 12 horas, você pode reagendar gratuitamente.",
     
@@ -69,11 +135,8 @@ export const translations = {
     viewFullReport: "Ver Relatório Completo",
     setPrices: "Definir Preços",
     adjustLessonValues: "Ajustar valores das aulas",
-    fixedSchedules: "Horários Fixos",
     configureAvailability: "Configurar disponibilidade",
-    manageStudents: "Gerenciar Alunos",
     viewProfilesHistory: "Ver perfis e histórico",
-    reports: "Relatórios",
     analysisStatistics: "Análise e estatísticas",
     pageNotFound: "Página Não Encontrada",
     pageNotFoundDescription: "A página que você está procurando não existe.",
@@ -89,7 +152,6 @@ export const translations = {
     // Auth
     welcomeBack: "Bem-vindo de volta",
     loginToAccount: "Faça login na sua conta para continuar",
-    email: "Email",
     password: "Senha",
     forgotPassword: "Esqueceu sua senha?",
     dontHaveAccount: "Não tem uma conta?",
@@ -128,12 +190,10 @@ export const translations = {
     new: "Novo",
     active: "Ativo",
     monthlyGoals: "Metas Mensais",
-    teachingMaterials: "Materiais de Ensino",
     dashboardSubtitle: "Acompanhe seu progresso e gerencie suas aulas",
     recentActivity: "Atividade Recente",
     yourProgress: "Seu Progresso",
     completedLessons: "Aulas Concluídas",
-    averageRating: "Avaliação Média",
     studyStreak: "Sequência de Estudos",
     days: "dias",
     teacherDashboardSubtitle: "Gerencie suas aulas e alunos de forma eficiente",
@@ -154,22 +214,6 @@ export const translations = {
     newAvailability: "Nova Disponibilidade",
     evaluationsTitle: "Avaliações das Aulas",
     examGrades: "Notas das Provas",
-    
-    // Package descriptions and features
-    trialDescription: "Experimente nossa metodologia",
-    package4Description: "Ideal para começar",
-    package8Description: "Melhor custo-benefício",
-    quarterlyDescription: "Máximo aproveitamento",
-    oneLesson25min: "1 aula de 25 minutos",
-    fourLessons50min: "4 aulas de 50 minutos",
-    eightLessons50min: "8 aulas de 50 minutos",
-    twelveLessonsQuarterly: "12 aulas trimestrais",
-    materialIncluded: "Material didático incluído",
-    premiumMaterial: "Material didático premium",
-    fifteenPerLesson: "US$ 15 por aula",
-    thirteenPerLesson: "US$ 13 por aula",
-    twelvePerLesson: "US$ 12 por aula",
-    quarterlyPlan: "Plano Trimestral",
   },
   
   en: {
@@ -214,12 +258,79 @@ export const translations = {
     buyPackage: "Buy Package",
     subscribePlan: "Subscribe Plan",
     
-    // My Lessons
-    manageSchedule: "Manage your bookings and track your progress",
+    // Package descriptions and features
+    trialDescription: "Try our methodology",
+    package4Description: "Perfect to get started",
+    package8Description: "Best value for money",
+    quarterlyDescription: "Maximum learning",
+    oneLesson25min: "1 lesson of 25 minutes",
+    fourLessons50min: "4 lessons of 50 minutes",
+    eightLessons50min: "8 lessons of 50 minutes",
+    twelveLessonsQuarterly: "12 quarterly lessons",
+    materialIncluded: "Teaching material included",
+    premiumMaterial: "Premium teaching material",
+    fifteenPerLesson: "US$ 15 per lesson",
+    thirteenPerLesson: "US$ 13 per lesson",
+    twelvePerLesson: "US$ 12 per lesson",
+    quarterlyPlan: "Quarterly Plan",
+    
+    // Profile completion
+    completeProfile: "Complete your profile",
+    profileCompletionDesc: "For a better experience, complete your personal information",
+    name: "Name",
+    surname: "Surname", 
+    email: "Email",
+    birthDate: "Birth Date",
+    nationality: "Nationality",
+    selectCountry: "Select your country",
+    languagesSpoken: "Other languages you speak",
+    languagePlaceholder: "Ex: Portuguese (fluent), Spanish (intermediate)",
+    saveProfile: "Save Profile",
+    profileSaved: "Profile saved successfully!",
+    fillRequiredFields: "Please fill in all required fields.",
+    profileComplete: "Profile Complete",
+    profileCompleteMessage: "Your profile is complete! Now you can schedule your lessons.",
+    firstNamePlaceholder: "Your first name",
+    lastNamePlaceholder: "Your last name",
+    emailPlaceholder: "your@email.com",
+    
+    // Feedback system
+    leaveFeedback: "Leave Feedback",
+    feedbackDescription: "Share your overall experience with the classes (unique feedback)",
+    generalEvaluation: "General Evaluation",
+    lessonComment: "Comment about the classes",
+    
+    // Teacher dashboard stats
+    weekLessons: "This week's lessons",
+    activeStudents: "Active students",
+    averageRating: "Average rating", 
+    weeklyRevenue: "Weekly revenue",
+    
+    // Fixed schedules
+    fixedSchedules: "Fixed Schedules",
+    scheduleAvailability: "Configure your weekly availability",
+    
+    // Manage students
+    manageStudents: "Manage Students",
+    manageStudentsDesc: "View and manage all your students",
+    
+    // Teaching materials
+    teachingMaterials: "📚 Teaching Materials",
+    teachingMaterialsDesc: "Explore our vast library of resources to learn Portuguese and Spanish effectively",
+    
+    // Reports
+    reports: "Reports", 
+    reportsDesc: "Detailed analysis and statistics",
+    
+    // Lessons balance
     lessonsBalance: "Lessons Balance",
-    remainingLessons: "You still have",
     lessonsToSchedule: "lessons to schedule",
     buyMoreLessons: "Buy More Lessons",
+    youStillHave: "You still have",
+    
+    // My Lessons
+    manageSchedule: "Manage your bookings and track your progress",
+    remainingLessons: "You still have",
     upcomingLessons: "Upcoming Lessons",
     pastLessons: "Past Lessons",
     enterLesson: "Enter Lesson",
@@ -227,7 +338,6 @@ export const translations = {
     cancel: "Cancel",
     confirmed: "Confirmed",
     completed: "Completed",
-    leaveFeedback: "Leave Feedback",
     cancellationPolicy: "Cancellation Policy",
     cancellationText: "Cancellations less than 12 hours in advance cannot be refunded. For cancellations more than 12 hours, you can reschedule for free.",
     
@@ -242,11 +352,8 @@ export const translations = {
     viewFullReport: "View Full Report",
     setPrices: "Set Prices",
     adjustLessonValues: "Adjust lesson values",
-    fixedSchedules: "Fixed Schedules",
     configureAvailability: "Configure availability",
-    manageStudents: "Manage Students",
     viewProfilesHistory: "View profiles and history",
-    reports: "Reports",
     analysisStatistics: "Analysis and statistics",
     pageNotFound: "Page Not Found",
     pageNotFoundDescription: "The page you are looking for does not exist.",
@@ -261,7 +368,6 @@ export const translations = {
     // Auth
     welcomeBack: "Welcome back",
     loginToAccount: "Sign in to your account to continue",
-    email: "Email",
     password: "Password",
     forgotPassword: "Forgot your password?",
     dontHaveAccount: "Don't have an account?",
@@ -300,12 +406,10 @@ export const translations = {
     new: "New",
     active: "Active",
     monthlyGoals: "Monthly Goals",
-    teachingMaterials: "Teaching Materials",
     dashboardSubtitle: "Track your progress and manage your lessons",
     recentActivity: "Recent Activity",
     yourProgress: "Your Progress",
     completedLessons: "Completed Lessons",
-    averageRating: "Average Rating",
     studyStreak: "Study Streak",
     days: "days",
     teacherDashboardSubtitle: "Manage your lessons and students efficiently",
@@ -326,22 +430,6 @@ export const translations = {
     newAvailability: "New Availability",
     evaluationsTitle: "Lesson Evaluations",
     examGrades: "Exam Grades",
-    
-    // Package descriptions and features
-    trialDescription: "Try our methodology",
-    package4Description: "Perfect to get started",
-    package8Description: "Best value for money",
-    quarterlyDescription: "Maximum learning",
-    oneLesson25min: "1 lesson of 25 minutes",
-    fourLessons50min: "4 lessons of 50 minutes",
-    eightLessons50min: "8 lessons of 50 minutes",
-    twelveLessonsQuarterly: "12 quarterly lessons",
-    materialIncluded: "Teaching material included",
-    premiumMaterial: "Premium teaching material",
-    fifteenPerLesson: "US$ 15 per lesson",
-    thirteenPerLesson: "US$ 13 per lesson",
-    twelvePerLesson: "US$ 12 per lesson",
-    quarterlyPlan: "Quarterly Plan",
   },
   
   es: {
@@ -386,12 +474,79 @@ export const translations = {
     buyPackage: "Comprar Paquete",
     subscribePlan: "Suscribir Plan",
     
+    // Package descriptions and features
+    trialDescription: "Prueba nuestra metodología",
+    package4Description: "Perfecto para empezar",
+    package8Description: "Mejor relación calidad-precio",
+    quarterlyDescription: "Máximo aprendizaje",
+    oneLesson25min: "1 clase de 25 minutos",
+    fourLessons50min: "4 clases de 50 minutos",
+    eightLessons50min: "8 clases de 50 minutos",
+    twelveLessonsQuarterly: "12 clases trimestrales",
+    materialIncluded: "Material didáctico incluido",
+    premiumMaterial: "Material didáctico premium",
+    fifteenPerLesson: "US$ 15 por clase",
+    thirteenPerLesson: "US$ 13 por clase",
+    twelvePerLesson: "US$ 12 por clase",
+    quarterlyPlan: "Plan Trimestral",
+    
+    // Profile completion
+    completeProfile: "Completa tu perfil",
+    profileCompletionDesc: "Para una mejor experiencia, completa tu información personal",
+    name: "Nombre",
+    surname: "Apellido",
+    email: "Correo electrónico", 
+    birthDate: "Fecha de Nacimiento",
+    nationality: "Nacionalidad",
+    selectCountry: "Selecciona tu país",
+    languagesSpoken: "Otros idiomas que hablas",
+    languagePlaceholder: "Ej: Inglés (fluido), Portugués (intermedio)",
+    saveProfile: "Guardar Perfil",
+    profileSaved: "¡Perfil guardado con éxito!",
+    fillRequiredFields: "Por favor, completa todos los campos obligatorios.",
+    profileComplete: "Perfil Completo",
+    profileCompleteMessage: "¡Tu perfil está completo! Ahora puedes agendar tus clases.",
+    firstNamePlaceholder: "Tu primer nombre",
+    lastNamePlaceholder: "Tu apellido",
+    emailPlaceholder: "tu@email.com",
+    
+    // Feedback system
+    leaveFeedback: "Dejar Comentario",
+    feedbackDescription: "Comparte tu experiencia general con las clases (comentario único)",
+    generalEvaluation: "Evaluación General",
+    lessonComment: "Comentario sobre las clases",
+    
+    // Teacher dashboard stats
+    weekLessons: "Clases de esta semana",
+    activeStudents: "Estudiantes activos",
+    averageRating: "Calificación promedio",
+    weeklyRevenue: "Ingresos semanales",
+    
+    // Fixed schedules
+    fixedSchedules: "Horarios Fijos", 
+    scheduleAvailability: "Configura tu disponibilidad semanal",
+    
+    // Manage students
+    manageStudents: "Gestionar Estudiantes",
+    manageStudentsDesc: "Visualiza y gestiona todos tus estudiantes",
+    
+    // Teaching materials
+    teachingMaterials: "📚 Materiales de Enseñanza",
+    teachingMaterialsDesc: "Explora nuestra extensa biblioteca de recursos para aprender Portugués y Español de manera efectiva",
+    
+    // Reports
+    reports: "Informes",
+    reportsDesc: "Análisis y estadísticas detalladas",
+    
+    // Lessons balance
+    lessonsBalance: "Balance de Clases",
+    lessonsToSchedule: "clases por programar",
+    buyMoreLessons: "Comprar Más Clases",
+    youStillHave: "Aún tienes",
+    
     // My Lessons
     manageSchedule: "Gestiona tus reservas y sigue tu progreso",
-    lessonsBalance: "Saldo de Clases",
     remainingLessons: "Aún tienes",
-    lessonsToSchedule: "clases para programar",
-    buyMoreLessons: "Comprar Más Clases",
     upcomingLessons: "Próximas Clases",
     pastLessons: "Clases Anteriores",
     enterLesson: "Entrar a la Clase",
@@ -399,7 +554,6 @@ export const translations = {
     cancel: "Cancelar",
     confirmed: "Confirmada",
     completed: "Completada",
-    leaveFeedback: "Dejar Comentarios",
     cancellationPolicy: "Política de Cancelación",
     cancellationText: "Las cancelaciones con menos de 12 horas de anticipación no pueden ser reembolsadas. Para cancelaciones con más de 12 horas, puedes reprogramar gratis.",
     
@@ -414,11 +568,8 @@ export const translations = {
     viewFullReport: "Ver Reporte Completo",
     setPrices: "Definir Precios",
     adjustLessonValues: "Ajustar valores de las clases",
-    fixedSchedules: "Horarios Fijos",
     configureAvailability: "Configurar disponibilidad",
-    manageStudents: "Gestionar Estudiantes",
     viewProfilesHistory: "Ver perfiles e historial",
-    reports: "Reportes",
     analysisStatistics: "Análisis y estadísticas",
     pageNotFound: "Página No Encontrada",
     pageNotFoundDescription: "La página que estás buscando no existe.",
@@ -433,7 +584,6 @@ export const translations = {
     // Auth
     welcomeBack: "Bienvenido de vuelta",
     loginToAccount: "Inicia sesión en tu cuenta para continuar",
-    email: "Email",
     password: "Contraseña",
     forgotPassword: "¿Olvidaste tu contraseña?",
     dontHaveAccount: "¿No tienes una cuenta?",
@@ -472,12 +622,10 @@ export const translations = {
     new: "Nuevo",
     active: "Activo",
     monthlyGoals: "Objetivos Mensuales",
-    teachingMaterials: "Materiales de Enseñanza",
     dashboardSubtitle: "Sigue tu progreso y gestiona tus clases",
     recentActivity: "Actividad Reciente",
     yourProgress: "Tu Progreso",
     completedLessons: "Clases Completadas",
-    averageRating: "Calificación Promedio",
     studyStreak: "Racha de Estudio",
     days: "días",
     teacherDashboardSubtitle: "Gestiona tus clases y estudiantes de manera eficiente",
@@ -498,22 +646,6 @@ export const translations = {
     newAvailability: "Nueva Disponibilidad",
     evaluationsTitle: "Evaluaciones de Clases",
     examGrades: "Notas de los Exámenes",
-    
-    // Package descriptions and features
-    trialDescription: "Prueba nuestra metodología",
-    package4Description: "Perfecto para empezar",
-    package8Description: "Mejor relación calidad-precio",
-    quarterlyDescription: "Máximo aprendizaje",
-    oneLesson25min: "1 clase de 25 minutos",
-    fourLessons50min: "4 clases de 50 minutos",
-    eightLessons50min: "8 clases de 50 minutos",
-    twelveLessonsQuarterly: "12 clases trimestrales",
-    materialIncluded: "Material didáctico incluido",
-    premiumMaterial: "Material didáctico premium",
-    fifteenPerLesson: "US$ 15 por clase",
-    thirteenPerLesson: "US$ 13 por clase",
-    twelvePerLesson: "US$ 12 por clase",
-    quarterlyPlan: "Plan Trimestral",
   }
 };
 
