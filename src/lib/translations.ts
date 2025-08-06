@@ -8,7 +8,7 @@ export const translations = {
     packages: "Pacotes",
     contact: "Contato",
     logout: "Sair",
-    
+
     // Hero
     scheduleOnlineLessons: "Agende suas aulas online facilmente",
     heroDescription: "Plataforma completa para agendamento de aulas particulares. Gerencie horários, receba pagamentos e conduza aulas via Google Meet.",
@@ -17,7 +17,7 @@ export const translations = {
     flexibleHours: "Horários flexíveis",
     freeCancellation: "Cancelamento grátis",
     qualifiedTeachers: "Professores qualificados",
-    
+
     // Calendar
     scheduleCalendar: "Agenda de Horários",
     chooseTime: "Escolha o melhor horário para sua aula",
@@ -28,7 +28,7 @@ export const translations = {
     timezone: "Fuso horário: Brasília (GMT-3)",
     previousDay: "← Dia Anterior",
     nextDay: "Próximo Dia →",
-    
+
     // Packages
     packagesPlans: "Pacotes e Planos",
     choosePlan: "Escolha o plano ideal para seu aprendizado",
@@ -40,7 +40,22 @@ export const translations = {
     scheduleExperimental: "Agendar Experimental",
     buyPackage: "Comprar Pacote",
     subscribePlan: "Assinar Plano",
-    
+    paymentMethods: "Aceita cartão de crédito, PIX, PayPal e transferência bancária",
+    paymentQuestions: "Dúvidas sobre pagamento?",
+    descriptionTrial: "Experimente nossa metodologia",
+    descriptionPackage4: "Ideal para começar",
+    descriptionPackage8: "Melhor custo-benefício",
+    descriptionQuarterly: "Máximo aproveitamento",
+    oneLesson25min: "Uma aula de 25 minutos",
+    materialIncluded: "Material incluído",
+    fourLessons50min: "Quatro aulas de 50 minutos",
+    price15perLesson: "Preço de US$ 15 por aula",
+    eightLessons50min: "Oito aulas de 50 minutos",
+    price13perLesson: "Preço de US$ 13 por aula",
+    twelveQuarterlyLessons: "Doze aulas trimestrais",
+    price12perLesson: "Preço de US$ 12 por aula",
+    premiumMaterial: "Material premium",
+
     // My Lessons
     manageSchedule: "Gerencie seus agendamentos e acompanhe seu progresso",
     lessonsBalance: "Saldo de Aulas",
@@ -57,7 +72,7 @@ export const translations = {
     leaveFeedback: "Deixar Feedback",
     cancellationPolicy: "Política de Cancelamento",
     cancellationText: "Cancelamentos com menos de 12 horas de antecedência não poderão ser reembolsados. Para cancelamentos com mais de 12 horas, você pode reagendar gratuitamente.",
-    
+
     // Dashboard
     welcome: "Bem-vindo",
     studentDashboard: "Dashboard do Aluno",
@@ -83,9 +98,8 @@ export const translations = {
     nextLesson: "Próxima Aula",
     totalStudents: "Total de Alunos",
     monthlyRevenue: "Receita Mensal",
-    todayLessons: "Aulas Hoje",
     todaysLessons: "Aulas de Hoje",
-    
+
     // Auth
     welcomeBack: "Bem-vindo de volta",
     loginToAccount: "Faça login na sua conta para continuar",
@@ -97,7 +111,7 @@ export const translations = {
     fullName: "Nome completo",
     confirmPassword: "Confirmar senha",
     alreadyHaveAccount: "Já tem uma conta?",
-    
+
     // Footer
     services: "Serviços",
     privateLessons: "Aulas Particulares",
@@ -107,13 +121,10 @@ export const translations = {
     privacy: "Privacidade",
     rightsReserved: "Todos os direitos reservados.",
     footerDescription: "Plataforma completa para agendamento de aulas particulares online.",
-    contact: "Contato",
-    trialLesson: "Aula Experimental",
-    monthlyPlan: "Plano Mensal",
     evaluationsTitle: "Avaliações das Aulas",
     examGrades: "Notas das Provas",
   },
-  
+
   en: {
     // Header
     login: "Login",
@@ -123,7 +134,7 @@ export const translations = {
     packages: "Packages",
     contact: "Contact",
     logout: "Logout",
-    
+
     // Hero
     scheduleOnlineLessons: "Schedule your online lessons easily",
     heroDescription: "Complete platform for private lesson scheduling. Manage schedules, receive payments and conduct lessons via Google Meet.",
@@ -132,7 +143,7 @@ export const translations = {
     flexibleHours: "Flexible hours",
     freeCancellation: "Free cancellation",
     qualifiedTeachers: "Qualified teachers",
-    
+
     // Calendar
     scheduleCalendar: "Schedule Calendar",
     chooseTime: "Choose the best time for your lesson",
@@ -143,19 +154,34 @@ export const translations = {
     timezone: "Timezone: Brasília (GMT-3)",
     previousDay: "← Previous Day",
     nextDay: "Next Day →",
-    
+
     // Packages
-    packagesPlans: "Packages & Plans",
+    packagesPlans: "Packages and Plans",
     choosePlan: "Choose the ideal plan for your learning",
     mostPopular: "Most Popular",
     trialLesson: "Trial Lesson",
-    package4: "4 Lessons Package",
-    package8: "8 Lessons Package",
+    package4: "4-Lesson Package",
+    package8: "8-Lesson Package",
     monthlyPlan: "Monthly Plan",
     scheduleExperimental: "Schedule Trial",
     buyPackage: "Buy Package",
     subscribePlan: "Subscribe Plan",
-    
+    paymentMethods: "Accepts credit card, PIX, PayPal and bank transfer",
+    paymentQuestions: "Questions about payment?",
+    descriptionTrial: "Try our methodology",
+    descriptionPackage4: "Ideal to start",
+    descriptionPackage8: "Best cost-benefit",
+    descriptionQuarterly: "Maximum value",
+    oneLesson25min: "One 25-minute lesson",
+    materialIncluded: "Material included",
+    fourLessons50min: "Four 50-minute lessons",
+    price15perLesson: "Price of US$ 15 per lesson",
+    eightLessons50min: "Eight 50-minute lessons",
+    price13perLesson: "Price of US$ 13 per lesson",
+    twelveQuarterlyLessons: "Twelve quarterly lessons",
+    price12perLesson: "Price of US$ 12 per lesson",
+    premiumMaterial: "Premium material",
+
     // My Lessons
     manageSchedule: "Manage your bookings and track your progress",
     lessonsBalance: "Lessons Balance",
@@ -172,7 +198,7 @@ export const translations = {
     leaveFeedback: "Leave Feedback",
     cancellationPolicy: "Cancellation Policy",
     cancellationText: "Cancellations less than 12 hours in advance cannot be refunded. For cancellations more than 12 hours, you can reschedule for free.",
-    
+
     // Dashboard
     welcome: "Welcome",
     studentDashboard: "Student Dashboard",
@@ -199,7 +225,7 @@ export const translations = {
     totalStudents: "Total Students",
     monthlyRevenue: "Monthly Revenue",
     todaysLessons: "Today's Lessons",
-    
+
     // Auth
     welcomeBack: "Welcome back",
     loginToAccount: "Sign in to your account to continue",
@@ -211,7 +237,7 @@ export const translations = {
     fullName: "Full name",
     confirmPassword: "Confirm password",
     alreadyHaveAccount: "Already have an account?",
-    
+
     // Footer
     services: "Services",
     privateLessons: "Private Lessons",
@@ -221,13 +247,10 @@ export const translations = {
     privacy: "Privacy",
     rightsReserved: "All rights reserved.",
     footerDescription: "Complete platform for scheduling private online lessons.",
-    contact: "Contact",
-    trialLesson: "Trial Lesson",
-    monthlyPlan: "Monthly Plan",
     evaluationsTitle: "Lesson Evaluations",
     examGrades: "Exam Grades",
   },
-  
+
   es: {
     // Header
     login: "Iniciar Sesión",
@@ -237,16 +260,16 @@ export const translations = {
     packages: "Paquetes",
     contact: "Contacto",
     logout: "Cerrar Sesión",
-    
+
     // Hero
-    scheduleOnlineLessons: "Programa tus clases online fácilmente",
-    heroDescription: "Plataforma completa para programación de clases particulares. Gestiona horarios, recibe pagos y conduce clases vía Google Meet.",
+    scheduleOnlineLessons: "Programa tus clases en línea fácilmente",
+    heroDescription: "Plataforma completa para agendar clases particulares. Administra horarios, recibe pagos y realiza clases vía Google Meet.",
     scheduleTrialLesson: "Programar Clase de Prueba",
     viewAvailableHours: "Ver Horarios Disponibles",
     flexibleHours: "Horarios flexibles",
     freeCancellation: "Cancelación gratuita",
     qualifiedTeachers: "Profesores calificados",
-    
+
     // Calendar
     scheduleCalendar: "Calendario de Horarios",
     chooseTime: "Elige el mejor horario para tu clase",
@@ -257,19 +280,34 @@ export const translations = {
     timezone: "Zona horaria: Brasília (GMT-3)",
     previousDay: "← Día Anterior",
     nextDay: "Día Siguiente →",
-    
+
     // Packages
     packagesPlans: "Paquetes y Planes",
     choosePlan: "Elige el plan ideal para tu aprendizaje",
     mostPopular: "Más Popular",
     trialLesson: "Clase de Prueba",
-    package4: "Paquete 4 Clases",
-    package8: "Paquete 8 Clases",
+    package4: "Paquete de 4 Clases",
+    package8: "Paquete de 8 Clases",
     monthlyPlan: "Plan Mensual",
     scheduleExperimental: "Programar Prueba",
     buyPackage: "Comprar Paquete",
     subscribePlan: "Suscribir Plan",
-    
+    paymentMethods: "Acepta tarjeta de crédito, PIX, PayPal y transferencia bancaria",
+    paymentQuestions: "¿Preguntas sobre pago?",
+    descriptionTrial: "Prueba nuestra metodología",
+    descriptionPackage4: "Ideal para empezar",
+    descriptionPackage8: "Mejor relación costo-beneficio",
+    descriptionQuarterly: "Máximo aprovechamiento",
+    oneLesson25min: "Una clase de 25 minutos",
+    materialIncluded: "Material incluido",
+    fourLessons50min: "Cuatro clases de 50 minutos",
+    price15perLesson: "Precio de US$ 15 por clase",
+    eightLessons50min: "Ocho clases de 50 minutos",
+    price13perLesson: "Precio de US$ 13 por clase",
+    twelveQuarterlyLessons: "Doce clases trimestrales",
+    price12perLesson: "Precio de US$ 12 por clase",
+    premiumMaterial: "Material premium",
+
     // My Lessons
     manageSchedule: "Gestiona tus reservas y sigue tu progreso",
     lessonsBalance: "Saldo de Clases",
@@ -286,7 +324,7 @@ export const translations = {
     leaveFeedback: "Dejar Comentarios",
     cancellationPolicy: "Política de Cancelación",
     cancellationText: "Las cancelaciones con menos de 12 horas de anticipación no pueden ser reembolsadas. Para cancelaciones con más de 12 horas, puedes reprogramar gratis.",
-    
+
     // Dashboard
     welcome: "Bienvenido",
     studentDashboard: "Panel del Estudiante",
@@ -313,7 +351,7 @@ export const translations = {
     totalStudents: "Total de Estudiantes",
     monthlyRevenue: "Ingresos Mensuales",
     todaysLessons: "Clases de Hoy",
-    
+
     // Auth
     welcomeBack: "Bienvenido de vuelta",
     loginToAccount: "Inicia sesión en tu cuenta para continuar",
@@ -325,7 +363,7 @@ export const translations = {
     fullName: "Nombre completo",
     confirmPassword: "Confirmar contraseña",
     alreadyHaveAccount: "¿Ya tienes una cuenta?",
-    
+
     // Footer
     services: "Servicios",
     privateLessons: "Clases Particulares",
@@ -334,10 +372,7 @@ export const translations = {
     termsOfUse: "Términos de Uso",
     privacy: "Privacidad",
     rightsReserved: "Todos los derechos reservados.",
-    footerDescription: "Plataforma completa para programación de clases particulares online.",
-    contact: "Contacto",
-    trialLesson: "Clase de Prueba",
-    monthlyPlan: "Plan Mensual",
+    footerDescription: "Plataforma completa para programación de clases particulares en línea.",
     evaluationsTitle: "Evaluaciones de Clases",
     examGrades: "Notas de los Exámenes",
   }

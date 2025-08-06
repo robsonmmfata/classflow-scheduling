@@ -14,12 +14,12 @@ const PricingPackages = () => {
       name: t("trialLesson"),
       price: "US$ 5",
       originalPrice: "",
-      description: "Experimente nossa metodologia",
+      description: t("descriptionTrial"),
       icon: Star,
       popular: false,
       features: [
-        "1 aula de 25 minutos",
-        "Material didático incluído",
+        t("oneLesson25min"),
+        t("materialIncluded"),
       ],
       buttonText: t("scheduleExperimental"),
       buttonVariant: "trial" as const
@@ -29,13 +29,13 @@ const PricingPackages = () => {
       name: t("package4"),
       price: "US$ 60",
       originalPrice: "",
-      description: "Ideal para começar",
+      description: t("descriptionPackage4"),
       icon: Zap,
       popular: true,
       features: [
-        "4 aulas de 50 minutos",
-        "US$ 15 por aula",
-        "Material didático incluído"
+        t("fourLessons50min"),
+        t("price15perLesson"),
+        t("materialIncluded")
       ],
       buttonText: t("buyPackage"),
       buttonVariant: "gradient" as const
@@ -45,13 +45,13 @@ const PricingPackages = () => {
       name: t("package8"),
       price: "US$ 104",
       originalPrice: "",
-      description: "Melhor custo-benefício",
+      description: t("descriptionPackage8"),
       icon: Crown,
       popular: false,
       features: [
-        "8 aulas de 50 minutos",
-        "US$ 13 por aula",
-        "Material didático incluído",
+        t("eightLessons50min"),
+        t("price13perLesson"),
+        t("materialIncluded"),
       ],
       buttonText: t("buyPackage"),
       buttonVariant: "success" as const
@@ -61,13 +61,13 @@ const PricingPackages = () => {
       name: "Plano Trimestral",
       price: "US$ 144",
       originalPrice: "",
-      description: "Máximo aproveitamento",
+      description: t("descriptionQuarterly"),
       icon: Crown,
       popular: false,
       features: [
-        "12 aulas trimestrais",
-        "US$ 12 por aula",
-        "Material didático premium"
+        t("twelveQuarterlyLessons"),
+        t("price12perLesson"),
+        t("premiumMaterial")
       ],
       buttonText: t("subscribePlan"),
       buttonVariant: "gradient" as const
@@ -156,17 +156,17 @@ const PricingPackages = () => {
           </div>
           
           <div className="text-center mt-12 space-y-4">
-            <p className="text-sm text-muted-foreground">
-              {t("paymentMethods")}
-            </p>
-            <div className="flex justify-center gap-4">
-              <Button variant="outline">
-                {t("paymentQuestions")}
-              </Button>
-              <Button variant="ghost">
-                {t("cancellationPolicy")}
-              </Button>
-            </div>
+        <p className="text-sm text-muted-foreground">
+          {t("paymentMethods")}
+        </p>
+        <div className="flex justify-center gap-4">
+          <Button variant="outline">
+            {t("paymentQuestions")}
+          </Button>
+          <Button variant="ghost">
+            {t("cancellationPolicy")}
+          </Button>
+        </div>
           </div>
         </div>
       </div>

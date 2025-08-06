@@ -2,8 +2,6 @@ import { Calendar, Clock, CheckCircle, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
-import heroImage from "@/assets/hero-image.jpg";
-
 const Hero = () => {
   const { t } = useLanguage();
   
@@ -50,14 +48,15 @@ const Hero = () => {
           </div>
           
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-primary opacity-10 rounded-2xl blur-3xl"></div>
-            <Card className="relative overflow-hidden border-0 shadow-lg">
-              <img 
-                src={heroImage} 
-                alt="Professor e aluno em aula online" 
-                className="w-full h-auto object-cover"
-              />
-            </Card>
+            <div className="mt-8">
+              <Card className="overflow-hidden border-0 shadow-lg">
+                <img 
+                  src="/aulaonline.jpg" 
+                  alt="Aula online" 
+                  className="w-full h-auto object-cover"
+                />
+              </Card>
+            </div>
           </div>
         </div>
       </div>

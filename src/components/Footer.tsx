@@ -1,4 +1,4 @@
-import { MessageCircle, Mail, Instagram, BookOpen } from "lucide-react";
+import { MessageCircle, Mail, Instagram, BookOpen, Music2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -50,7 +50,7 @@ const Footer = () => {
               <Button 
                 variant="outline" 
                 className="w-full justify-start bg-transparent border-muted-foreground text-background hover:bg-primary hover:text-white"
-                onClick={() => window.open('https://wa.me/5521999999999', '_blank')}
+                onClick={() => window.open('https://wa.me/5521966247245', '_blank')}
               >
                 <MessageCircle className="h-4 w-4 mr-2" />
                 WhatsApp
@@ -60,15 +60,26 @@ const Footer = () => {
                 className="w-full justify-start bg-transparent border-muted-foreground text-background hover:bg-primary hover:text-white"
               >
                 <Mail className="h-4 w-4 mr-2" />
-                Email
+                brazucaportuguese@gmail.com
               </Button>
               <Button 
                 variant="outline" 
                 className="w-full justify-start bg-transparent border-muted-foreground text-background hover:bg-primary hover:text-white"
+                onClick={() => window.open('https://www.instagram.com/brazucaportuguese', '_blank')}
               >
                 <Instagram className="h-4 w-4 mr-2" />
-                Instagram
+               @brazucaportuguese
               </Button>
+              <div className="mt-2">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start bg-transparent border-muted-foreground text-background hover:bg-primary hover:text-white"
+                  onClick={() => window.open('https://www.tiktok.com/@brazuca.portuguese', '_blank')}
+                >
+                  <Music2 className="h-4 w-4 mr-2" />
+                  @brazuca.portuguese
+                </Button>
+              </div>
             </div>
           </div>
         </div>
