@@ -7,9 +7,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Badge } from "./ui/badge";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ProfileCompletion = () => {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const [profileData, setProfileData] = useState({
     firstName: "",
     lastName: "",
@@ -30,9 +32,9 @@ const ProfileCompletion = () => {
     e.preventDefault();
     if (Object.values(profileData).every(value => value.trim() !== "")) {
       setIsCompleted(true);
-      alert("Perfil completado com sucesso!");
+      alert(t("profileSaved"));
     } else {
-      alert("Por favor, preencha todos os campos obrigatórios.");
+      alert(t("fillRequiredFields"));
     }
   };
 
@@ -47,11 +49,11 @@ const ProfileCompletion = () => {
           <div className="flex justify-center mb-4">
             <Badge variant="outline" className="text-accent border-accent px-4 py-2">
               <User className="h-4 w-4 mr-2" />
-              Perfil Completo
+              {t("profileComplete")}
             </Badge>
           </div>
           <p className="text-muted-foreground">
-            Seu perfil está completo! Agora você pode agendar suas aulas.
+            {t("profileCompleteMessage")}
           </p>
         </CardContent>
       </Card>
@@ -63,30 +65,30 @@ const ProfileCompletion = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-orange-600">
           <AlertCircle className="h-5 w-5" />
-          Complete seu perfil
+          {t("completeProfile")}
         </CardTitle>
         <p className="text-sm text-muted-foreground">
-          Para uma melhor experiência, complete suas informações pessoais
+          {t("profileCompletionDesc")}
         </p>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="firstName">Nome *</Label>
+              <Label htmlFor="firstName">{t("name")} *</Label>
               <Input
                 id="firstName"
-                placeholder="Seu primeiro nome"
+                placeholder={t("firstNamePlaceholder")}
                 value={profileData.firstName}
                 onChange={(e) => handleInputChange("firstName", e.target.value)}
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="lastName">Sobrenome *</Label>
+              <Label htmlFor="lastName">{t("surname")} *</Label>
               <Input
                 id="lastName"
-                placeholder="Seu sobrenome"
+                placeholder={t("lastNamePlaceholder")}
                 value={profileData.lastName}
                 onChange={(e) => handleInputChange("lastName", e.target.value)}
                 required
@@ -95,11 +97,11 @@ const ProfileCompletion = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">E-mail *</Label>
+            <Label htmlFor="email">{t("email")} *</Label>
             <Input
               id="email"
               type="email"
-              placeholder="seu@email.com"
+              placeholder={t("emailPlaceholder")}
               value={profileData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               disabled
@@ -107,7 +109,7 @@ const ProfileCompletion = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="birthDate">Data de Nascimento *</Label>
+            <Label htmlFor="birthDate">{t("birthDate")} *</Label>
             <Input
               id="birthDate"
               type="date"
@@ -118,10 +120,10 @@ const ProfileCompletion = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="nationality">Nacionalidade *</Label>
+            <Label htmlFor="nationality">{t("nationality")} *</Label>
             <Select onValueChange={(value) => handleInputChange("nationality", value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Selecione seu país" />
+                <SelectValue placeholder={t("selectCountry")} />
               </SelectTrigger>
               <SelectContent>
                 {countries.map((country) => (
@@ -134,10 +136,10 @@ const ProfileCompletion = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="languages">Outros idiomas que fala *</Label>
+            <Label htmlFor="languages">{t("languagesSpoken")} *</Label>
             <Input
               id="languages"
-              placeholder="Ex: Inglês (fluente), Espanhol (intermediário)"
+              placeholder={t("languagePlaceholder")}
               value={profileData.languages}
               onChange={(e) => handleInputChange("languages", e.target.value)}
               required
@@ -146,7 +148,7 @@ const ProfileCompletion = () => {
 
           <Button type="submit" variant="gradient" className="w-full">
             <User className="h-4 w-4 mr-2" />
-            Salvar Perfil
+            {t("saveProfile")}
           </Button>
         </form>
       </CardContent>

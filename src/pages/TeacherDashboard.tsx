@@ -46,10 +46,10 @@ const TeacherDashboard = () => {
   ];
 
   const weekStats = [
-    { label: "Aulas desta semana", value: 12, change: "+2", color: "text-primary" },
-    { label: "Alunos ativos", value: 8, change: "+1", color: "text-accent" },
-    { label: "Avaliação média", value: "4.9", change: "+0.1", color: "text-yellow-500" },
-    { label: "Receita semanal", value: "R$ 2.400", change: "+15%", color: "text-green-500" }
+    { label: t('weeklyLessons'), value: 12, change: "+2", color: "text-primary" },
+    { label: t('activeStudents'), value: 8, change: "+1", color: "text-accent" },
+    { label: t('averageRating'), value: "4.9", change: "+0.1", color: "text-yellow-500" },
+    { label: t('weeklyRevenue'), value: "R$ 2.400", change: "+15%", color: "text-green-500" }
   ];
 
   const upcomingWeek = [
@@ -156,17 +156,17 @@ const TeacherDashboard = () => {
                           onClick={() => window.open(lesson.meetLink, '_blank')}
                         >
                           <Video className="h-4 w-4 mr-2" />
-                          {t('enterClass')}
+                          {t('enterLesson')}
                         </Button>
                         <Button 
                           size="sm" 
                           variant="outline"
                           onClick={() => toast({
-                            title: t('details'),
-                            description: `${t('lessonWith')} ${lesson.student} ${t('at')} ${lesson.time}`,
+                            title: "Detalhes",
+                            description: `Aula com ${lesson.student} às ${lesson.time}`,
                           })}
                         >
-                          {t('details')}
+                          Detalhes
                         </Button>
                       </div>
                     </div>
@@ -179,7 +179,7 @@ const TeacherDashboard = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Clock className="h-5 w-5 text-primary" />
-                    {t('weekSchedule')}
+                    {t('schedule')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -188,7 +188,7 @@ const TeacherDashboard = () => {
                       <div key={index} className="text-center p-3 border border-border rounded-lg hover:bg-accent-soft transition-colors">
                         <p className="text-sm font-medium text-foreground mb-2">{day.day}</p>
                         <p className="text-lg font-bold text-primary">{day.lessons}</p>
-                        <p className="text-xs text-muted-foreground">{t('lessons')}</p>
+                        <p className="text-xs text-muted-foreground">aulas</p>
                         <p className="text-xs text-accent mt-1">{day.earnings}</p>
                       </div>
                     ))}
@@ -204,7 +204,7 @@ const TeacherDashboard = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-primary" />
-                    {t('myStudents')}
+                    {t('manageStudents')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -215,7 +215,7 @@ const TeacherDashboard = () => {
                       </div>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-foreground">{student.name}</p>
-                        <p className="text-xs text-muted-foreground">{t('lastLesson')}: {student.lastLesson}</p>
+                        <p className="text-xs text-muted-foreground">Última aula: {student.lastLesson}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-xs text-accent">{student.progress}</span>
                           <div className="flex">

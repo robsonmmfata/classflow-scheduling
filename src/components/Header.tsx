@@ -63,8 +63,8 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <LanguageSelector />
             
-            <Button variant="ghost" size="icon" onClick={handleWhatsApp}>
-              <MessageCircle className="h-5 w-5" />
+            <Button variant="ghost" size="icon" onClick={handleWhatsApp} className="text-white hover:text-white">
+              <MessageCircle className="h-5 w-5 text-white" />
             </Button>
             
             {user ? (

@@ -101,20 +101,20 @@ const Reports = () => {
             <div>
               <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
                 <TrendingUp className="h-8 w-8 text-primary" />
-                Relatórios
+                {t("reports")}
               </h1>
               <p className="text-muted-foreground mt-2">
-                Análises e estatísticas detalhadas
+                {t("reportsDesc")}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
               <Button onClick={exportPDF}>
                 <Download className="h-4 w-4 mr-2" />
-                Exportar como PDF
+                {t("exportPDF")}
               </Button>
               <Button onClick={exportXLS}>
                 <Download className="h-4 w-4 mr-2" />
-                Exportar como XLS
+                {t("exportXLS")}
               </Button>
             </div>
           </div>
@@ -125,12 +125,12 @@ const Reports = () => {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Receita Total</p>
+                    <p className="text-sm text-muted-foreground">{t("totalRevenue")}</p>
                     <p className="text-2xl font-bold text-foreground">R$ 18.400</p>
                   </div>
                   <DollarSign className="h-8 w-8 text-green-500" />
                 </div>
-                <p className="text-sm text-green-500 mt-2">+15% vs mês anterior</p>
+                <p className="text-sm text-green-500 mt-2">+15% {t("vs_previous_month")}</p>
               </CardContent>
             </Card>
 
@@ -138,12 +138,12 @@ const Reports = () => {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Total de Aulas</p>
+                    <p className="text-sm text-muted-foreground">{t("totalLessons")}</p>
                     <p className="text-2xl font-bold text-foreground">328</p>
                   </div>
                   <Calendar className="h-8 w-8 text-blue-500" />
                 </div>
-                <p className="text-sm text-blue-500 mt-2">+12% vs mês anterior</p>
+                <p className="text-sm text-blue-500 mt-2">+12% {t("vs_previous_month")}</p>
               </CardContent>
             </Card>
 
@@ -151,12 +151,12 @@ const Reports = () => {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Alunos Ativos</p>
+                    <p className="text-sm text-muted-foreground">{t("activeStudents")}</p>
                     <p className="text-2xl font-bold text-foreground">98</p>
                   </div>
                   <Users className="h-8 w-8 text-purple-500" />
                 </div>
-                <p className="text-sm text-purple-500 mt-2">+8% vs mês anterior</p>
+                <p className="text-sm text-purple-500 mt-2">+8% {t("vs_previous_month")}</p>
               </CardContent>
             </Card>
 
@@ -164,12 +164,12 @@ const Reports = () => {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Taxa de Conclusão</p>
+                    <p className="text-sm text-muted-foreground">{t("completionRate")}</p>
                     <p className="text-2xl font-bold text-foreground">94%</p>
                   </div>
                   <TrendingUp className="h-8 w-8 text-green-500" />
                 </div>
-                <p className="text-sm text-green-500 mt-2">+2% vs mês anterior</p>
+                <p className="text-sm text-green-500 mt-2">+2% {t("vs_previous_month")}</p>
               </CardContent>
             </Card>
           </div>
@@ -179,7 +179,7 @@ const Reports = () => {
             {/* Receita Mensal */}
             <Card className="shadow-lg border-0">
               <CardHeader>
-                <CardTitle>Receita Mensal</CardTitle>
+                <CardTitle>{t("monthlyRevenue")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -197,7 +197,7 @@ const Reports = () => {
             {/* Distribuição de Tipos de Aula */}
             <Card className="shadow-lg border-0">
               <CardHeader>
-                <CardTitle>Tipos de Aula</CardTitle>
+                <CardTitle>{t("lessonTypes")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -225,7 +225,7 @@ const Reports = () => {
             {/* Evolução de Alunos */}
             <Card className="shadow-lg border-0">
               <CardHeader>
-                <CardTitle>Evolução de Alunos</CardTitle>
+                <CardTitle>{t("studentEvolution")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -243,7 +243,7 @@ const Reports = () => {
             {/* Aulas por Dia da Semana */}
             <Card className="shadow-lg border-0">
               <CardHeader>
-                <CardTitle>Aulas por Dia da Semana</CardTitle>
+                <CardTitle>{t("weeklyLessons")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
