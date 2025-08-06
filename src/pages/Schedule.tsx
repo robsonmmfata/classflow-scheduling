@@ -32,7 +32,7 @@ const Schedule = () => {
     duration: 50
   });
 
-  const days = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
+  const days = [t('monday'), t('tuesday'), t('wednesday'), t('thursday'), t('friday'), t('saturday'), t('sunday')];
 
   const handleAddSlot = () => {
     if (newSlot.day && newSlot.time) {
@@ -42,8 +42,8 @@ const Schedule = () => {
       }]);
       setNewSlot({ day: '', time: '', duration: 50 });
       toast({
-        title: "Horário adicionado",
-        description: "Novo horário fixo adicionado com sucesso!",
+        title: t('scheduleAdded'),
+        description: t('scheduleAddedDesc'),
       });
     }
   };
@@ -51,15 +51,15 @@ const Schedule = () => {
   const handleRemoveSlot = (id: number) => {
     setFixedSlots(fixedSlots.filter(slot => slot.id !== id));
     toast({
-      title: "Horário removido",
-      description: "Horário fixo removido com sucesso!",
+      title: t('scheduleRemoved'),
+      description: t('scheduleRemovedDesc'),
     });
   };
 
   const handleSave = () => {
     toast({
-      title: "Configurações salvas",
-      description: "Seus horários fixos foram atualizados!",
+      title: t('configurationsSaved'),
+      description: t('configurationsSavedDesc'),
     });
   };
 
@@ -71,10 +71,10 @@ const Schedule = () => {
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
               <Calendar className="h-8 w-8 text-primary" />
-              Horários Fixos
+              {t('fixedSchedules')}
             </h1>
             <p className="text-muted-foreground mt-2">
-              Configure sua disponibilidade semanal
+              {t('configureAvailability')}
             </p>
           </div>
 
@@ -82,11 +82,11 @@ const Schedule = () => {
             {/* Configurações Gerais */}
             <Card className="shadow-lg border-0">
               <CardHeader>
-                <CardTitle>Horário de Trabalho</CardTitle>
+                <CardTitle>{t('workingHours')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="start">Início</Label>
+                  <Label htmlFor="start">{t('start')}</Label>
                   <Input
                     id="start"
                     type="time"
@@ -95,7 +95,7 @@ const Schedule = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="end">Fim</Label>
+                  <Label htmlFor="end">{t('end')}</Label>
                   <Input
                     id="end"
                     type="time"
@@ -109,25 +109,25 @@ const Schedule = () => {
             {/* Adicionar Novo Horário */}
             <Card className="shadow-lg border-0">
               <CardHeader>
-                <CardTitle>Adicionar Horário Fixo</CardTitle>
+                <CardTitle>{t('addFixedSchedule')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="day">Dia da Semana</Label>
+                  <Label htmlFor="day">{t('dayOfWeek')}</Label>
                   <select 
                     id="day"
                     className="w-full p-2 border border-border rounded-md"
                     value={newSlot.day}
                     onChange={(e) => setNewSlot({...newSlot, day: e.target.value})}
                   >
-                    <option value="">Selecione um dia</option>
+                    <option value="">{t('selectDay')}</option>
                     {days.map(day => (
                       <option key={day} value={day}>{day}</option>
                     ))}
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="time">Horário</Label>
+                  <Label htmlFor="time">{t('time')}</Label>
                   <Input
                     id="time"
                     type="time"
@@ -136,7 +136,7 @@ const Schedule = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="duration">Duração (minutos)</Label>
+                  <Label htmlFor="duration">{t('duration')}</Label>
                   <Input
                     id="duration"
                     type="number"
@@ -146,7 +146,7 @@ const Schedule = () => {
                 </div>
                 <Button onClick={handleAddSlot} className="w-full">
                   <Plus className="h-4 w-4 mr-2" />
-                  Adicionar Horário
+                  {t('addSchedule')}
                 </Button>
               </CardContent>
             </Card>
@@ -155,7 +155,7 @@ const Schedule = () => {
           {/* Lista de Horários Fixos */}
           <Card className="shadow-lg border-0 mt-8">
             <CardHeader>
-              <CardTitle>Horários Configurados</CardTitle>
+              <CardTitle>{t('configuredSchedules')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -182,7 +182,7 @@ const Schedule = () => {
               
               <Button onClick={handleSave} className="w-full mt-6">
                 <Save className="h-4 w-4 mr-2" />
-                Salvar Configurações
+                {t('saveConfigurations')}
               </Button>
             </CardContent>
           </Card>

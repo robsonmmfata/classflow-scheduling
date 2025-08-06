@@ -46,10 +46,10 @@ const TeacherDashboard = () => {
   ];
 
   const weekStats = [
-    { label: "Aulas desta semana", value: 12, change: "+2", color: "text-primary" },
-    { label: "Alunos ativos", value: 8, change: "+1", color: "text-accent" },
-    { label: "Avaliação média", value: "4.9", change: "+0.1", color: "text-yellow-500" },
-    { label: "Receita semanal", value: "R$ 2.400", change: "+15%", color: "text-green-500" }
+    { label: t('weeklyLessons'), value: 12, change: "+2", color: "text-primary" },
+    { label: t('activeStudents'), value: 8, change: "+1", color: "text-accent" },
+    { label: t('averageRating'), value: "4.9", change: "+0.1", color: "text-yellow-500" },
+    { label: t('weeklyRevenue'), value: "R$ 2.400", change: "+15%", color: "text-green-500" }
   ];
 
   const upcomingWeek = [

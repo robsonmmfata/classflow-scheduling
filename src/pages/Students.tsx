@@ -80,9 +80,9 @@ const Students = () => {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'active': return 'Ativo';
-      case 'trial': return 'Trial';
-      case 'inactive': return 'Inativo';
+      case 'active': return t('active');
+      case 'trial': return t('trial');
+      case 'inactive': return t('inactive');
       default: return status;
     }
   };
@@ -94,13 +94,13 @@ const Students = () => {
         <div className="space-y-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
-                <Users className="h-8 w-8 text-primary" />
-                Gerenciar Alunos
-              </h1>
-              <p className="text-muted-foreground mt-2">
-                Visualize e gerencie todos os seus alunos
-              </p>
+                <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
+                  <Users className="h-8 w-8 text-primary" />
+                  {t('manageStudentsTitle')}
+                </h1>
+                <p className="text-muted-foreground mt-2">
+                  {t('manageStudentsDesc')}
+                </p>
             </div>
           </div>
 
@@ -111,7 +111,7 @@ const Students = () => {
                 <div className="flex-1 relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Buscar por nome ou email..."
+                    placeholder={t('searchByName')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -122,10 +122,10 @@ const Students = () => {
                   onChange={(e) => setFilterStatus(e.target.value)}
                   className="px-4 py-2 border border-border rounded-md"
                 >
-                  <option value="all">Todos os Status</option>
-                  <option value="active">Ativo</option>
-                  <option value="trial">Trial</option>
-                  <option value="inactive">Inativo</option>
+                  <option value="all">{t('allStatuses')}</option>
+                  <option value="active">{t('active')}</option>
+                  <option value="trial">{t('trial')}</option>
+                  <option value="inactive">{t('inactive')}</option>
                 </select>
               </div>
             </CardContent>
@@ -160,7 +160,7 @@ const Students = () => {
                         {getStatusText(student.status)}
                       </Badge>
                       <div className="text-right">
-                        <p className="text-sm font-medium">{student.lessons} aulas</p>
+                        <p className="text-sm font-medium">{student.lessons} {t('lessons')}</p>
                         <p className="text-xs text-muted-foreground">{student.package}</p>
                       </div>
                     </div>
@@ -169,11 +169,11 @@ const Students = () => {
                   <div className="mt-4 pt-4 border-t border-border">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-4 text-sm">
-                        <span className="text-muted-foreground">Progresso: <span className="text-accent font-medium">{student.progress}</span></span>
+                        <span className="text-muted-foreground">{t('progress')}: <span className="text-accent font-medium">{student.progress}</span></span>
                         {student.nextLesson && (
                           <div className="flex items-center gap-1">
                             <Calendar className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">Próxima aula: {student.nextLesson}</span>
+                            <span className="text-muted-foreground">{t('nextLesson')}: {student.nextLesson}</span>
                           </div>
                         )}
                       </div>
@@ -186,10 +186,10 @@ const Students = () => {
                           WhatsApp
                         </Button>
                         <Button size="sm" variant="outline">
-                          Ver Perfil
+                          {t('viewProfile')}
                         </Button>
                         <Button size="sm" variant="default">
-                          Agendar Aula
+                          {t('scheduleLesson')}
                         </Button>
                       </div>
                     </div>
@@ -203,8 +203,8 @@ const Students = () => {
             <Card className="shadow-lg border-0">
               <CardContent className="p-12 text-center">
                 <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-foreground mb-2">Nenhum aluno encontrado</h3>
-                <p className="text-muted-foreground">Tente ajustar os filtros de busca.</p>
+                <h3 className="text-lg font-medium text-foreground mb-2">{t('noStudentsFound')}</h3>
+                <p className="text-muted-foreground">{t('adjustSearchFilters')}</p>
               </CardContent>
             </Card>
           )}

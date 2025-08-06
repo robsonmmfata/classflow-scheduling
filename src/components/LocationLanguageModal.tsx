@@ -16,7 +16,7 @@ const LocationLanguageModal = () => {
     if (!hasSeenModal) {
       detectLocationAndLanguage();
     }
-  }, []);
+  }, [language]);
 
   const detectLocationAndLanguage = async () => {
     try {
