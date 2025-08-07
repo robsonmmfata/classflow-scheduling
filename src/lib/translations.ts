@@ -295,7 +295,9 @@ export const translations = {
     downloadReport: "Baixar Relatório",
     availabilityManagement: "Gerenciamento de Disponibilidade",
     editAvailability: "Editar Disponibilidade",
-    blockSchedule: "Bloquear Horário"
+    blockSchedule: "Bloquear Horário",
+    duration: "Duração",
+    configuredSchedules: "Horários Configurados"
   },
 
   en: {
