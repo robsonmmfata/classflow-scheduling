@@ -77,12 +77,12 @@ const TeacherDashboard = () => {
           {/* Header Dashboard */}
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">
-                {t('welcome')}, Professor! 👨‍🏫
-              </h1>
-              <p className="text-muted-foreground mt-1">
-                Dashboard do Professor - {t('teacherDashboardSubtitle')}
-              </p>
+            <h1 className="text-3xl font-bold text-foreground">
+              {t('welcomeTeacher')} 👨‍🏫
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              {t('teacherDashboard')} - {t('teacherDashboardSubtitle')}
+            </p>
             </div>
             <div className="flex gap-3">
               <Button variant="outline" onClick={() => navigate('/settings')}>

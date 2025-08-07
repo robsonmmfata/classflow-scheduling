@@ -37,10 +37,10 @@ const StudentDashboard = () => {
   ];
 
   const recentActivity = [
-    { action: "Aula concluída", time: "2 horas atrás", type: "completed" },
-    { action: "Aula agendada", time: "1 dia atrás", type: "scheduled" },
-    { action: "Feedback enviado", time: "2 dias atrás", type: "feedback" },
-    { action: "Pacote comprado", time: "3 dias atrás", type: "purchase" }
+    { action: t('lessonCompleted'), time: `2 ${t('hoursAgo')}`, type: "completed" },
+    { action: t('lessonScheduled'), time: `1 ${t('dayAgo')}`, type: "scheduled" },
+    { action: t('feedbackSent'), time: `2 ${t('daysAgo')}`, type: "feedback" },
+    { action: t('packagePurchased'), time: `3 ${t('daysAgo')}`, type: "purchase" }
   ];
 
   return (

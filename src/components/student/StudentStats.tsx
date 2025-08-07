@@ -28,7 +28,7 @@ const StudentStats = () => {
       bgColor: 'bg-lesson-trial/10'
     },
     {
-      title: 'Avaliação Média',
+      title: t('averageRating'),
       value: '4.8',
       icon: Star,
       color: 'text-yellow-500',
