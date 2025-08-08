@@ -56,8 +56,8 @@ const AdminCalendar = () => {
       })
     );
     toast({
-      title: "Alteração de Horário",
-      description: "O status do horário foi atualizado.",
+      title: t('scheduleChange'),
+      description: t('timeStatusUpdated'),
     });
   };
 
@@ -87,19 +87,19 @@ const AdminCalendar = () => {
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <CalendarIcon className="h-5 w-5 text-primary" />
-            Gerenciar Agenda - {formatDate(selectedDate)}
+            {t('manageAgenda')} - {formatDate(selectedDate)}
           </div>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={() => navigate('/schedule')}>
               <Settings className="h-4 w-4 mr-2" />
-              Configurar Horários
+              {t('configureAvailability')}
             </Button>
             <Button variant="gradient" size="sm" onClick={() => toast({
-              title: "Bloquear Horário",
-              description: "Funcionalidade disponível em breve!",
+              title: t('blockSchedule'),
+              description: t('featureComingSoon'),
             })}>
               <Plus className="h-4 w-4 mr-2" />
-              Bloquear Horário
+              {t('blockSchedule')}
             </Button>
           </div>
         </CardTitle>
@@ -109,15 +109,15 @@ const AdminCalendar = () => {
         <div className="flex items-center justify-center gap-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-lesson-available rounded-full"></div>
-            <span>Disponível</span>
+            <span>{t('available')}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-lesson-booked rounded-full"></div>
-            <span>Agendado</span>
+            <span>{t('booked')}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-lesson-unavailable rounded-full"></div>
-            <span>Bloqueado</span>
+            <span>{t('blocked')}</span>
           </div>
         </div>
         
@@ -160,23 +160,23 @@ const AdminCalendar = () => {
                       <User className="h-3 w-3" />
                       <span className="text-xs">{slot.student}</span>
                     </div>
-                    <Badge variant="outline" className="text-xs bg-white/20 border-white/30 text-white">
-                      Confirmado
-                    </Badge>
-                  </div>
-                )}
-                
-                {slot.type === "available" && (
-                  <Badge variant="outline" className="text-xs bg-white/20 border-white/30 text-white">
-                    Aberto
-                  </Badge>
-                )}
-                
-                {slot.type === "blocked" && (
-                  <Badge variant="outline" className="text-xs bg-black/10 border-black/20">
-                    Indisponível
-                  </Badge>
-                )}
+        <Badge variant="outline" className="text-xs bg-white/20 border-white/30 text-white">
+          {t('confirmed')}
+        </Badge>
+      </div>
+    )}
+    
+    {slot.type === "available" && (
+      <Badge variant="outline" className="text-xs bg-white/20 border-white/30 text-white">
+        {t('open')}
+      </Badge>
+    )}
+    
+    {slot.type === "blocked" && (
+      <Badge variant="outline" className="text-xs bg-black/10 border-black/20">
+        {t('unavailable')}
+      </Badge>
+    )}
               </div>
               
               {/* Admin controls on hover */} 
@@ -205,38 +205,38 @@ const AdminCalendar = () => {
         </div>
         
         <div className="flex justify-center gap-3">
-          <Button variant="outline" onClick={goToPreviousDay}>
-            ← Dia Anterior
-          </Button>
-          <Button variant="outline" onClick={goToToday}>
-            Hoje
-          </Button>
-          <Button variant="outline" onClick={goToNextDay}>
-            Próximo Dia →
-          </Button>
+      <Button variant="outline" onClick={goToPreviousDay}>
+        {t('previousDay')}
+      </Button>
+      <Button variant="outline" onClick={goToToday}>
+        {t('today')}
+      </Button>
+      <Button variant="outline" onClick={goToNextDay}>
+        {t('nextDay')}
+      </Button>
         </div>
         
-        <div className="bg-accent-soft p-4 rounded-lg">
-          <h3 className="font-semibold mb-2">Resumo do Dia</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-            <div>
-              <span className="text-muted-foreground">Aulas agendadas:</span>
-              <p className="font-semibold">2</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground">Horários livres:</span>
-              <p className="font-semibold">4</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground">Bloqueados:</span>
-              <p className="font-semibold">2</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground">Receita prevista:</span>
-              <p className="font-semibold">R$ 100</p>
-            </div>
-          </div>
-        </div>
+  <div className="bg-accent-soft p-4 rounded-lg">
+    <h3 className="font-semibold mb-2">{t('daySummary')}</h3>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+      <div>
+        <span className="text-muted-foreground">{t('scheduledLessons')}:</span>
+        <p className="font-semibold">2</p>
+      </div>
+      <div>
+        <span className="text-muted-foreground">{t('freeSlots')}:</span>
+        <p className="font-semibold">4</p>
+      </div>
+      <div>
+        <span className="text-muted-foreground">{t('blockedSlots')}:</span>
+        <p className="font-semibold">2</p>
+      </div>
+      <div>
+        <span className="text-muted-foreground">{t('expectedRevenue')}:</span>
+        <p className="font-semibold">R$ 100</p>
+      </div>
+    </div>
+  </div>
       </CardContent>
     </Card>
   );

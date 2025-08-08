@@ -22,7 +22,7 @@ const StudentStats = () => {
     },
     {
       title: t('nextLesson'),
-      value: 'Hoje 15:00',
+      value: `${t('today')} 15:00`,
       icon: Clock,
       color: 'text-lesson-trial',
       bgColor: 'bg-lesson-trial/10'

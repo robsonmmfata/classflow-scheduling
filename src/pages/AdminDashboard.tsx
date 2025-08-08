@@ -42,16 +42,16 @@ const AdminDashboard = () => {
   ];
 
   const recentStudents = [
-    { name: "Carlos Lima", joinDate: "Hoje", status: "new" },
-    { name: "Beatriz Souza", joinDate: "Ontem", status: "active" },
-    { name: "Pedro Oliveira", joinDate: "2 dias", status: "active" },
-    { name: "Lucia Santos", joinDate: "3 dias", status: "new" }
+    { name: "Carlos Lima", joinDate: t('today'), status: "new" },
+    { name: "Beatriz Souza", joinDate: t('yesterday'), status: "active" },
+    { name: "Pedro Oliveira", joinDate: `2 ${t('daysAgo')}`, status: "active" },
+    { name: "Lucia Santos", joinDate: `3 ${t('daysAgo')}`, status: "new" }
   ];
 
   const monthlyGoals = [
-    { goal: "Novos Alunos", current: 48, target: 60, percentage: 80 },
-    { goal: "Receita", current: 12450, target: 15000, percentage: 83 },
-    { goal: "Aulas", current: 156, target: 180, percentage: 87 }
+    { goal: t('newStudents'), current: 48, target: 60, percentage: 80 },
+    { goal: t('revenue'), current: 12450, target: 15000, percentage: 83 },
+    { goal: t('lessons'), current: 156, target: 180, percentage: 87 }
   ];
 
   return (
@@ -107,14 +107,14 @@ const AdminDashboard = () => {
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-foreground">{lesson.time}</span>
                         <Badge className={lesson.type === "trial" ? "bg-lesson-trial text-white" : "bg-lesson-available text-white"}>
-                          {lesson.type === "trial" ? "Trial" : "Regular"}
+                          {lesson.type === "trial" ? t('trial') : t('regular')}
                         </Badge>
                       </div>
                       <p className="text-sm text-muted-foreground">{lesson.student}</p>
                       <div className="flex items-center justify-between mt-2">
                         <span className="text-xs text-muted-foreground">{lesson.duration}</span>
                         <Badge variant={lesson.status === "confirmed" ? "outline" : "secondary"} className="text-xs">
-                          {lesson.status === "confirmed" ? "Confirmada" : "Pendente"}
+                          {lesson.status === "confirmed" ? t('confirmed') : t('pending')}
                         </Badge>
                       </div>
                     </div>

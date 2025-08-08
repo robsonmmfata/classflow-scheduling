@@ -25,13 +25,13 @@ const AdminStats = () => {
     {
       title: t('todayLessons'),
       value: '6',
-      change: 'Normal',
+      change: t('normal'),
       icon: Calendar,
       color: 'text-lesson-trial',
       bgColor: 'bg-lesson-trial/10'
     },
     {
-      title: 'Taxa de Conversão',
+      title: t('conversionRate'),
       value: '68%',
       change: '+5%',
       icon: TrendingUp,

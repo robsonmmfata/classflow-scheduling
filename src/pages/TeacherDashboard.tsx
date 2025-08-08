@@ -53,20 +53,20 @@ const TeacherDashboard = () => {
   ];
 
   const upcomingWeek = [
-    { day: "Seg", lessons: 3, earnings: "R$ 450" },
-    { day: "Ter", lessons: 2, earnings: "R$ 300" },
-    { day: "Qua", lessons: 4, earnings: "R$ 600" },
-    { day: "Qui", lessons: 2, earnings: "R$ 300" },
-    { day: "Sex", lessons: 3, earnings: "R$ 450" },
-    { day: "Sab", lessons: 1, earnings: "R$ 150" },
-    { day: "Dom", lessons: 0, earnings: "R$ 0" }
+    { day: t('mon'), lessons: 3, earnings: "R$ 450" },
+    { day: t('tue'), lessons: 2, earnings: "R$ 300" },
+    { day: t('wed'), lessons: 4, earnings: "R$ 600" },
+    { day: t('thu'), lessons: 2, earnings: "R$ 300" },
+    { day: t('fri'), lessons: 3, earnings: "R$ 450" },
+    { day: t('sat'), lessons: 1, earnings: "R$ 150" },
+    { day: t('sun'), lessons: 0, earnings: "R$ 0" }
   ];
 
   const recentStudents = [
-    { name: "Carlos Lima", lastLesson: "Hoje", progress: "Iniciante", rating: 5 },
-    { name: "Beatriz Souza", lastLesson: "Ontem", progress: "Intermediário", rating: 4 },
-    { name: "Pedro Oliveira", lastLesson: "2 dias", progress: "Avançado", rating: 5 },
-    { name: "Lucia Santos", lastLesson: "3 dias", progress: "Iniciante", rating: 4 }
+    { name: "Carlos Lima", lastLesson: t('today'), progress: t('beginner'), rating: 5 },
+    { name: "Beatriz Souza", lastLesson: t('yesterday'), progress: t('intermediate'), rating: 4 },
+    { name: "Pedro Oliveira", lastLesson: `2 ${t('daysAgo')}`, progress: t('advanced'), rating: 5 },
+    { name: "Lucia Santos", lastLesson: `3 ${t('daysAgo')}`, progress: t('beginner'), rating: 4 }
   ];
 
   return (
@@ -141,10 +141,10 @@ const TeacherDashboard = () => {
                         </div>
                         <div className="flex items-center gap-2">
                           <Badge className={lesson.type === "trial" ? "bg-lesson-trial text-white" : "bg-lesson-available text-white"}>
-                            {lesson.type === "trial" ? "Trial" : "Regular"}
+                            {lesson.type === "trial" ? t('trial') : t('regular')}
                           </Badge>
                           <Badge variant={lesson.status === "confirmed" ? "outline" : "secondary"}>
-                            {lesson.status === "confirmed" ? "Confirmada" : "Pendente"}
+                            {lesson.status === "confirmed" ? t('confirmed') : t('pending')}
                           </Badge>
                         </div>
                       </div>
@@ -162,11 +162,11 @@ const TeacherDashboard = () => {
                           size="sm" 
                           variant="outline"
                           onClick={() => toast({
-                            title: "Detalhes",
-                            description: `Aula com ${lesson.student} às ${lesson.time}`,
+                            title: t('details'),
+                            description: `${t('lessonWith')} ${lesson.student} ${t('at')} ${lesson.time}`,
                           })}
                         >
-                          Detalhes
+                          {t('details')}
                         </Button>
                       </div>
                     </div>
@@ -188,7 +188,7 @@ const TeacherDashboard = () => {
                       <div key={index} className="text-center p-3 border border-border rounded-lg hover:bg-accent-soft transition-colors">
                         <p className="text-sm font-medium text-foreground mb-2">{day.day}</p>
                         <p className="text-lg font-bold text-primary">{day.lessons}</p>
-                        <p className="text-xs text-muted-foreground">aulas</p>
+                        <p className="text-xs text-muted-foreground">{t('lessons')}</p>
                         <p className="text-xs text-accent mt-1">{day.earnings}</p>
                       </div>
                     ))}
@@ -215,7 +215,7 @@ const TeacherDashboard = () => {
                       </div>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-foreground">{student.name}</p>
-                        <p className="text-xs text-muted-foreground">Última aula: {student.lastLesson}</p>
+                        <p className="text-xs text-muted-foreground">{t('lastLesson')}: {student.lastLesson}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-xs text-accent">{student.progress}</span>
                           <div className="flex">

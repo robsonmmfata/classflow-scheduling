@@ -20,7 +20,7 @@ const StudentDashboard = () => {
   const upcomingLessons = [
     {
       id: 1,
-      date: "Hoje",
+      date: t('today'),
       time: "15:00",
       type: "regular",
       teacher: "Prof. Maria",
@@ -28,7 +28,7 @@ const StudentDashboard = () => {
     },
     {
       id: 2,
-      date: "Amanhã",
+      date: t('tomorrow'),
       time: "16:00",
       type: "trial", 
       teacher: "Prof. Maria",
