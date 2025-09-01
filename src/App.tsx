@@ -18,6 +18,8 @@ import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import Avaliacoes from "./pages/Avaliacoes";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCancel from "./pages/PaymentCancel";
 
 const TeachingMaterialUpload = lazy(() => import('./pages/TeachingMaterialUpload'));
 const MateriaisDeEnsino = lazy(() => import('./pages/MateriaisDeEnsino'));
@@ -84,6 +86,8 @@ const App = () => (
             </Suspense>
           </ProtectedRoute>
         } />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/payment-cancel" element={<PaymentCancel />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>

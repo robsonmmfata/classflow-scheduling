@@ -9,6 +9,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
+import { GoogleCalendarSync } from '@/components/integrations/GoogleCalendarSync';
+import { PreplySync } from '@/components/integrations/PreplySync';
 
 const Settings = () => {
   const { user, profile } = useAuth();
@@ -222,6 +224,14 @@ const Settings = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Integrations Section - Only for teachers and admins */}
+            {profile?.role && ['teacher', 'admin'].includes(profile.role) && (
+              <>
+                <GoogleCalendarSync />
+                <PreplySync />
+              </>
+            )}
 
             <Button onClick={handleSave} className="w-full">
               <Save className="h-4 w-4 mr-2" />
