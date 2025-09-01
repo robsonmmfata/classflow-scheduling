@@ -339,7 +339,9 @@ export const translations = {
     at: "às",
     revenue: "Receita",
     conversionRate: "Taxa de Conversão",
-    normal: "Normal"
+    normal: "Normal",
+    thankYouForFeedback: "Obrigado pelo seu feedback!",
+    feedbackPlaceholder: "Deixe seu comentário sobre a aula..."
   },
 
   en: {
@@ -683,7 +685,9 @@ export const translations = {
     at: "at",
     revenue: "Revenue",
     conversionRate: "Conversion Rate",
-    normal: "Normal"
+    normal: "Normal",
+    thankYouForFeedback: "Thank you for your feedback!",
+    feedbackPlaceholder: "Leave your comment about the lesson..."
   },
 
   es: {
