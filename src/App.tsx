@@ -27,7 +27,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import { StudentsProvider } from './contexts/StudentsContext';
 import { FeedbackProvider } from './contexts/FeedbackContext';
 import { ChatProvider } from './contexts/ChatContext';
-import { ChatProvider as RealChatProvider } from './contexts/RealChatContext';
+
 import { ScheduleProvider } from './contexts/ScheduleContext';
 import { PackageLimitationProvider } from './contexts/PackageLimitationContext';
 
@@ -48,9 +48,8 @@ const App = () => (
             <StudentsProvider>
               <FeedbackProvider>
                 <ChatProvider>
-                  <RealChatProvider>
-                    <ScheduleProvider>
-                      <PackageLimitationProvider>
+                  <ScheduleProvider>
+                    <PackageLimitationProvider>
                         <Routes>
                           <Route path="/" element={<Index />} />
                           <Route path="/login" element={<Login />} />
@@ -110,9 +109,8 @@ const App = () => (
                           <Route path="/payment-cancel" element={<PaymentCancel />} />
                           <Route path="*" element={<NotFound />} />
                         </Routes>
-                      </PackageLimitationProvider>
-                    </ScheduleProvider>
-                  </RealChatProvider>
+                    </PackageLimitationProvider>
+                  </ScheduleProvider>
                 </ChatProvider>
               </FeedbackProvider>
             </StudentsProvider>
