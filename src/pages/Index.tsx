@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Calendar from "@/components/Calendar";
-import PricingPackages from "@/components/PricingPackages";
+import PackageSelector from "@/components/PackageSelector";
 import Footer from "@/components/Footer";
 import LocationLanguageModal from "@/components/LocationLanguageModal";
 
@@ -11,7 +11,7 @@ const Index = () => {
       <Header />
       <Hero />
       <Calendar />
-      <PricingPackages />
+      <PackageSelector />
       <Footer />
       <LocationLanguageModal />
     </div>

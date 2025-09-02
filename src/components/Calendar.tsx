@@ -130,12 +130,12 @@ const Calendar = () => {
                     </div>
                     {slot.type === "trial" && slot.available && (
                       <Badge variant="outline" className="text-xs mt-1 bg-white/20 border-white/30 text-white">
-                        US$ {scheduleSettings.prices.trial}
+                        {t('experimental')}
                       </Badge>
                     )}
                     {slot.type === "available" && slot.available && (
                       <Badge variant="outline" className="text-xs mt-1 bg-white/20 border-white/30 text-white">
-                        US$ {scheduleSettings.prices.package4}
+                        {t('regular')}
                       </Badge>
                     )}
                     {slot.type === "booked" && (

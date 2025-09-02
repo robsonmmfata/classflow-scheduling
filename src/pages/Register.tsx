@@ -20,6 +20,11 @@ const Register = () => {
   const { t } = useLanguage();
 
   if (user) {
+    // Check if there's a selected package to redirect to checkout
+    const selectedPackage = localStorage.getItem('selectedPackage');
+    if (selectedPackage) {
+      return <Navigate to={`/checkout?package=${selectedPackage}`} replace />;
+    }
     return <Navigate to="/dashboard" replace />;
   }
 
@@ -38,7 +43,14 @@ const Register = () => {
     }
     
     const success = await register(name, email, password);
-    if (!success) {
+    if (success) {
+      // Check if there's a selected package to redirect to checkout
+      const selectedPackage = localStorage.getItem('selectedPackage');
+      if (selectedPackage) {
+        // Redirect will happen automatically via the Navigate component
+        // The package will be picked up in the checkout page
+      }
+    } else {
       setError('Erro ao criar conta. Tente novamente.');
     }
   };

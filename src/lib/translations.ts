@@ -341,7 +341,7 @@ export const translations = {
     conversionRate: "Taxa de Conversão",
     normal: "Normal",
     thankYouForFeedback: "Obrigado pelo seu feedback!",
-    feedbackPlaceholder: "Deixe seu comentário sobre a aula..."
+    feedbackPlaceholder: "Deixe seu comentário sobre a aula...",
   },
 
   en: {
@@ -687,7 +687,7 @@ export const translations = {
     conversionRate: "Conversion Rate",
     normal: "Normal",
     thankYouForFeedback: "Thank you for your feedback!",
-    feedbackPlaceholder: "Leave your comment about the lesson..."
+    feedbackPlaceholder: "Leave your comment about the lesson...",
   },
 
   es: {
