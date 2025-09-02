@@ -7,9 +7,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ScheduleProvider } from "./contexts/ScheduleContext";
 import { ChatProvider } from "./contexts/ChatContext";
-import { ChatProvider as RealChatProvider } from "./contexts/RealChatContext";
 import { StudentsProvider } from "./contexts/StudentsContext";
 import { FeedbackProvider } from "./contexts/FeedbackContext";
+import { PackageLimitationProvider } from "./contexts/PackageLimitationContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -18,13 +18,13 @@ createRoot(document.getElementById("root")!).render(
         <AuthProvider>
           <ScheduleProvider>
             <ChatProvider>
-              <RealChatProvider>
-                <StudentsProvider>
-                  <FeedbackProvider>
+              <StudentsProvider>
+                <FeedbackProvider>
+                  <PackageLimitationProvider>
                     <App />
-                  </FeedbackProvider>
-                </StudentsProvider>
-              </RealChatProvider>
+                  </PackageLimitationProvider>
+                </FeedbackProvider>
+              </StudentsProvider>
             </ChatProvider>
           </ScheduleProvider>
         </AuthProvider>
