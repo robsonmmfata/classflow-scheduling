@@ -41,6 +41,36 @@ export type Database = {
         }
         Relationships: []
       }
+      fixed_schedules: {
+        Row: {
+          created_at: string
+          day_of_week: string
+          duration_minutes: number
+          id: string
+          time: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          day_of_week: string
+          duration_minutes?: number
+          id?: string
+          time: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          day_of_week?: string
+          duration_minutes?: number
+          id?: string
+          time?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       lesson_packages: {
         Row: {
           created_at: string
@@ -138,6 +168,39 @@ export type Database = {
           },
         ]
       }
+      pricing_settings: {
+        Row: {
+          created_at: string
+          id: string
+          package4_price: number
+          package8_price: number
+          quarterly_price: number
+          trial_price: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          package4_price?: number
+          package8_price?: number
+          quarterly_price?: number
+          trial_price?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          package4_price?: number
+          package8_price?: number
+          quarterly_price?: number
+          trial_price?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -171,6 +234,33 @@ export type Database = {
           role?: string | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      schedule_settings: {
+        Row: {
+          created_at: string
+          id: string
+          updated_at: string
+          user_id: string
+          work_end_time: string
+          work_start_time: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id: string
+          work_end_time?: string
+          work_start_time?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+          work_end_time?: string
+          work_start_time?: string
         }
         Relationships: []
       }

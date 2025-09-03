@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
 import { TrendingUp, DollarSign, Users, Calendar, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -5,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { useStudents } from '@/contexts/StudentsContext';
+import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -15,33 +18,100 @@ const Reports = () => {
   const { user } = useAuth();
   const { t } = useLanguage();
   const { toast } = useToast();
+  const { students, lessons } = useStudents();
 
-  const monthlyData = [
-    { month: 'Jan', revenue: 2400, lessons: 45, students: 12 },
-    { month: 'Fev', revenue: 3200, lessons: 58, students: 15 },
-    { month: 'Mar', revenue: 2800, lessons: 52, students: 14 },
-    { month: 'Abr', revenue: 3800, lessons: 68, students: 18 },
-    { month: 'Mai', revenue: 4200, lessons: 75, students: 20 },
-    { month: 'Jun', revenue: 3900, lessons: 70, students: 19 },
-  ];
+  const [monthlyData, setMonthlyData] = useState<any[]>([]);
+  const [lessonTypes, setLessonTypes] = useState<any[]>([]);
+  const [weeklyData, setWeeklyData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const lessonTypes = [
-    { name: 'Aulas Regulares', value: 68, color: '#8884d8' },
-    { name: 'Aulas Trial', value: 22, color: '#82ca9d' },
-    { name: 'Aulas de Reposição', value: 10, color: '#ffc658' },
-  ];
+  useEffect(() => {
+    generateReportsData();
+  }, [students, lessons]);
 
-  const COLORS = ['#8884d8', '#82ca9d', '#ffc658']; // Define cores para o PieChart
+  const generateReportsData = async () => {
+    try {
+      // Generate monthly data based on real lessons
+      const monthlyStats = generateMonthlyStats();
+      setMonthlyData(monthlyStats);
 
-  const weeklyData = [
-    { day: 'Seg', lessons: 12 },
-    { day: 'Ter', lessons: 8 },
-    { day: 'Qua', lessons: 15 },
-    { day: 'Qui', lessons: 10 },
-    { day: 'Sex', lessons: 14 },
-    { day: 'Sab', lessons: 6 },
-    { day: 'Dom', lessons: 3 },
-  ];
+      // Generate lesson types distribution
+      const typesData = generateLessonTypesData();
+      setLessonTypes(typesData);
+
+      // Generate weekly data
+      const weeklyStats = generateWeeklyStats();
+      setWeeklyData(weeklyStats);
+
+    } catch (error) {
+      console.error('Error generating reports:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const generateMonthlyStats = () => {
+    const last6Months = [];
+    const now = new Date();
+    
+    for (let i = 5; i >= 0; i--) {
+      const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const monthName = date.toLocaleDateString('pt-BR', { month: 'short' });
+      
+      const monthLessons = lessons.filter(lesson => {
+        const lessonDate = new Date(lesson.scheduled_date);
+        return lessonDate.getMonth() === date.getMonth() && 
+               lessonDate.getFullYear() === date.getFullYear();
+      });
+
+      const revenue = monthLessons.reduce((sum, lesson) => sum + (lesson.price_paid || 0), 0);
+      const studentsCount = new Set(monthLessons.map(l => l.student_id)).size;
+
+      last6Months.push({
+        month: monthName,
+        revenue: Number(revenue.toFixed(2)),
+        lessons: monthLessons.length,
+        students: studentsCount
+      });
+    }
+    
+    return last6Months;
+  };
+
+  const generateLessonTypesData = () => {
+    const regularLessons = lessons.filter(l => l.notes !== 'trial').length;
+    const trialLessons = lessons.filter(l => l.notes === 'trial').length;
+    const makeupLessons = lessons.filter(l => l.status === 'cancelled').length;
+
+    return [
+      { name: 'Aulas Regulares', value: regularLessons, color: '#8884d8' },
+      { name: 'Aulas Trial', value: trialLessons, color: '#82ca9d' },
+      { name: 'Aulas Canceladas', value: makeupLessons, color: '#ffc658' },
+    ];
+  };
+
+  const generateWeeklyStats = () => {
+    const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+    
+    return daysOfWeek.map((day, index) => {
+      const dayLessons = lessons.filter(lesson => {
+        const lessonDate = new Date(lesson.scheduled_date);
+        return lessonDate.getDay() === index;
+      });
+      
+      return { day, lessons: dayLessons.length };
+    });
+  };
+
+  // Colors for charts
+  const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
+
+  // Calculate real-time stats
+  const totalRevenue = monthlyData.reduce((sum, month) => sum + month.revenue, 0);
+  const totalLessons = lessons.length;
+  const activeStudents = students.filter(s => s.status === 'active').length;
+  const completedLessons = lessons.filter(l => l.status === 'completed').length;
+  const completionRate = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
 
   const exportPDF = () => {
     try {
@@ -123,52 +193,52 @@ const Reports = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <Card className="shadow-lg border-0">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t("totalRevenue")}</p>
-                    <p className="text-2xl font-bold text-foreground">R$ 18.400</p>
-                  </div>
-                  <DollarSign className="h-8 w-8 text-green-500" />
-                </div>
+                 <div className="flex items-center justify-between">
+                   <div>
+                     <p className="text-sm text-muted-foreground">{t("totalRevenue")}</p>
+                     <p className="text-2xl font-bold text-foreground">R$ {totalRevenue.toLocaleString()}</p>
+                   </div>
+                   <DollarSign className="h-8 w-8 text-green-500" />
+                 </div>
                 <p className="text-sm text-green-500 mt-2">+15% {t("vs_previous_month")}</p>
               </CardContent>
             </Card>
 
             <Card className="shadow-lg border-0">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t("totalLessons")}</p>
-                    <p className="text-2xl font-bold text-foreground">328</p>
-                  </div>
-                  <Calendar className="h-8 w-8 text-blue-500" />
-                </div>
+                 <div className="flex items-center justify-between">
+                   <div>
+                     <p className="text-sm text-muted-foreground">{t("totalLessons")}</p>
+                     <p className="text-2xl font-bold text-foreground">{totalLessons}</p>
+                   </div>
+                   <Calendar className="h-8 w-8 text-blue-500" />
+                 </div>
                 <p className="text-sm text-blue-500 mt-2">+12% {t("vs_previous_month")}</p>
               </CardContent>
             </Card>
 
             <Card className="shadow-lg border-0">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t("activeStudents")}</p>
-                    <p className="text-2xl font-bold text-foreground">98</p>
-                  </div>
-                  <Users className="h-8 w-8 text-purple-500" />
-                </div>
+                 <div className="flex items-center justify-between">
+                   <div>
+                     <p className="text-sm text-muted-foreground">{t("activeStudents")}</p>
+                     <p className="text-2xl font-bold text-foreground">{activeStudents}</p>
+                   </div>
+                   <Users className="h-8 w-8 text-purple-500" />
+                 </div>
                 <p className="text-sm text-purple-500 mt-2">+8% {t("vs_previous_month")}</p>
               </CardContent>
             </Card>
 
             <Card className="shadow-lg border-0">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t("completionRate")}</p>
-                    <p className="text-2xl font-bold text-foreground">94%</p>
-                  </div>
-                  <TrendingUp className="h-8 w-8 text-green-500" />
-                </div>
+                 <div className="flex items-center justify-between">
+                   <div>
+                     <p className="text-sm text-muted-foreground">{t("completionRate")}</p>
+                     <p className="text-2xl font-bold text-foreground">{completionRate}%</p>
+                   </div>
+                   <TrendingUp className="h-8 w-8 text-green-500" />
+                 </div>
                 <p className="text-sm text-green-500 mt-2">+2% {t("vs_previous_month")}</p>
               </CardContent>
             </Card>

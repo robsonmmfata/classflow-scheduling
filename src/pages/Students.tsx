@@ -98,9 +98,16 @@ const Students = () => {
             </CardContent>
           </Card>
 
-          {/* Lista de Alunos */}
-          <div className="grid gap-4">
-            {filteredStudents.map((student) => (
+          {isLoading ? (
+            <Card className="shadow-lg border-0">
+              <CardContent className="p-12 text-center">
+                <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+                <p className="text-muted-foreground">Carregando alunos...</p>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="grid gap-4">
+              {filteredStudents.map((student) => (
               <Card key={student.id} className="shadow-lg border-0">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
@@ -167,10 +174,11 @@ const Students = () => {
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
-          {filteredStudents.length === 0 && (
+          {filteredStudents.length === 0 && !isLoading && (
             <Card className="shadow-lg border-0">
               <CardContent className="p-12 text-center">
                 <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />

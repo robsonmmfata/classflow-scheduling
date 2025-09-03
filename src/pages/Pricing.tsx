@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DollarSign, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header';
 
 const Pricing = () => {
@@ -21,11 +22,65 @@ const Pricing = () => {
     quarterly: 12
   });
 
-  const handleSave = () => {
-    toast({
-      title: "Preços atualizados",
-      description: "Os novos preços foram salvos com sucesso!",
-    });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    loadPricingData();
+  }, [user]);
+
+  const loadPricingData = async () => {
+    if (!user?.id) return;
+
+    try {
+      const { data } = await supabase
+        .from('pricing_settings')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+
+      if (data) {
+        setPrices({
+          trial: Number(data.trial_price),
+          package4: Number(data.package4_price),
+          package8: Number(data.package8_price),
+          quarterly: Number(data.quarterly_price)
+        });
+      }
+    } catch (error) {
+      console.error('Error loading pricing data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSave = async () => {
+    if (!user?.id) return;
+
+    try {
+      const { error } = await supabase
+        .from('pricing_settings')
+        .upsert({
+          user_id: user.id,
+          trial_price: prices.trial,
+          package4_price: prices.package4,
+          package8_price: prices.package8,
+          quarterly_price: prices.quarterly
+        });
+
+      if (error) throw error;
+
+      toast({
+        title: "Preços atualizados",
+        description: "Os novos preços foram salvos com sucesso!",
+      });
+    } catch (error) {
+      console.error('Error saving prices:', error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível salvar os preços.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

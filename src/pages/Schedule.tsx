@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, Clock, Save, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header';
 
 const Schedule = () => {
@@ -20,11 +21,8 @@ const Schedule = () => {
     end: '19:00'
   });
 
-  const [fixedSlots, setFixedSlots] = useState([
-    { id: 1, day: 'Segunda', time: '08:00', duration: 50 },
-    { id: 2, day: 'Segunda', time: '09:00', duration: 50 },
-    { id: 3, day: 'Terça', time: '14:00', duration: 50 },
-  ]);
+  const [fixedSlots, setFixedSlots] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [newSlot, setNewSlot] = useState({
     day: '',
@@ -32,35 +30,133 @@ const Schedule = () => {
     duration: 50
   });
 
+  useEffect(() => {
+    loadScheduleData();
+  }, [user]);
+
+  const loadScheduleData = async () => {
+    if (!user?.id) return;
+
+    try {
+      // Load schedule settings
+      const { data: settings } = await supabase
+        .from('schedule_settings')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+
+      if (settings) {
+        setWorkingHours({
+          start: settings.work_start_time,
+          end: settings.work_end_time
+        });
+      }
+
+      // Load fixed schedules
+      const { data: schedules } = await supabase
+        .from('fixed_schedules')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('day_of_week, time');
+
+      if (schedules) {
+        setFixedSlots(schedules);
+      }
+    } catch (error) {
+      console.error('Error loading schedule data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const days = [t('monday'), t('tuesday'), t('wednesday'), t('thursday'), t('friday'), t('saturday'), t('sunday')];
 
-  const handleAddSlot = () => {
-    if (newSlot.day && newSlot.time) {
-      setFixedSlots([...fixedSlots, {
-        id: Date.now(),
-        ...newSlot
-      }]);
+  const handleAddSlot = async () => {
+    if (!newSlot.day || !newSlot.time || !user?.id) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('fixed_schedules')
+        .insert({
+          user_id: user.id,
+          day_of_week: newSlot.day,
+          time: newSlot.time,
+          duration_minutes: newSlot.duration
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      setFixedSlots([...fixedSlots, data]);
       setNewSlot({ day: '', time: '', duration: 50 });
+      
       toast({
         title: t('scheduleAdded'),
         description: t('scheduleAddedDesc'),
       });
+    } catch (error) {
+      console.error('Error adding schedule:', error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível adicionar o horário.",
+        variant: "destructive",
+      });
     }
   };
 
-  const handleRemoveSlot = (id: number) => {
-    setFixedSlots(fixedSlots.filter(slot => slot.id !== id));
-    toast({
-      title: t('scheduleRemoved'),
-      description: t('scheduleRemovedDesc'),
-    });
+  const handleRemoveSlot = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('fixed_schedules')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+
+      setFixedSlots(fixedSlots.filter(slot => slot.id !== id));
+      
+      toast({
+        title: t('scheduleRemoved'),
+        description: t('scheduleRemovedDesc'),
+      });
+    } catch (error) {
+      console.error('Error removing schedule:', error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível remover o horário.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleSave = () => {
-    toast({
-      title: t('configurationsSaved'),
-      description: t('configurationsSavedDesc'),
-    });
+  const handleSave = async () => {
+    if (!user?.id) return;
+
+    try {
+      // Save or update schedule settings
+      const { error } = await supabase
+        .from('schedule_settings')
+        .upsert({
+          user_id: user.id,
+          work_start_time: workingHours.start,
+          work_end_time: workingHours.end
+        });
+
+      if (error) throw error;
+
+      toast({
+        title: t('configurationsSaved'),
+        description: t('configurationsSavedDesc'),
+      });
+    } catch (error) {
+      console.error('Error saving settings:', error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível salvar as configurações.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -161,14 +257,14 @@ const Schedule = () => {
               <div className="space-y-3">
                 {fixedSlots.map((slot) => (
                   <div key={slot.id} className="flex items-center justify-between p-3 border border-border rounded-lg">
-                    <div className="flex items-center gap-4">
-                      <Badge variant="outline">{slot.day}</Badge>
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                        <span className="font-medium">{slot.time}</span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">{slot.duration} min</span>
-                    </div>
+                     <div className="flex items-center gap-4">
+                       <Badge variant="outline">{slot.day_of_week}</Badge>
+                       <div className="flex items-center gap-2">
+                         <Clock className="h-4 w-4 text-muted-foreground" />
+                         <span className="font-medium">{slot.time}</span>
+                       </div>
+                       <span className="text-sm text-muted-foreground">{slot.duration_minutes} min</span>
+                     </div>
                     <Button 
                       variant="ghost" 
                       size="sm"
