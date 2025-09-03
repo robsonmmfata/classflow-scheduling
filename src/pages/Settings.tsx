@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Settings as SettingsIcon, User, Lock, Bell, Globe, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,6 +8,7 @@ import { Switch } from '@/components/ui/switch';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header';
 import { GoogleCalendarSync } from '@/components/integrations/GoogleCalendarSync';
 import { PreplySync } from '@/components/integrations/PreplySync';
@@ -29,11 +30,32 @@ const Settings = () => {
     marketingEmails: false
   });
 
-  const handleSave = () => {
-    toast({
-      title: "Configurações salvas",
-      description: "Suas configurações foram atualizadas com sucesso!",
-    });
+  const handleSave = async () => {
+    if (!user?.id) return;
+
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          display_name: settings.displayName,
+          phone: settings.phone,
+        })
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Configurações salvas",
+        description: "Suas configurações foram atualizadas com sucesso!",
+      });
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível salvar as configurações.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

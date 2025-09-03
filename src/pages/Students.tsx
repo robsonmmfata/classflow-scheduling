@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Users, Search, Filter, Mail, Phone, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,61 +6,16 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useStudents } from '@/contexts/StudentsContext';
 import Header from '@/components/Header';
 
 const Students = () => {
   const { user } = useAuth();
   const { t } = useLanguage();
+  const { students, lessons, isLoading } = useStudents();
   
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
-
-  const students = [
-    {
-      id: 1,
-      name: "Maria Silva",
-      email: "maria@email.com",
-      phone: "+55 11 99999-9999",
-      status: "active",
-      lessons: 12,
-      nextLesson: "2025-07-31 14:00",
-      package: "8 aulas",
-      progress: "Intermediário"
-    },
-    {
-      id: 2,
-      name: "João Santos",
-      email: "joao@email.com",
-      phone: "+55 11 88888-8888",
-      status: "active",
-      lessons: 8,
-      nextLesson: "2025-08-01 10:00",
-      package: "4 aulas",
-      progress: "Iniciante"
-    },
-    {
-      id: 3,
-      name: "Ana Costa",
-      email: "ana@email.com",
-      phone: "+55 11 77777-7777",
-      status: "trial",
-      lessons: 1,
-      nextLesson: "2025-08-02 16:00",
-      package: "Trial",
-      progress: "Iniciante"
-    },
-    {
-      id: 4,
-      name: "Carlos Lima",
-      email: "carlos@email.com",
-      phone: "+55 11 66666-6666",
-      status: "inactive",
-      lessons: 5,
-      nextLesson: null,
-      package: "4 aulas",
-      progress: "Iniciante"
-    }
-  ];
 
   const filteredStudents = students.filter(student => {
     const matchesSearch = student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -68,6 +23,18 @@ const Students = () => {
     const matchesFilter = filterStatus === 'all' || student.status === filterStatus;
     return matchesSearch && matchesFilter;
   });
+
+  const getStudentLessonsCount = (studentId: string) => {
+    return lessons.filter(lesson => lesson.student_id === studentId).length;
+  };
+
+  const getNextLesson = (studentId: string) => {
+    const studentLessons = lessons
+      .filter(lesson => lesson.student_id === studentId && lesson.status === 'scheduled')
+      .sort((a, b) => new Date(a.scheduled_date).getTime() - new Date(b.scheduled_date).getTime());
+    
+    return studentLessons[0] ? `${studentLessons[0].scheduled_date} ${studentLessons[0].scheduled_time}` : null;
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -141,50 +108,54 @@ const Students = () => {
                       <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white font-medium text-lg">
                         {student.name.charAt(0)}
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">{student.name}</h3>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
-                          <div className="flex items-center gap-1">
-                            <Mail className="h-4 w-4" />
-                            {student.email}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Phone className="h-4 w-4" />
-                            {student.phone}
-                          </div>
-                        </div>
-                      </div>
+                       <div>
+                         <h3 className="font-semibold text-lg">{student.name}</h3>
+                         <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
+                           <div className="flex items-center gap-1">
+                             <Mail className="h-4 w-4" />
+                             {student.email}
+                           </div>
+                           {student.phone && (
+                             <div className="flex items-center gap-1">
+                               <Phone className="h-4 w-4" />
+                               {student.phone}
+                             </div>
+                           )}
+                         </div>
+                       </div>
                     </div>
                     <div className="flex items-center gap-4">
                       <Badge className={`${getStatusColor(student.status)} text-white`}>
                         {getStatusText(student.status)}
                       </Badge>
-                      <div className="text-right">
-                        <p className="text-sm font-medium">{student.lessons} {t('lessons')}</p>
-                        <p className="text-xs text-muted-foreground">{student.package}</p>
-                      </div>
+                       <div className="text-right">
+                         <p className="text-sm font-medium">{getStudentLessonsCount(student.id)} {t('lessons')}</p>
+                         <p className="text-xs text-muted-foreground">{student.remaining_lessons} restantes</p>
+                       </div>
                     </div>
                   </div>
                   
                   <div className="mt-4 pt-4 border-t border-border">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-4 text-sm">
-                        <span className="text-muted-foreground">{t('progress')}: <span className="text-accent font-medium">{student.progress}</span></span>
-                        {student.nextLesson && (
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">{t('nextLesson')}: {student.nextLesson}</span>
-                          </div>
-                        )}
-                      </div>
+                     <div className="flex justify-between items-center">
+                       <div className="flex items-center gap-4 text-sm">
+                         <span className="text-muted-foreground">Status: <span className="text-accent font-medium">{getStatusText(student.status)}</span></span>
+                         {getNextLesson(student.id) && (
+                           <div className="flex items-center gap-1">
+                             <Calendar className="h-4 w-4 text-muted-foreground" />
+                             <span className="text-muted-foreground">{t('nextLesson')}: {getNextLesson(student.id)}</span>
+                           </div>
+                         )}
+                       </div>
                       <div className="flex gap-2">
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          onClick={() => window.open(`https://wa.me/${student.phone.replace(/\D/g, '')}`, '_blank')}
-                        >
-                          WhatsApp
-                        </Button>
+                         {student.phone && (
+                           <Button 
+                             size="sm" 
+                             variant="outline"
+                             onClick={() => window.open(`https://wa.me/${student.phone.replace(/\D/g, '')}`, '_blank')}
+                           >
+                             WhatsApp
+                           </Button>
+                         )}
                         <Button size="sm" variant="outline">
                           {t('viewProfile')}
                         </Button>
