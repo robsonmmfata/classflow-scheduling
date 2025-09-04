@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { BookOpen, Eye, EyeOff } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/lib/translations';
+import { loginSchema, type LoginForm } from '@/lib/validations';
+import { useFormValidation } from '@/hooks/useFormValidation';
+import { LoadingButton } from '@/components/ui/loading-button';
 import LanguageSelector from '@/components/LanguageSelector';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const { login, isLoading, user, profile } = useAuth();
-  const { t } = useLanguage();
+  const { language } = useLanguage();
+  const t = translations[language];
 
   if (user) {
     const redirectPath = 
@@ -25,15 +26,24 @@ const Login = () => {
     return <Navigate to={redirectPath} replace />;
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    
-    const success = await login(email, password);
-    if (!success) {
-      setError('Email ou senha incorretos');
-    }
-  };
+  const {
+    values,
+    isSubmitting,
+    setValue,
+    setFieldTouched,
+    handleSubmit,
+    getFieldError,
+    isFieldInvalid,
+  } = useFormValidation<LoginForm>({
+    schema: loginSchema,
+    initialValues: { email: 'aluno@teste.com', password: '123456' },
+    onSubmit: async (formData) => {
+      const success = await login(formData.email, formData.password);
+      if (!success) {
+        throw new Error('Email ou senha incorretos');
+      }
+    },
+  });
 
   return (
     <div className="min-h-screen bg-gradient-hero flex items-center justify-center p-4">
@@ -50,8 +60,8 @@ const Login = () => {
           </div>
           <div>
             <CardTitle className="text-2xl font-bold">Brazuca School Language</CardTitle>
-            <h2 className="text-xl text-foreground mt-2">{t('welcomeBack')}</h2>
-            <p className="text-muted-foreground">{t('loginToAccount')}</p>
+            <h2 className="text-xl text-foreground mt-2">{t.welcomeBack}</h2>
+            <p className="text-muted-foreground">{t.loginToAccount}</p>
           </div>
         </CardHeader>
         
