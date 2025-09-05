@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { BookOpen, Eye, EyeOff } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
@@ -68,26 +69,31 @@ const Login = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">{t('email')}</Label>
+              <Label htmlFor="email">{t.email}</Label>
               <Input
                 id="email"
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+                value={values.email}
+                onChange={(e) => setValue('email', e.target.value)}
+                onBlur={() => setFieldTouched('email')}
+                className={isFieldInvalid('email') ? 'border-destructive' : ''}
                 placeholder="aluno@teste.com"
               />
+              {getFieldError('email') && (
+                <p className="text-destructive text-sm">{getFieldError('email')}</p>
+              )}
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password">{t('password')}</Label>
+              <Label htmlFor="password">{t.password}</Label>
               <div className="relative">
                 <Input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
+                  value={values.password}
+                  onChange={(e) => setValue('password', e.target.value)}
+                  onBlur={() => setFieldTouched('password')}
+                  className={isFieldInvalid('password') ? 'border-destructive' : ''}
                   placeholder="123456"
                 />
                 <Button
@@ -104,36 +110,34 @@ const Login = () => {
                   )}
                 </Button>
               </div>
+              {getFieldError('password') && (
+                <p className="text-destructive text-sm">{getFieldError('password')}</p>
+              )}
             </div>
             
-            {error && (
-              <p className="text-destructive text-sm">{error}</p>
-            )}
-            
-            <Button 
+            <LoadingButton 
               type="submit" 
-              variant="gradient" 
+              loading={isSubmitting || isLoading}
               className="w-full" 
-              disabled={isLoading}
             >
-              {isLoading ? 'Entrando...' : t('login')}
-            </Button>
+              {t.login}
+            </LoadingButton>
             
             <div className="text-center">
               <Link 
                 to="/forgot-password" 
                 className="text-sm text-primary hover:underline"
               >
-                {t('forgotPassword')}
+                {t.forgotPassword}
               </Link>
             </div>
           </form>
           
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">
-              {t('dontHaveAccount')}{' '}
+              {t.dontHaveAccount}{' '}
               <Link to="/register" className="text-primary hover:underline">
-                {t('createAccount')}
+                {t.createAccount}
               </Link>
             </p>
           </div>
